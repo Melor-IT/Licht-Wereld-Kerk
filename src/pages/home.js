@@ -10,9 +10,9 @@ export default function home() {
   return (
     <div className="home">
       <img src={PageHeader} alt="Person holding a cat" />
-      <h1 className="text">Welkom bij kerk licht van de wereld </h1>'
+      <h1 className="text">Welkom bij kerk licht van de wereld </h1>
       <div className="container">
-        <div className="clo 1">
+        <div className="col">
           <img src={Vision} alt="Person holding a cat" />
           <div className="box">
             <h3>Onze visie</h3>
@@ -40,7 +40,7 @@ export default function home() {
             </p>
           </div>
         </div>
-        <div className="clo 2">
+        <div className="col">
           <img src={Beliefs} alt="Person holding a cat" />
           <div className="box">
             <h3>Onze overtuigingen</h3>
@@ -61,7 +61,7 @@ export default function home() {
             </p>
           </div>
         </div>
-        <div className="clo 3">
+        <div className="col">
           <img src={HetLicht} alt="Person holding a cat" />
           <div className="box">
             <h3>Wie is Het Licht van de wereld kerk?</h3>
@@ -88,7 +88,7 @@ export default function home() {
             </p>
           </div>
         </div>
-        <div className="clo 4">
+        <div className="col">
           <img src={Services} alt="Person holding a cat" />
           <div className="box 4">
             <h3>Diensten</h3>
@@ -106,7 +106,7 @@ export default function home() {
             </p>
           </div>
         </div>
-        <div className="clo 5">
+        <div className="col">
           <img src={Activities} alt="Person holding a cat" />
           <div className="box 5">
             <h3>Kerngroepen Activiteiten</h3>

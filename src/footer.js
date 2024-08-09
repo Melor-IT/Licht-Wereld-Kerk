@@ -5,15 +5,15 @@ export default function footer() {
   return (
     <footer className="footer">
       <div className="info">
-        <div className="clo">
+        <div className="col">
           <h4>Bezoekadres</h4>
           <p>Parkwijklaan 5, 1326AX Almere Nederland</p>
         </div>
-        <div className="clo">
+        <div className="col">
           <h4>Correspondentieadres</h4>
           <p>Alseïdenstraat 20-2, 1363SR Almere</p>
         </div>
-        <div className="cl0">
+        <div className="col">
           <h4>KVK</h4>
           <p>92274404</p>
         </div>
@@ -32,18 +32,18 @@ export default function footer() {
       <div className="contact">
         <h4>Contact</h4>
         <div>
-          <span className="icon-phone">
-            <Link href="068371262"></Link>
-          </span>
-          <span className="icon-envelop">
-            <Link href="lichtwereldkerk2022@gmail.com"></Link>
-          </span>
-          <span className="icon-youtube">
-            <Link href="https://www.youtube.com/@LichtWereldKerk"></Link>
-          </span>
-          <span className="icon-instagram">
-            <Link href="https://www.instagram.com/noorejahan_farsi_church?igsh=MTA1djZzdnByeHJldQ=="></Link>
-          </span>
+          <a href="tel:068371262">
+            <span className="icon-phone"></span>
+          </a>
+          <a href="mailto:lichtwereldkerk2022@gmail.com">
+            <span className="icon-envelop"></span>
+          </a>
+          <a href="https://www.youtube.com/@LichtWereldKerk">
+            <span className="icon-youtube"></span>
+          </a>
+          <a href="https://www.instagram.com/noorejahan_farsi_church?igsh=MTA1djZzdnByeHJldQ==">
+            <span className="icon-instagram"></span>
+          </a>
         </div>
       </div>
     </footer>
