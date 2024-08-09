@@ -1,22 +1,211 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@font-face {
+  font-family: "icomoon";
+  src: url("fonts/icomoon.eot?ijnq1y");
+  src: url("fonts/icomoon.eot?ijnq1y#iefix") format("embedded-opentype"),
+    url("fonts/icomoon.ttf?ijnq1y") format("truetype"),
+    url("fonts/icomoon.woff?ijnq1y") format("woff"),
+    url("fonts/icomoon.svg?ijnq1y#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "icomoon" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: italic;
 }
 
 html,
 body {
-  height: 100%;
-}
-
-#root {
-  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .app {
-  height: 100%;
+  position: relative;
+}
+
+header {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding-left: 200px;
+  justify-content: space-around;
+}
+
+header {
+  z-index: 15;
+  position: absolute;
+  padding: 1em;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+header .logo {
+  width: 5em;
+  height: 5em;
+}
+
+header .navbar {
+  top: 0;
+  right: -100em;
+}
+
+header .navbar .link {
+  color: #839a4c;
+  padding-left: 1em;
+  text-decoration: none;
+}
+
+header .navbar .link:hover {
+  color: #ee7348;
+}
+
+footer {
+  color: #fff;
+  margin-top: auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #2e5580;
+  align-items: start;
+  padding: 2em;
+}
+
+footer .info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+footer .info .clo {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 1em;
+  align-items: start;
+}
+
+footer .services {
+  flex: 1;
+}
+
+footer .contact {
+  display: flex;
+  padding-left: 2em;
+  flex: 1;
+  justify-content: start;
+  flex-direction: column;
+  align-items: start;
+}
+
+footer .contact div {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  gap: 2em;
+  align-items: center;
+}
+
+footer .contact span {
+  font-size: 2em;
+}
+
+footer .contact span:hover {
+  color: #839a4c;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home img {
+  z-index: 5;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.home .text {
+  position: absolute;
+  z-index: 10;
+  top: 6em;
+  font-weight: bold;
+  color: #fff;
+  box-shadow: #16161f;
+}
+
+.home .clo {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1em;
+  height: 30em;
+  width: 80em;
+}
+
+.home .clo img {
+  padding-right: 1em;
+  max-height: 30em;
+  max-width: 40em;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.home .clo .box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home .clo .box1,
+.home .clo .box3 .home .clo .box5 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home .clo2,
+.home .clo4 {
+  background-color: #808088;
+}
+
+.icon-phone::before {
+  content: "\e942";
+}
+.icon-envelop::before {
+  content: "\e945";
+}
+.icon-location2:before {
+  content: "\e948";
+}
+.icon-instagram:before {
+  content: "\ea92";
+}
+.icon-youtube:before {
+  content: "\ea9d";
 }
