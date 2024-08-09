@@ -48,6 +48,7 @@ body {
 header {
   display: flex;
   justify-content: space-around;
+  width: 100%;
 }
 
 header {
@@ -126,6 +127,7 @@ footer .contact span {
 
 footer .contact span:hover {
   color: #839a4c;
+  width: 100%;
 }
 
 .home {
@@ -201,4 +203,17 @@ footer .contact span:hover {
 }
 .icon-youtube:before {
   content: "\ea9d";
+}
+
+@media only screen and (max-width: 78em) {
+  footer {
+    flex-direction: column;
+  }
+
+  .home .clo {
+    flex-direction: column;
+  }
+  .home .text {
+    top: 3em;
+  }
 }
