@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function footer() {
   return (
@@ -14,7 +15,7 @@ export default function footer() {
         </div>
         <div className="cl0">
           <h4>KVK</h4>
-          <p></p>
+          <p>92274404</p>
         </div>
       </div>
       <div className="services">
@@ -32,16 +33,16 @@ export default function footer() {
         <h4>Contact</h4>
         <div>
           <span className="icon-phone">
-            <a href="" />
+            <Link href="068371262"></Link>
           </span>
           <span className="icon-envelop">
-            <a href="lichtwereldkerk2022@gmail.com" />
+            <Link href="lichtwereldkerk2022@gmail.com"></Link>
           </span>
           <span className="icon-youtube">
-            <a href="https://www.youtube.com/@LichtWereldKerk" />
+            <Link href="https://www.youtube.com/@LichtWereldKerk"></Link>
           </span>
           <span className="icon-instagram">
-            <a href="https://www.instagram.com/noorejahan_farsi_church?igsh=MTA1djZzdnByeHJldQ==" />
+            <Link href="https://www.instagram.com/noorejahan_farsi_church?igsh=MTA1djZzdnByeHJldQ=="></Link>
           </span>
         </div>
       </div>

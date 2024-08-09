@@ -5,14 +5,15 @@ import Services from "./../images/Services.jpg";
 import HetLicht from "./../images/HetLicht.jpeg";
 import Vision from "./../images/Vision.jpg";
 import Activities from "./../images/Activities.jpg";
+
 export default function home() {
   return (
     <div className="home">
-      <img src={PageHeader} />
+      <img src={PageHeader} alt="Person holding a cat" />
       <h1 className="text">Welkom bij kerk licht van de wereld </h1>'
       <div className="container">
         <div className="clo 1">
-          <img src={Vision} />
+          <img src={Vision} alt="Person holding a cat" />
           <div className="box">
             <h3>Onze visie</h3>
             <p>
@@ -35,12 +36,12 @@ export default function home() {
               overtuigingen als een gemeenschap van volgelingen van Christus.
               <br />
               Op 10 mei 2023 zijn de onderstaande bestuursleden gestart met het
-              oprichten van de kerk Het Licht van de wereld te Almere.
+              oprichten van de kerk Het Licht van de wereld te Almere.
             </p>
           </div>
         </div>
         <div className="clo 2">
-          <img src={Beliefs} />
+          <img src={Beliefs} alt="Person holding a cat" />
           <div className="box">
             <h3>Onze overtuigingen</h3>
             <p>
@@ -61,7 +62,7 @@ export default function home() {
           </div>
         </div>
         <div className="clo 3">
-          <img src={HetLicht} />
+          <img src={HetLicht} alt="Person holding a cat" />
           <div className="box">
             <h3>Wie is Het Licht van de wereld kerk?</h3>
             <p>
@@ -88,7 +89,7 @@ export default function home() {
           </div>
         </div>
         <div className="clo 4">
-          <img src={Services} />
+          <img src={Services} alt="Person holding a cat" />
           <div className="box 4">
             <h3>Diensten</h3>
             <p>
@@ -106,7 +107,7 @@ export default function home() {
           </div>
         </div>
         <div className="clo 5">
-          <img src={Activities} />
+          <img src={Activities} alt="Person holding a cat" />
           <div className="box 5">
             <h3>Kerngroepen Activiteiten</h3>
             <p>

@@ -64,11 +64,6 @@ header .logo {
   height: 5em;
 }
 
-header .navbar {
-  top: 0;
-  right: -100em;
-}
-
 header .navbar .link {
   color: #839a4c;
   padding-left: 1em;
@@ -137,6 +132,7 @@ footer .contact span:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
   align-items: center;
 }
 
@@ -160,9 +156,6 @@ footer .contact span:hover {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 1em;
-  height: 30em;
-  width: 80em;
 }
 
 .home .clo img {
