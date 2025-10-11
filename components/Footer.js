@@ -21,7 +21,8 @@ const Footer = ({ locale }) => {
           <h3>
             {formatMessage({
               id: "footerText",
-              defaultMessage: "footerText",
+              defaultMessage:
+                "God is enthroned on the praises of His people...",
             })}
           </h3>
         </div>
@@ -31,26 +32,23 @@ const Footer = ({ locale }) => {
           {/* Contact Section */}
           <div className="dark-glass">
             <h4>
-              {formatMessage({
-                id: "contact",
-                defaultMessage: "Contact",
-              })}
+              {formatMessage({ id: "contactTitle", defaultMessage: "Contact" })}
             </h4>
             <div className="contact">
               <a href="tel:068371262" aria-label="Phone">
                 <FaPhone />
               </a>
-
               <a href="mailto:lichtwereldkerk2022@gmail.com" aria-label="Email">
                 <FaEnvelope />
               </a>
-
-              <h4>
-                {formatMessage({
-                  id: "socialMedia",
-                  defaultMessage: "Social Media",
-                })}
-              </h4>
+            </div>
+            <h4>
+              {formatMessage({
+                id: "socialMedia",
+                defaultMessage: "Social Media",
+              })}
+            </h4>
+            <div className="contact">
               <a
                 href="https://www.youtube.com/@LichtWereldKerk"
                 target="_blank"
@@ -79,27 +77,20 @@ const Footer = ({ locale }) => {
               })}
             </h4>
             <p>Parkwijklaan 5, 1326 AX Almere, Nederland</p>
+
             <h4>
               {formatMessage({
-                id: "correspondenceAddress",
+                id: "CorrespondenceAddress",
                 defaultMessage: "Correspondence Address",
               })}
             </h4>
             <p>Madridweg 28, 1334 DR Almere, Nederland</p>
-            <h4>
-              {formatMessage({
-                id: "kvk",
-                defaultMessage: "KVK",
-              })}
-            </h4>
+
+            <h4>{formatMessage({ id: "kvk", defaultMessage: "KVK" })}</h4>
             <p>92274404</p>
-            <h4>
-              {formatMessage({
-                id: "rsin",
-                defaultMessage: "RSIN",
-              })}
-            </h4>
-            <p></p>
+
+            <h4>{formatMessage({ id: "RSIN", defaultMessage: "RSIN" })}</h4>
+            <p>---</p>
           </div>
         </div>
       </div>
