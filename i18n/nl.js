@@ -90,8 +90,8 @@ const messages = {
   more: "Meer",
   aboutUsSectionText:
     "Het leiderschapsteam van de Kerk van het Licht van de Wereld bestaat uit herders en dienaren vol liefde en toewijding, die de leden met gebed en geestelijke begeleiding ondersteunen op hun geloofsreis en in hun bediening. Ons doel is een warme en inspirerende omgeving te creëren waarin iedereen kan groeien in zijn relatie met God en vrucht kan dragen in het leven en dienstbaarheid.",
-  
-    // About us page
+
+  // About us page
   aboutUsTitle:
     "Laat zo uw licht voor de mensen schijnen, zodat zij uw goede daden zien en uw Vader die in de hemel",
   aboutUsondertext: "Matteüs 5:16",
@@ -99,6 +99,16 @@ const messages = {
   KazemFariba: "Kazem & Fariba",
   KazemFaribaText:
     "Sinds 1990 hebben wij in Turkije, via de bediening van pastor Corley, kennisgemaakt met Jezus Christus. Van 2000 tot 2002 ontvingen wij onderwijs in Gods Woord in de Immanuël Kerk in Nederland, waar wij beiden ook zijn gedoopt. Daarna sloten wij ons aan bij de Iraanse Kerk 222 in Nederland, waar wij verdere geestelijke vorming kregen en onze bediening begonnen. In 2022, geleid door de Heilige Geest, hebben wij in de stad Almere de Kerk van het Licht van de Wereld opgericht. Ons doel is om als licht in de duisternis te zijn en het Evangelie van redding te brengen aan Farsi-sprekenden, maar ook aan andere inwoners van deze stad, ons land en ons geliefde volk, de Iraniërs in Iran en andere landen. Wij zetten ons met heel ons hart in om, volgens Mattheüs 28:19-20, discipelen te maken, te dopen en te onderwijzen geleid door de liefde van de Hemelse Vader en de kracht van de Heilige Geest. Daarnaast willen wij deze missie voortzetten in eenheid en samenwerking met andere kerken, zoals Jezus in Johannes 17 heeft gebeden  opdat de wereld zal zien dat wij één zijn in Hem.",
+  Kazem: "Kazem Dehghani",
+  Fariba: "Fariba Dehghani",
+  Hamid: "Hamid Ghanbari",
+  Sima: "Sima Sasanfar",
+  Voorganger: "Voorganger",
+  Secretariaat: "Secretariaat",
+  Penningmeester: "Penningmeester",
+  Vertegenwoordiger: "Vertegenwoordiger",
+  organisatiestructuu:
+    "Vrijwilligers: Ondersteunen alle activiteiten en zorgen voor een veilige en ondersteunende omgeving voor leden van de kerk.",
 };
 
 export default messages;

@@ -18,25 +18,15 @@ export default function ANBIInformationPage({ locale, setLocale }) {
           <h1>
             {formatMessage({
               id: "beleidsplanTitle",
-              defaultMessage:
-                'Beleidsplan',
+              defaultMessage: "Beleidsplan",
             })}
           </h1>
-           {/* <h2>
-              {formatMessage({
-                id: "introBibleVerse",
-                defaultMessage:
-                  '"En het licht schijnt in de duisternis en de duisternis heeft het niet gegrepen." (Johannes 1:5)',
-              })}
-            </h2> */}
         </div>
       </section>
 
-      {/* Section – Inleiding / مقدمه */}
       <section className="primary">
         <div className="page-content">
           <div className="text-block">
-           
             <h4>
               {formatMessage({
                 id: "introText",
@@ -48,7 +38,6 @@ export default function ANBIInformationPage({ locale, setLocale }) {
         </div>
       </section>
 
-      {/* Section – Doelen */}
       <section className="secondary">
         <div className="page-content">
           <div className="text-block">
@@ -96,7 +85,6 @@ export default function ANBIInformationPage({ locale, setLocale }) {
         </div>
       </section>
 
-      {/* Section – Activiteiten */}
       <section className="primary">
         <div className="page-content">
           <h2>
@@ -145,7 +133,6 @@ export default function ANBIInformationPage({ locale, setLocale }) {
         </div>
       </section>
 
-      {/* Section – Organisatiestructuur */}
       <section className="secondary">
         <div className="page-content">
           <h2>
@@ -155,19 +142,44 @@ export default function ANBIInformationPage({ locale, setLocale }) {
             })}
           </h2>
           <ul>
-            <li>Voorganger: K. Dehghani</li>
-            <li>Secretariaat: H. Ghanbari</li>
-            <li>Penningmeester: F. Tahayori</li>
-            <li>Vertegenwoordiger: S. Sasanfar</li>
+            <li>{formatMessage({
+              id: "Voorganger",
+              defaultMessage: "Voorganger",
+            })}: {formatMessage({
+              id: "Kazem",
+              defaultMessage: "Kazem Dehghani",
+            })}</li>
+              <li>{formatMessage({
+              id: "Secretariaat",
+              defaultMessage: "Secretariaat",
+            })}: {formatMessage({
+              id: "Hamid",
+              defaultMessage: "Hamid Ghanbari",
+            })}</li>
+             <li>{formatMessage({
+              id: "Penningmeester",
+              defaultMessage: "Penningmeester",
+            })}: {formatMessage({
+              id: "Fariba",
+              defaultMessage: "Fariba Dehghani",
+            })}</li>
+             <li>{formatMessage({
+              id: "Vertegenwoordiger",
+              defaultMessage: "Vertegenwoordiger",
+            })}: {formatMessage({
+              id: "Sima",
+              defaultMessage: "Sima Sasanfar",
+            })}</li>
             <li>
-              Vrijwilligers: Ondersteunen alle activiteiten en zorgen voor een
-              veilige en ondersteunende omgeving voor leden van de kerk.
+             {formatMessage({
+              id: "organisatiestructuu",
+              defaultMessage: "organisatiestructuu",
+            })}
             </li>
           </ul>
         </div>
       </section>
 
-      {/* Section – Financieel beleid */}
       <section className="primary">
         <div className="page-content">
           <h2>
@@ -202,7 +214,6 @@ export default function ANBIInformationPage({ locale, setLocale }) {
         </div>
       </section>
 
-      {/* Section – Evaluatie en toekomst */}
       <section className="secondary">
         <div className="page-content">
           <h2>
