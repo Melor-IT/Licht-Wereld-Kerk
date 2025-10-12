@@ -17,7 +17,18 @@ export default function AboutUsPage() {
           <h1>
             {formatMessage({ id: "aboutUs", defaultMessage: "About Us" })}
           </h1>
-       
+         <h2>
+              {formatMessage({
+                id: "aboutUsTitle",
+                defaultMessage:
+                  'Laat zo uw licht voor de mensen schijnen, zodat zij uw goede daden zien en uw Vader die in de hemel',
+              })}
+            </h2>
+            <h4> {formatMessage({
+                id: "aboutUsondertext",
+                defaultMessage:
+                  'Matteüs 5:16',
+              })}</h4>
         </div>
       </section>
       <section className="our-team">

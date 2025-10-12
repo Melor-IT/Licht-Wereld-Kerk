@@ -22,13 +22,13 @@ export default function ANBIInformationPage({ locale, setLocale }) {
                 'Beleidsplan',
             })}
           </h1>
-           <h2>
+           {/* <h2>
               {formatMessage({
                 id: "introBibleVerse",
                 defaultMessage:
                   '"En het licht schijnt in de duisternis en de duisternis heeft het niet gegrepen." (Johannes 1:5)',
               })}
-            </h2>
+            </h2> */}
         </div>
       </section>
 

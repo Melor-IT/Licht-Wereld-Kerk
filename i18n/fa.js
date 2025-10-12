@@ -1,8 +1,8 @@
 const messages = {
   //Anbi Information
-  beleidsplanTitle: "طرح کلی»",
+  beleidsplanTitle: "طرح کلیسا  نور جهان",
   introBibleVerse:
-    "«و نور در تاریکی می‌درخشد و تاریکی آن را درنیافت.» (یوحنا ۱:۵)",
+    "و نور در تاریکی می‌درخشد و تاریکی آن را درنیافت. (یوحنا ۱:۵)",
   introText:
     "کلیسای مسیحی «نور جهان» کلیسایی جوان، پویـا و معاصر است که از فرهنگ‌ها و فرقه‌های گوناگون تشکیل شده است. اعضای این کلیسا از ملیت‌های مختلف هستند. هدف ما یاری رساندن به جویندگان حقیقت است تا پیروان وقف‌شده عیسی مسیح شوند و همچنین حمایت از ایمانداران برای رشد در جامعه و داشتن رابطه‌ای زنده با عیسی مسیح.",
   goalsTitle: "اهداف",
@@ -53,6 +53,9 @@ const messages = {
   ANBIinformation: "اطلاعات آنبی",
 
   //our-vision page
+  ourVisionText:
+    "و نور در تاریکی می‌درخشد و تاریکی آن را درنیافت.",
+  ourVisionOnder: "یوحنا ۱:۵",
   ourVisionTitle: "کلیسای نور جهان",
   unityPrayerWorshipTitle: "رویای ما",
   unityPrayerWorshipIntro:
@@ -86,7 +89,9 @@ const messages = {
   more: "بیشتر",
 
   // About us page
-
+  aboutUsTitle:
+    "نور خود را پیش مردم بگذارید تا کارهای نیک شما را ببینند و پدر شما که در آسمان است، جلال یابد.",
+  aboutUsondertext: "متی 5:16",
   aboutUs: "درباره ما",
   KazemFariba: "کاظم و فریبا",
   KazemFaribaText:

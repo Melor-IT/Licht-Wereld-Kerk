@@ -21,6 +21,20 @@ export default function OurVisionPage() {
               defaultMessage: "Our Vision",
             })}
           </h1>
+           <h2>
+              {formatMessage({
+                id: "ourVisionText",
+                defaultMessage:
+                  "",
+              })}
+            </h2>
+             <h4>
+              {formatMessage({
+                id: "ourVisionOnder",
+                defaultMessage:
+                  '(Johannes 1:5)',
+              })}
+            </h4>
         </div>
       </section>
 

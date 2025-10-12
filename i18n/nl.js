@@ -53,6 +53,9 @@ const messages = {
   ANBIinformation: "ANBI-informatie",
 
   //Our vision page
+  ourVisionText:
+    "En het licht schijnt in de duisternis en de duisternis heeft het niet gegrepen.",
+  ourVisionOnder: "Johannes 1:5",
   ourVisionTitle: "Het Licht van de Wereld Kerk",
   unityPrayerWorshipTitle: "Onze Visie",
   unityPrayerWorshipIntro:
@@ -87,7 +90,11 @@ const messages = {
   more: "Meer",
   aboutUsSectionText:
     "Het leiderschapsteam van de Kerk van het Licht van de Wereld bestaat uit herders en dienaren vol liefde en toewijding, die de leden met gebed en geestelijke begeleiding ondersteunen op hun geloofsreis en in hun bediening. Ons doel is een warme en inspirerende omgeving te creëren waarin iedereen kan groeien in zijn relatie met God en vrucht kan dragen in het leven en dienstbaarheid.",
-  // About us page
+  
+    // About us page
+  aboutUsTitle:
+    "Laat zo uw licht voor de mensen schijnen, zodat zij uw goede daden zien en uw Vader die in de hemel",
+  aboutUsondertext: "Matteüs 5:16",
   aboutUs: "Over ons",
   KazemFariba: "Kazem & Fariba",
   KazemFaribaText:
