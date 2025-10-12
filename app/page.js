@@ -20,8 +20,7 @@ export default function HomePage() {
       <section className="secondary">
         <div className="page-content">
           <header className="missionus">
-            <h2>{formatMessage({ id: 'ourMission', defaultMessage: 'Our Mission' })}</h2>
-            <p>{formatMessage({ id: 'ourMissionText', defaultMessage: 'our Mission Text' })}</p>
+            <h3>{formatMessage({ id: 'ourMissionText', defaultMessage: 'our Mission Text' })}</h3>
           </header>
 
           <div className="services">
@@ -37,7 +36,7 @@ export default function HomePage() {
               <h3>{formatMessage({ id: 'secondService', defaultMessage: 'Equipping Worshipers' })}</h3>
               <p>{formatMessage({ id: 'secondServiceText', defaultMessage: 'Second service text' })}</p>
               <div className="image-circle">
-                <img src="/images/secondService.jpeg" alt="Equipping Worshipers" />
+                <img src="/images/secondService.jpg" alt="Equipping Worshipers" />
               </div>
             </div>
 

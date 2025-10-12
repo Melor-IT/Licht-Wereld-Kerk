@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useIntl } from 'react-intl';
-import BackgroundImage from '../../components/BackgroundImage';
+import { useIntl } from "react-intl";
+import BackgroundImage from "../../components/BackgroundImage";
 
 export default function OurVisionPage() {
   const { formatMessage } = useIntl();
@@ -10,9 +10,17 @@ export default function OurVisionPage() {
     <div className="page our-vision">
       {/* Header Section */}
       <section>
-        <BackgroundImage url="/images/ourvision-banner.jpg" className="ourVisionHeader" />
+        <BackgroundImage
+          url="/images/ourvision-banner.jpg"
+          className="ourVisionHeader"
+        />
         <div className="page-content">
-          <h1>{formatMessage({ id: 'ourVisionTitle', defaultMessage: 'Our Vision' })}</h1>
+          <h1>
+            {formatMessage({
+              id: "ourVisionTitle",
+              defaultMessage: "Our Vision",
+            })}
+          </h1>
         </div>
       </section>
 
@@ -20,8 +28,19 @@ export default function OurVisionPage() {
       <section className="primary">
         <div className="page-content">
           <div className="text-block">
-            <h2>{formatMessage({ id: 'unityPrayerWorshipTitle', defaultMessage: 'Unity in Prayer and True Worship' })}</h2>
-            <p>{formatMessage({ id: 'unityPrayerWorshipIntro', defaultMessage: 'Christian faith is not merely an individual faith...' })}</p>
+            <h2>
+              {formatMessage({
+                id: "unityPrayerWorshipTitle",
+                defaultMessage: "Unity in Prayer and True Worship",
+              })}
+            </h2>
+            <p>
+              {formatMessage({
+                id: "unityPrayerWorshipIntro",
+                defaultMessage:
+                  "Christian faith is not merely an individual faith...",
+              })}
+            </p>
           </div>
         </div>
       </section>
@@ -30,8 +49,19 @@ export default function OurVisionPage() {
       <section className="secondary">
         <div className="page-content">
           <div className="text-block">
-            <h2>{formatMessage({ id: 'godThroneTitle', defaultMessage: 'God enthroned through the praise of His people' })}</h2>
-            <p>{formatMessage({ id: 'godThroneText', defaultMessage: 'Psalm 22:3: "Yet you are holy..."' })}</p>
+            <h2>
+              {formatMessage({
+                id: "godThroneTitle",
+                defaultMessage:
+                  "God enthroned through the praise of His people",
+              })}
+            </h2>
+            <p>
+              {formatMessage({
+                id: "godThroneText",
+                defaultMessage: 'Psalm 22:3: "Yet you are holy..."',
+              })}
+            </p>
           </div>
         </div>
       </section>
@@ -40,8 +70,18 @@ export default function OurVisionPage() {
       <section className="primary">
         <div className="page-content">
           <div className="text-block">
-            <h2>{formatMessage({ id: 'godsThroneAmongPeopleTitle', defaultMessage: 'God’s throne among His people' })}</h2>
-            <p>{formatMessage({ id: 'godsThroneAmongPeopleText', defaultMessage: 'Jeremiah 49:38: "I will set up my throne..."' })}</p>
+            <h2>
+              {formatMessage({
+                id: "godsThroneAmongPeopleTitle",
+                defaultMessage: "God’s throne among His people",
+              })}
+            </h2>
+            <p>
+              {formatMessage({
+                id: "godsThroneAmongPeopleText",
+                defaultMessage: 'Jeremiah 49:38: "I will set up my throne..."',
+              })}
+            </p>
           </div>
         </div>
       </section>
@@ -50,28 +90,18 @@ export default function OurVisionPage() {
       <section className="secondary">
         <div className="page-content">
           <div className="text-block">
-            <h2>{formatMessage({ id: 'godsTempleTitle', defaultMessage: 'We are God’s temple' })}</h2>
-            <p>{formatMessage({ id: 'godsTempleText', defaultMessage: '1 Corinthians 3:16: "Do you not know..."' })}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 5: Worship in Spirit and Truth */}
-      <section className="primary">
-        <div className="page-content">
-          <div className="text-block">
-            <h2>{formatMessage({ id: 'worshipSpiritTruthTitle', defaultMessage: 'Worship in Spirit and Truth' })}</h2>
-            <p>{formatMessage({ id: 'worshipSpiritTruthText', defaultMessage: 'John 4:20-23: True worshipers...' })}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 6: Application for Today */}
-      <section className="secondary">
-        <div className="page-content">
-          <div className="text-block">
-            <h2>{formatMessage({ id: 'applicationTodayTitle', defaultMessage: 'Application for Today' })}</h2>
-            <p>{formatMessage({ id: 'applicationTodayText', defaultMessage: 'Acts 2:46-47: When our prayer...' })}</p>
+            <h2>
+              {formatMessage({
+                id: "godsTempleTitle",
+                defaultMessage: "We are God’s temple",
+              })}
+            </h2>
+            <p>
+              {formatMessage({
+                id: "godsTempleText",
+                defaultMessage: '1 Corinthians 3:16: "Do you not know..."',
+              })}
+            </p>
           </div>
         </div>
       </section>
