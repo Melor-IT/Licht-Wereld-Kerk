@@ -1,0 +1,71 @@
+'use client';
+
+import { useIntl } from 'react-intl';
+import BackgroundImage from '../components/BackgroundImage';
+import Link from 'next/link';
+
+export default function HomePage() {
+  const { formatMessage } = useIntl();
+
+  return (
+    <main className="page home">
+      <section className="banner">
+        <BackgroundImage url="/images/home-banner.jpeg" />
+        <div className="page-content">
+          <h2>{formatMessage({ id: 'welcomeTo', defaultMessage: 'Welcome to' })}</h2>
+          <h1>{formatMessage({ id: 'lightWorld', defaultMessage: 'light world' })}</h1>
+        </div>
+      </section>
+
+      <section className="secondary">
+        <div className="page-content">
+          <header className="missionus">
+            <h3>{formatMessage({ id: 'ourMissionText', defaultMessage: 'our Mission Text' })}</h3>
+          </header>
+
+          <div className="services">
+            <div>
+              <h3>{formatMessage({ id: 'firstService', defaultMessage: 'Organizing Prayer and Worship Sessions' })}</h3>
+              <p>{formatMessage({ id: 'firstServiceText', defaultMessage: 'First service text' })}</p>
+              <div className="image-circle sw">
+                <img src="/images/firstService.jpg" alt="Organizing Prayer and Worship Sessions" />
+              </div>
+            </div>
+
+            <div>
+              <h3>{formatMessage({ id: 'secondService', defaultMessage: 'Equipping Worshipers' })}</h3>
+              <p>{formatMessage({ id: 'secondServiceText', defaultMessage: 'Second service text' })}</p>
+              <div className="image-circle">
+                <img src="/images/secondService.jpg" alt="Equipping Worshipers" />
+              </div>
+            </div>
+
+            <div>
+              <h3>{formatMessage({ id: 'thirdService', defaultMessage: 'Nurturing Prophets' })}</h3>
+              <p>{formatMessage({ id: 'thirdServiceText', defaultMessage: 'Third service text' })}</p>
+              <div className="image-circle ne">
+                <img src="/images/thirdService.jpg" alt="Nurturing Prophets" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="primary about-us">
+        <div className="page-content">
+          <div className="botoje-white"></div>
+          <div className="text-block">
+            <h2>{formatMessage({ id: 'aboutUs', defaultMessage: 'About Us' })}</h2>
+          </div>
+
+          <div className="text-block">
+            <p>{formatMessage({ id: 'aboutUsSectionText', defaultMessage: 'AboutUs section text' })}</p>
+            <Link className="button" href="/about-us">
+              {formatMessage({ id: 'more', defaultMessage: 'More' })}
+            </Link>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
