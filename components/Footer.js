@@ -90,7 +90,7 @@ const Footer = ({ locale }) => {
             <p>92274404</p>
 
             <h4>{formatMessage({ id: "RSIN", defaultMessage: "RSIN" })}</h4>
-            <p>---</p>
+            <p>865970245</p>
           </div>
         </div>
       </div>
