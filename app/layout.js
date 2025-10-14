@@ -30,12 +30,22 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang={locale}>
-      <body className={locale === 'fa' ? 'rtl' : 'ltr'} dir={locale === 'fa' ? 'rtl' : 'ltr'}>
+      <body className={locale === 'fa' ? 'rtl app' : 'ltr app'} dir={locale === 'fa' ? 'rtl' : 'ltr'}>
         <IntlProvider locale={locale} messages={messages[locale]}>
           <Header locale={locale} setLocale={changeLocale} />
           <main>{children}</main>
           <Footer />
         </IntlProvider>
+
+        {/* فونت‌های گوگل */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
       </body>
     </html>
   );
