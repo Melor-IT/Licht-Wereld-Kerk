@@ -93,6 +93,7 @@ const Footer = ({ locale }) => {
             <p>865970245</p>
           </div>
         </div>
+        <div class="copyright-container ud-text-sm">© 2025 Melor</div>
       </div>
     </footer>
   );
