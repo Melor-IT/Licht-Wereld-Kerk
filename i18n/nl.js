@@ -109,6 +109,18 @@ const messages = {
   Vertegenwoordiger: "Vertegenwoordiger",
   organisatiestructuu:
     "Vrijwilligers: Ondersteunen alle activiteiten en zorgen voor een veilige en ondersteunende omgeving voor leden van de kerk.",
+
+  //Event page
+  firstName: "Naam",
+  lastName: "Achternaam",
+  lastName: "Achternaam",
+  email: "E-mail",
+  phone: "Telefoon",
+  totalOfadults: "Totaal aantal volwassenen",
+  kidsgirls: "Aantal meisjes",
+  kidsboys: "Aantal jongens",
+  message: "Bericht",
+  event: "Evenement",
 };
 
 export default messages;

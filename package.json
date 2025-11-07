@@ -19,6 +19,7 @@
     "react-intl": "^7.1.14",
     "react-router-dom": "^6.21.0",
     "react-use": "^17.6.0",
+    "resend": "^6.4.2",
     "sass": "^1.93.2",
     "web-vitals": "^2.1.4"
   },

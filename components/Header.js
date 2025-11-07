@@ -8,6 +8,7 @@ const menuItems = [
   { to: "/", id: "home", defaultMessage: "Home" },
   { to: "/about-us", id: "aboutUs", defaultMessage: "About Us" },
   { to: "/our-vision", id: "ourVision", defaultMessage: "Our Vision" },
+  { to: "/event", id: "event", defaultMessage: "Event" },
   {
     to: "/ANBI-information",
     id: "ANBIinformation",
