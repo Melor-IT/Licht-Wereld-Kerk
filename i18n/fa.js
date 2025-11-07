@@ -116,6 +116,7 @@ const messages = {
   kidsboys: "تعداد پسران",
   message: "پیام",
   event: "رویداد",
+  send: "ارسال",
 };
 
 export default messages;

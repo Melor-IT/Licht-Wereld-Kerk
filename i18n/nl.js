@@ -121,6 +121,7 @@ const messages = {
   kidsboys: "Aantal jongens",
   message: "Bericht",
   event: "Evenement",
+  send: "Verzenden",
 };
 
 export default messages;

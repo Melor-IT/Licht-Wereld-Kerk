@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useIntl } from "react-intl";
 import BackgroundImage from "../../components/BackgroundImage";
 
-export default function AboutUsPage() {
+export default function Event() {
   const { formatMessage } = useIntl();
 
   const [formData, setFormData] = useState({
@@ -31,42 +31,43 @@ export default function AboutUsPage() {
     }));
   };
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  try {
-    const res = await fetch("/api/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
-
-    if (res.ok) {
-      alert("🎉 The form has been submitted successfully!");
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        totalOfadults: 0,
-        kidsgirls: 0,
-        kidsboys: 0,
-        message: "",
+    try {
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
-    } else {
-      alert("Error submitting form😔");
+
+      if (res.ok) {
+        alert("🎉 The form has been submitted successfully!");
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          totalOfadults: 0,
+          kidsgirls: 0,
+          kidsboys: 0,
+          message: "",
+        });
+      } else {
+        alert("Error submitting form 😔");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error submitting form 😔");
     }
-  } catch (err) {
-    console.error(err);
-    alert("Error submitting form😔");
-};
+  };
 
   return (
     <div className="page event">
       <section>
         <BackgroundImage
           url="/images/event-banner.jpeg"
-          className="ANBIinformation"
+          className="event-banner"
         />
       </section>
 
@@ -74,9 +75,7 @@ export default function AboutUsPage() {
         <div className="page-content">
           <form className="form-block" onSubmit={handleSubmit}>
             <label>
-              <span className="title">
-                {formatMessage({ id: "firstName" })}
-              </span>
+              <span className="title">{formatMessage({ id: "firstName" })}</span>
               <input
                 type="text"
                 name="firstName"
@@ -120,9 +119,7 @@ export default function AboutUsPage() {
             </label>
 
             <label>
-              <span className="title">
-                {formatMessage({ id: "totalOfadults" })}
-              </span>
+              <span className="title">{formatMessage({ id: "totalOfadults" })}</span>
               <input
                 type="number"
                 name="totalOfadults"
@@ -133,9 +130,7 @@ export default function AboutUsPage() {
             </label>
 
             <label>
-              <span className="title">
-                {formatMessage({ id: "kidsgirls" })}
-              </span>
+              <span className="title">{formatMessage({ id: "kidsgirls" })}</span>
               <input
                 type="number"
                 name="kidsgirls"
@@ -158,8 +153,8 @@ export default function AboutUsPage() {
             </label>
 
             <label>
-              <span className="title">{formatMessage({ id: "message" })}</span>
-              <input
+              <span className="title">  {formatMessage({ id: "message"})}</span>
+              <textarea
                 type="text"
                 name="message"
                 value={formData.message}
@@ -171,7 +166,7 @@ export default function AboutUsPage() {
               type="submit"
               className="w-full bg-red-600 text-white py-2 rounded"
             >
-              {formatMessage({ id: "submit", defaultMessage: "submit" })}
+              {formatMessage({ id: "send" })}
             </button>
           </form>
         </div>
