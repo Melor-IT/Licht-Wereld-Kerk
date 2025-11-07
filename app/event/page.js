@@ -42,7 +42,7 @@ export default function AboutUsPage() {
     });
 
     if (res.ok) {
-      alert("🎉 Het formulier is succesvol verzonden!");
+      alert("🎉 The form has been submitted successfully!");
       setFormData({
         firstName: "",
         lastName: "",
@@ -54,12 +54,11 @@ export default function AboutUsPage() {
         message: "",
       });
     } else {
-      alert("خطا در ارسال فرم 😔");
+      alert("Error submitting form😔");
     }
   } catch (err) {
     console.error(err);
-    alert("خطا در ارتباط با سرور");
-  }
+    alert("Error submitting form😔");
 };
 
   return (
