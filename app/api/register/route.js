@@ -23,7 +23,7 @@ export async function POST(req) {
   try {
     await resend.emails.send({
       from: "Christmas Event <Christmas@lichtwereld.com>",
-      to: `${process.env.MY_EMAIL},`,
+      to: [process.env.MY_EMAIL],
       subject: "🎄 Nieuw Kerstregistratieformulier",
       html: `
         <h2 style="color:#c62828;">🎄 New Christmas Registration</h2>
