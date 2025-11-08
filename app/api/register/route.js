@@ -22,9 +22,9 @@ export async function POST(req) {
 
   try {
     await resend.emails.send({
-      from: "Christmas Event <onboarding@resend.dev>",
+      from: "Christmas Event <Christmas@resend.dev>",
       to: process.env.MY_EMAIL,
-      subject: "🎄 New Christmas Registration Form",
+      subject: "🎄 Nieuw Kerstregistratieformulier",
       html: `
         <h2 style="color:#c62828;">🎄 New Christmas Registration</h2>
         <p><b>Naam:</b> ${firstName} ${lastName}</p>
