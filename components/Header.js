@@ -6,9 +6,9 @@ import { usePathname } from "next/navigation";
 
 const menuItems = [
   { to: "/", id: "home", defaultMessage: "Home" },
+  { to: "/event", id: "event", defaultMessage: "Event" },
   { to: "/about-us", id: "aboutUs", defaultMessage: "About Us" },
   { to: "/our-vision", id: "ourVision", defaultMessage: "Our Vision" },
-  { to: "/event", id: "event", defaultMessage: "Event" },
   {
     to: "/ANBI-information",
     id: "ANBIinformation",
@@ -23,13 +23,9 @@ const Header = ({ locale, setLocale }) => {
   return (
     <header className={`app-header ${locale === "fa" ? "rtl" : "ltr"}`}>
       <div className="page-content">
-     
-     
-          <div className="logo">
-            <img src="/images/Logo.png" alt="Logo" />
-          </div>
-     
-     
+        <div className="logo">
+          <img src="/images/Logo.png" alt="Logo" />
+        </div>
 
         <nav className="nav-menu" aria-label="Main navigation">
           {menuItems.map((item) => (
