@@ -22,7 +22,7 @@ export async function POST(req) {
 
   try {
     await resend.emails.send({
-      from: "Christmas Event <Christmas@resend.dev>", // فقط این باید باشه
+      from: "Christmas Event <onboarding@resend.dev>", // فقط این باید باشه
       to: process.env.MY_EMAIL, // فقط به ایمیل خودت می‌فرسته
       subject: "🎄 Nieuw Kerstregistratieformulier",
       html: `
