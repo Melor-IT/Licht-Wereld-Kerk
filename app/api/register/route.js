@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
+console.log("✅ Loaded RESEND_API_KEY:", process.env.RESEND_API_KEY ? "YES" : "NO");
+console.log("✅ Loaded MY_EMAIL:", process.env.MY_EMAIL || "NOT SET");
+
+
 if (!process.env.RESEND_API_KEY) {
   throw new Error("Missing RESEND_API_KEY in environment variables!");
 }
@@ -22,8 +26,8 @@ export async function POST(req) {
 
   try {
     await resend.emails.send({
-      from: "Christmas Event <onboarding@resend.dev>", // فقط این باید باشه
-      to: process.env.MY_EMAIL, // فقط به ایمیل خودت می‌فرسته
+      from: "Christmas Event <onboarding@resend.dev>", 
+      to: process.env.MY_EMAIL, 
       subject: "🎄 Nieuw Kerstregistratieformulier",
       html: `
         <h2 style="color:#c62828;">🎄 New Christmas Registration</h2>
