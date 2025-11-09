@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
 console.log("✅ Loaded RESEND_API_KEY:", process.env.RESEND_API_KEY ? "YES" : "NO");
+
 console.log("✅ Loaded MY_EMAIL:", process.env.MY_EMAIL || "NOT SET");
 
 
