@@ -18,7 +18,39 @@ export default function Event() {
     message: "",
   });
 
-  const [submitted, setSubmitted] = useState(false); // 👈 اضافه شد
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const newErrors = {};
+
+    // نام و نام خانوادگی: فقط حروف و فاصله
+    if (!/^[a-zA-Z\s]{2,}$/.test(formData.firstName)) {
+      newErrors.firstName = "Please enter a valid first name";
+    }
+    if (!/^[a-zA-Z\s]{2,}$/.test(formData.lastName)) {
+      newErrors.lastName = "Please enter a valid last name";
+    }
+
+    // ایمیل
+    if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email";
+    }
+
+    // شماره تلفن هلندی: شروع با 06 یا +316 و 8 رقم بعد
+    if (!/^(06\d{8}|\+316\d{8})$/.test(formData.phone)) {
+      newErrors.phone = "Please enter a valid Dutch phone number";
+    }
+
+    // تعداد افراد و فرزندان
+    if (formData.totalOfadults < 0) newErrors.totalOfadults = "Must be 0 or more";
+    if (formData.kidsgirls < 0) newErrors.kidsgirls = "Must be 0 or more";
+    if (formData.kidsboys < 0) newErrors.kidsboys = "Must be 0 or more";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -35,22 +67,36 @@ export default function Event() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validate()) return;
 
+    setLoading(true);
     try {
-      const res = await fetch("/api/register", {
+      const res = await fetch("/api/send-registration", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       if (res.ok) {
-        setSubmitted(true); // 👈 فرم بسته می‌شود
+        setSubmitted(true);
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          totalOfadults: 0,
+          kidsgirls: 0,
+          kidsboys: 0,
+          message: "",
+        });
       } else {
         alert("Error submitting form 😔");
       }
     } catch (err) {
       console.error(err);
       alert("Error submitting form 😔");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -65,7 +111,7 @@ export default function Event() {
 
       <section className="form">
         <div className="page-content">
-          {submitted ? ( // 👇 اگر ارسال شد، پیام تشکر نمایش بده
+          {submitted ? (
             <div className="text-center py-10">
               <h2 className="text-2xl font-bold text-green-600">
                 🎉 Thank you for your registration!
@@ -75,7 +121,7 @@ export default function Event() {
               </p>
             </div>
           ) : (
-            <form className="form-block" onSubmit={handleSubmit}>
+            <form className="form-block" onSubmit={handleSubmit} noValidate>
               <label>
                 <span className="title">{formatMessage({ id: "firstName" })}</span>
                 <input
@@ -85,6 +131,7 @@ export default function Event() {
                   onChange={handleChange}
                   required
                 />
+                {errors.firstName && <p className="text-red-600">{errors.firstName}</p>}
               </label>
 
               <label>
@@ -96,6 +143,7 @@ export default function Event() {
                   onChange={handleChange}
                   required
                 />
+                {errors.lastName && <p className="text-red-600">{errors.lastName}</p>}
               </label>
 
               <label>
@@ -107,6 +155,7 @@ export default function Event() {
                   onChange={handleChange}
                   required
                 />
+                {errors.email && <p className="text-red-600">{errors.email}</p>}
               </label>
 
               <label>
@@ -118,6 +167,7 @@ export default function Event() {
                   onChange={handleChange}
                   required
                 />
+                {errors.phone && <p className="text-red-600">{errors.phone}</p>}
               </label>
 
               <label>
@@ -128,7 +178,9 @@ export default function Event() {
                   value={formData.totalOfadults}
                   onChange={handleChange}
                   required
+                  min={0}
                 />
+                {errors.totalOfadults && <p className="text-red-600">{errors.totalOfadults}</p>}
               </label>
 
               <label>
@@ -139,7 +191,9 @@ export default function Event() {
                   value={formData.kidsgirls}
                   onChange={handleChange}
                   required
+                  min={0}
                 />
+                {errors.kidsgirls && <p className="text-red-600">{errors.kidsgirls}</p>}
               </label>
 
               <label>
@@ -150,7 +204,9 @@ export default function Event() {
                   value={formData.kidsboys}
                   onChange={handleChange}
                   required
+                  min={0}
                 />
+                {errors.kidsboys && <p className="text-red-600">{errors.kidsboys}</p>}
               </label>
 
               <label>
@@ -165,8 +221,9 @@ export default function Event() {
               <button
                 type="submit"
                 className="w-full bg-red-600 text-white py-2 rounded"
+                disabled={loading}
               >
-                {formatMessage({ id: "send" })}
+                {loading ? "Sending..." : formatMessage({ id: "send" })}
               </button>
             </form>
           )}
