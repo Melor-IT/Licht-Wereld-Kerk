@@ -44,7 +44,8 @@ export default function Event() {
     }
 
     // تعداد افراد و فرزندان
-    if (formData.totalOfadults < 0) newErrors.totalOfadults = "Must be 0 or more";
+    if (formData.totalOfadults < 0)
+      newErrors.totalOfadults = "Must be 0 or more";
     if (formData.kidsgirls < 0) newErrors.kidsgirls = "Must be 0 or more";
     if (formData.kidsboys < 0) newErrors.kidsboys = "Must be 0 or more";
 
@@ -71,7 +72,7 @@ export default function Event() {
 
     setLoading(true);
     try {
-      const res = await fetch("/api/register", {
+      const res = await fetch("/api/send-registration", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -123,7 +124,9 @@ export default function Event() {
           ) : (
             <form className="form-block" onSubmit={handleSubmit} noValidate>
               <label>
-                <span className="title">{formatMessage({ id: "firstName" })}</span>
+                <span className="title">
+                  {formatMessage({ id: "firstName" })}
+                </span>
                 <input
                   type="text"
                   name="firstName"
@@ -131,11 +134,15 @@ export default function Event() {
                   onChange={handleChange}
                   required
                 />
-                {errors.firstName && <p className="text-red-600">{errors.firstName}</p>}
+                {errors.firstName && (
+                  <p className="text-red-600">{errors.firstName}</p>
+                )}
               </label>
 
               <label>
-                <span className="title">{formatMessage({ id: "lastName" })}</span>
+                <span className="title">
+                  {formatMessage({ id: "lastName" })}
+                </span>
                 <input
                   type="text"
                   name="lastName"
@@ -143,7 +150,9 @@ export default function Event() {
                   onChange={handleChange}
                   required
                 />
-                {errors.lastName && <p className="text-red-600">{errors.lastName}</p>}
+                {errors.lastName && (
+                  <p className="text-red-600">{errors.lastName}</p>
+                )}
               </label>
 
               <label>
@@ -171,7 +180,9 @@ export default function Event() {
               </label>
 
               <label>
-                <span className="title">{formatMessage({ id: "totalOfadults" })}</span>
+                <span className="title">
+                  {formatMessage({ id: "totalOfadults" })}
+                </span>
                 <input
                   type="number"
                   name="totalOfadults"
@@ -180,11 +191,15 @@ export default function Event() {
                   required
                   min={0}
                 />
-                {errors.totalOfadults && <p className="text-red-600">{errors.totalOfadults}</p>}
+                {errors.totalOfadults && (
+                  <p className="text-red-600">{errors.totalOfadults}</p>
+                )}
               </label>
 
               <label>
-                <span className="title">{formatMessage({ id: "kidsgirls" })}</span>
+                <span className="title">
+                  {formatMessage({ id: "kidsgirls" })}
+                </span>
                 <input
                   type="number"
                   name="kidsgirls"
@@ -193,11 +208,15 @@ export default function Event() {
                   required
                   min={0}
                 />
-                {errors.kidsgirls && <p className="text-red-600">{errors.kidsgirls}</p>}
+                {errors.kidsgirls && (
+                  <p className="text-red-600">{errors.kidsgirls}</p>
+                )}
               </label>
 
               <label>
-                <span className="title">{formatMessage({ id: "kidsboys" })}</span>
+                <span className="title">
+                  {formatMessage({ id: "kidsboys" })}
+                </span>
                 <input
                   type="number"
                   name="kidsboys"
@@ -206,11 +225,15 @@ export default function Event() {
                   required
                   min={0}
                 />
-                {errors.kidsboys && <p className="text-red-600">{errors.kidsboys}</p>}
+                {errors.kidsboys && (
+                  <p className="text-red-600">{errors.kidsboys}</p>
+                )}
               </label>
 
               <label>
-                <span className="title">{formatMessage({ id: "message" })}</span>
+                <span className="title">
+                  {formatMessage({ id: "message" })}
+                </span>
                 <textarea
                   name="message"
                   value={formData.message}
