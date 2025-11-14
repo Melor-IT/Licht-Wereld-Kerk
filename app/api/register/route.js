@@ -1,34 +1,35 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
-
-console.log("✅ Loaded RESEND_API_KEY:", process.env.RESEND_API_KEY ? "YES" : "NO");
-
-console.log("✅ Loaded MY_EMAIL:", process.env.MY_EMAIL || "NOT SET");
-
-
-if (!process.env.RESEND_API_KEY) {
-  throw new Error("Missing RESEND_API_KEY in environment variables!");
-}
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import nodemailer from "nodemailer";
 
 export async function POST(req) {
-  const body = await req.json();
-  const {
-    firstName,
-    lastName,
-    email,
-    phone,
-    totalOfadults,
-    kidsgirls,
-    kidsboys,
-    message,
-  } = body;
-
   try {
-    await resend.emails.send({
-      from: "Christmas Event <onboarding@resend.dev>", 
-      to: process.env.MY_EMAIL, 
+    const body = await req.json();
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+      totalOfadults,
+      kidsgirls,
+      kidsboys,
+      message,
+    } = body;
+
+    // ساختار transporter برای Gmail
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false, // TLS
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    // ارسال ایمیل
+    await transporter.sendMail({
+      from: `"Christmas Event" <${process.env.EMAIL_USER}>`,
+      to: process.env.MY_EMAIL,
       subject: "🎄 Nieuw Kerstregistratieformulier",
       html: `
         <h2 style="color:#c62828;">🎄 New Christmas Registration</h2>
