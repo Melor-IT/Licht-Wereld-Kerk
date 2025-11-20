@@ -22,55 +22,58 @@ export default function Event() {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
+  // -------------------- VALIDATION --------------------
   const validate = () => {
     const newErrors = {};
 
-    // نام و نام خانوادگی: فقط حروف و فاصله
-    if (!/^[a-zA-Z\s]{2,}$/.test(formData.firstName)) {
-      newErrors.firstName = "Please enter a valid first name";
+    // نام → فقط حروف (شامل حروف با لهجه) و فاصله
+    if (!/^[A-Za-zÀ-ž\s]{2,}$/.test(formData.firstName.trim())) {
+      newErrors.firstName = formatMessage({ id: "error.firstName" });
     }
-    if (!/^[a-zA-Z\s]{2,}$/.test(formData.lastName)) {
-      newErrors.lastName = "Please enter a valid last name";
+
+    // نام خانوادگی
+    if (!/^[A-Za-zÀ-ž\s]{2,}$/.test(formData.lastName.trim())) {
+      newErrors.lastName = formatMessage({ id: "error.lastName" });
     }
 
     // ایمیل
-    if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email";
+    if (!/^\S+@\S+\.\S+$/.test(formData.email.trim())) {
+      newErrors.email = formatMessage({ id: "error.email" });
     }
 
-    // شماره تلفن هلندی: شروع با 06 یا +316 و 8 رقم بعد
-    if (!/^(06\d{8}|\+316\d{8})$/.test(formData.phone)) {
-      newErrors.phone = "Please enter a valid Dutch phone number";
+    // شماره تلفن هلند کمی استانداردتر
+    if (!/^(0[6]\d{8}|\+316\d{8})$/.test(formData.phone.trim())) {
+      newErrors.phone = formatMessage({ id: "error.phone" });
     }
 
-    // تعداد افراد و فرزندان
-    if (formData.totalOfadults < 0)
-      newErrors.totalOfadults = "Must be 0 or more";
-    if (formData.kidsgirls < 0) newErrors.kidsgirls = "Must be 0 or more";
-    if (formData.kidsboys < 0) newErrors.kidsboys = "Must be 0 or more";
+    // اعداد
+    ["totalOfadults", "kidsgirls", "kidsboys"].forEach((field) => {
+      if (formData[field] < 0) {
+        newErrors[field] = formatMessage({ id: "error.minZero" });
+      }
+    });
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
+  // -------------------- CHANGE HANDLER --------------------
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, type } = e.target;
+
     setFormData((prev) => ({
       ...prev,
-      [name]:
-        type === "checkbox"
-          ? checked
-          : type === "number"
-          ? Number(value)
-          : value,
+      [name]: type === "number" ? Number(value) : value,
     }));
   };
 
+  // -------------------- SUBMIT --------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
 
     setLoading(true);
+
     try {
       const res = await fetch("/api/send-registration", {
         method: "POST",
@@ -78,36 +81,49 @@ export default function Event() {
         body: JSON.stringify(formData),
       });
 
-      if (res.ok) {
-        setSubmitted(true);
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          totalOfadults: 0,
-          kidsgirls: 0,
-          kidsboys: 0,
-          message: "",
-        });
-      } else {
-        alert("Error submitting form 😔");
-      }
+      if (!res.ok) throw new Error();
+
+      setSubmitted(true);
+
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        totalOfadults: 0,
+        kidsgirls: 0,
+        kidsboys: 0,
+        message: "",
+      });
     } catch (err) {
-      console.error(err);
-      alert("Error submitting form 😔");
+      alert(formatMessage({ id: "error.submit" }));
     } finally {
       setLoading(false);
     }
   };
 
+  // -------------------- UI --------------------
   return (
     <div className="page event">
       <section>
         <BackgroundImage
-          url="/images/event-banner.jpeg"
+          url="/images/event-banner.jpg"
           className="event-banner"
         />
+        <div className="page-content">
+          <h2>
+            {formatMessage({
+              id: "eventText",
+              defaultMessage: "",
+            })}
+          </h2>
+          <h4>
+            {formatMessage({
+              id: "eventOnder",
+              defaultMessage: "(Johannes 1:5)",
+            })}
+          </h4>
+        </div>
       </section>
 
       <section className="form">
@@ -115,14 +131,15 @@ export default function Event() {
           {submitted ? (
             <div className="text-center py-10">
               <h2 className="text-2xl font-bold text-green-600">
-                🎉 Thank you for your registration!
+                🎉 {formatMessage({ id: "success.title" })}
               </h2>
               <p className="mt-2 text-gray-700">
-                We have received your form successfully.
+                {formatMessage({ id: "success.message" })}
               </p>
             </div>
           ) : (
             <form className="form-block" onSubmit={handleSubmit} noValidate>
+              {/* FIRST NAME */}
               <label>
                 <span className="title">
                   {formatMessage({ id: "firstName" })}
@@ -139,6 +156,7 @@ export default function Event() {
                 )}
               </label>
 
+              {/* LAST NAME */}
               <label>
                 <span className="title">
                   {formatMessage({ id: "lastName" })}
@@ -155,6 +173,7 @@ export default function Event() {
                 )}
               </label>
 
+              {/* EMAIL */}
               <label>
                 <span className="title">{formatMessage({ id: "email" })}</span>
                 <input
@@ -167,6 +186,7 @@ export default function Event() {
                 {errors.email && <p className="text-red-600">{errors.email}</p>}
               </label>
 
+              {/* PHONE */}
               <label>
                 <span className="title">{formatMessage({ id: "phone" })}</span>
                 <input
@@ -179,6 +199,7 @@ export default function Event() {
                 {errors.phone && <p className="text-red-600">{errors.phone}</p>}
               </label>
 
+              {/* ADULTS */}
               <label>
                 <span className="title">
                   {formatMessage({ id: "totalOfadults" })}
@@ -186,50 +207,55 @@ export default function Event() {
                 <input
                   type="number"
                   name="totalOfadults"
+                  min={0}
                   value={formData.totalOfadults}
                   onChange={handleChange}
                   required
-                  min={0}
                 />
                 {errors.totalOfadults && (
                   <p className="text-red-600">{errors.totalOfadults}</p>
                 )}
               </label>
 
+              {/* GIRLS */}
               <label>
                 <span className="title">
-                  {formatMessage({ id: "kidsgirls" })}
+                  {formatMessage({ id: "kidsgirls" })}{" "}
+                  <small>*{formatMessage({ id: "onder" })}</small>
                 </span>
                 <input
                   type="number"
                   name="kidsgirls"
+                  min={0}
                   value={formData.kidsgirls}
                   onChange={handleChange}
                   required
-                  min={0}
                 />
                 {errors.kidsgirls && (
                   <p className="text-red-600">{errors.kidsgirls}</p>
                 )}
               </label>
 
+              {/* BOYS */}
               <label>
                 <span className="title">
-                  {formatMessage({ id: "kidsboys" })}
+                  {formatMessage({ id: "kidsboys" })}{" "}
+                  <small>*{formatMessage({ id: "onder" })}</small>
                 </span>
                 <input
                   type="number"
                   name="kidsboys"
+                  min={0}
                   value={formData.kidsboys}
                   onChange={handleChange}
                   required
-                  min={0}
                 />
                 {errors.kidsboys && (
                   <p className="text-red-600">{errors.kidsboys}</p>
                 )}
               </label>
 
+              {/* MESSAGE */}
               <label>
                 <span className="title">
                   {formatMessage({ id: "message" })}
@@ -246,7 +272,9 @@ export default function Event() {
                 className="w-full bg-red-600 text-white py-2 rounded"
                 disabled={loading}
               >
-                {loading ? "Sending..." : formatMessage({ id: "send" })}
+                {loading
+                  ? formatMessage({ id: "sending" })
+                  : formatMessage({ id: "send" })}
               </button>
             </form>
           )}

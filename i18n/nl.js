@@ -122,6 +122,10 @@ const messages = {
   message: "Bericht",
   event: "Evenement",
   send: "Versturen",
+  onder:"Kinderen t/m 12 jaar.",
+  eventText:
+    "Want ons is een kind geboren, een zoon is ons gegeven; en de heerschappij zal op zijn schouderen zijn; en men zal hem noemen: Wonderbare Raadsman, Sterke God, Eeuwige Vader, Vredevorst.",
+  eventOnder: "Isaiah 9:6",
 };
 
 export default messages;
