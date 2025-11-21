@@ -220,8 +220,7 @@ export default function Event() {
               {/* GIRLS */}
               <label>
                 <span className="title">
-                  {formatMessage({ id: "kidsgirls" })}{" "}
-                  <small>*{formatMessage({ id: "onder" })}</small>
+                  {formatMessage({ id: "kidsgirls" })}
                 </span>
                 <input
                   type="number"
@@ -239,8 +238,7 @@ export default function Event() {
               {/* BOYS */}
               <label>
                 <span className="title">
-                  {formatMessage({ id: "kidsboys" })}{" "}
-                  <small>*{formatMessage({ id: "onder" })}</small>
+                  {formatMessage({ id: "kidsboys" })}                
                 </span>
                 <input
                   type="number"

@@ -111,18 +111,16 @@ const messages = {
     "Vrijwilligers: Ondersteunen alle activiteiten en zorgen voor een veilige en ondersteunende omgeving voor leden van de kerk.",
 
   //Event page
-  firstName: "Naam",
-  lastName: "Achternaam",
+  firstName: "Voornaam",
   lastName: "Achternaam",
   email: "E-mail",
   phone: "Telefoon",
   totalOfadults: "Totaal aantal volwassenen",
-  kidsgirls: "Aantal meisjes",
-  kidsboys: "Aantal jongens",
+  kidsgirls: "Kidsgirls onder 12 jaar",
+  kidsboys: "Kidsboys onder 12 jaar",
   message: "Bericht",
   event: "Evenement",
   send: "Versturen",
-  onder:"Kinderen t/m 12 jaar.",
   eventText:
     "Want ons is een kind geboren, een zoon is ons gegeven; en de heerschappij zal op zijn schouderen zijn; en men zal hem noemen: Wonderbare Raadsman, Sterke God, Eeuwige Vader, Vredevorst.",
   eventOnder: "Isaiah 9:6",
