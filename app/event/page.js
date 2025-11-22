@@ -13,8 +13,10 @@ export default function Event() {
     email: "",
     phone: "",
     totalOfadults: 0,
-    kidsgirls: 0,
-    kidsboys: 0,
+    kidsgirls6: 0,
+    kidsgirls12: 0,
+    kidsboys6: 0,
+    kidsboys12: 0,
     message: "",
   });
 
@@ -218,40 +220,76 @@ export default function Event() {
               </label>
 
               {/* GIRLS */}
-              <label>
-                <span className="title">
-                  {formatMessage({ id: "kidsgirls" })}
-                </span>
-                <input
-                  type="number"
-                  name="kidsgirls"
-                  min={0}
-                  value={formData.kidsgirls}
-                  onChange={handleChange}
-                  required
-                />
-                {errors.kidsgirls && (
-                  <p className="text-red-600">{errors.kidsgirls}</p>
-                )}
-              </label>
+              <div>
+                <label>
+                  <span className="title">
+                    {formatMessage({ id: "kidsgirls6" })}
+                  </span>
+                  <input
+                    type="number"
+                    name="kidsgirls6"
+                    min={0}
+                    value={formData.kidsgirls6}
+                    onChange={handleChange}
+                    required
+                  />
+                  {errors.kidsgirls && (
+                    <p className="text-red-600">{errors.kidsgirls}</p>
+                  )}
+                </label>
+                <label>
+                  <span className="title">
+                    {formatMessage({ id: "kidsgirls12" })}
+                  </span>
+                  <input
+                    type="number"
+                    name="kidsgirls12"
+                    min={0}
+                    value={formData.kidsgirls12}
+                    onChange={handleChange}
+                    required
+                  />
+                  {errors.kidsgirls && (
+                    <p className="text-red-600">{errors.kidsgirls}</p>
+                  )}
+                </label>
+              </div>
 
               {/* BOYS */}
-              <label>
-                <span className="title">
-                  {formatMessage({ id: "kidsboys" })}                
-                </span>
-                <input
-                  type="number"
-                  name="kidsboys"
-                  min={0}
-                  value={formData.kidsboys}
-                  onChange={handleChange}
-                  required
-                />
-                {errors.kidsboys && (
-                  <p className="text-red-600">{errors.kidsboys}</p>
-                )}
-              </label>
+              <div>
+                <label>
+                  <span className="title">
+                    {formatMessage({ id: "kidsboys6" })}
+                  </span>
+                  <input
+                    type="number"
+                    name="kidsboys6"
+                    min={0}
+                    value={formData.kidsboys12}
+                    onChange={handleChange}
+                    required
+                  />
+                  {errors.kidsboys && (
+                    <p className="text-red-600">{errors.kidsboys}</p>
+                  )}
+                </label>
+                <label>
+                  <span className="title">
+                    {formatMessage({ id: "kidsboys12" })}
+                  </span>
+                  <input
+                    type="number"
+                    name="kidsboys12"
+                    min={0}
+                    value={formData.kidsboys12}
+                    onChange={handleChange}
+                    required
+                  />
+                  {errors.kidsboys && (
+                    <p className="text-red-600">{errors.kidsboys}</p>
+                  )}
+                </label>
+              </div>
 
               {/* MESSAGE */}
               <label>

@@ -451,6 +451,9 @@ footer {
   padding: 2rem;
   background-color: rgba(255, 255, 255, 0.6);
 
+  div > *:first-child {
+    padding-right: 1em;
+  }
   label {
     display: inline-flex;
     flex-direction: column;
@@ -788,6 +791,7 @@ footer {
   }
 
   .content-row {
+    align-items: stretch;
     width: 100%;
 
     > div {
