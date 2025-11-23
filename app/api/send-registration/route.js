@@ -1,3 +1,6 @@
+import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
+
 export async function POST(req) {
   try {
     const body = await req.json();
@@ -6,22 +9,31 @@ export async function POST(req) {
       lastName,
       email,
       phone,
-      totalOfadults,
-      kidsgirls6,
-      kidsgirls12,
-      kidsboys6,
-      kidsboys12,
-      message,
+      totalOfadults = 0,
+      kidsgirls6 = 0,
+      kidsgirls12 = 0,
+      kidsboys6 = 0,
+      kidsboys12 = 0,
+      message = "",
     } = body;
 
-    // محاسبه جمع کل افراد
-    const totalPeople =
-      Number(totalOfadults || 0) +
-      Number(kidsgirls6 || 0) +
-      Number(kidsgirls12 || 0) +
-      Number(kidsboys6 || 0) +
-      Number(kidsboys12 || 0);
+    // Validate required fields
+    if (!firstName || !lastName || !email) {
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 }
+      );
+    }
 
+    // Calculate total people
+    const totalPeople =
+      Number(totalOfadults) +
+      Number(kidsgirls6) +
+      Number(kidsgirls12) +
+      Number(kidsboys6) +
+      Number(kidsboys12);
+
+    // Configure mail transport
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 587,
@@ -32,42 +44,47 @@ export async function POST(req) {
       },
     });
 
-    // ایمیل برای شما و شخص سوم
+    // Email for admin / third person
     await transporter.sendMail({
       from: `"Kerst Evenement" <${process.env.EMAIL_USER}>`,
-      to: [process.env.THIRD_PERSON_EMAIL],
-      subject: "🎄 Nieuw Kerstregistratieformulier",
+      to: process.env.THIRD_PERSON_EMAIL,
+      subject: "🎄 Nieuwe Kerstregistratie",
       html: `
         <h2 style="color:#c62828;">🎄 Nieuwe kerstregistratie</h2>
         <p><b>Naam:</b> ${firstName} ${lastName}</p>
         <p><b>Email:</b> ${email}</p>
         <p><b>Telefoon:</b> ${phone}</p>
         <p><b>Aantal volwassenen:</b> ${totalOfadults}</p>
-        <p><b>Meisjes-6:</b> ${kidsgirls6}</p>
-        <p><b>Meisjes-12:</b> ${kidsgirls12}</p>
-        <p><b>Jongens-6:</b> ${kidsboys6}</p>
-        <p><b>Jongens-12:</b> ${kidsboys12}</p>
-        <p><b>TOTAAL AANTAL PERSONEN:</b> <span style="font-size:18px; color:#2e7d32;">${totalPeople}</span></p>
-        <p><b>Bericht:</b> ${message}</p>
+        <p><b>Meisjes t/m 6:</b> ${kidsgirls6}</p>
+        <p><b>Meisjes t/m 12:</b> ${kidsgirls12}</p>
+        <p><b>Jongens t/m 6:</b> ${kidsboys6}</p>
+        <p><b>Jongens t/m 12:</b> ${kidsboys12}</p>
+        <p><b>Totaal aantal personen:</b> <strong>${totalPeople}</strong></p>
+        <p><b>Bericht:</b><br/> ${message}</p>
       `,
     });
 
-    // ایمیل تاییدیه به کاربر
+    // Confirmation email to the user
     await transporter.sendMail({
       from: `"Kerst Evenement" <${process.env.EMAIL_USER}>`,
       to: email,
-      subject: "🎄 Registratie ontvangen",
+      subject: "🎄 Uw registratie is ontvangen!",
       html: `
         <p>Hallo ${firstName},</p>
-        <p>Bedankt voor uw registratie voor ons kerst evenement! We hebben uw registratie succesvol ontvangen.</p>
-        <p>We kijken ernaar uit u te zien!</p>
+        <p>Bedankt voor uw registratie voor ons kerstevenement!</p>
+
         <p><b>Totaal aantal personen:</b> ${totalPeople}</p>
+
+        <p>We kijken ernaar uit u te zien!</p>
       `,
     });
 
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Email error:", error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json(
+      { error: "Er ging iets mis op de server." },
+      { status: 500 }
+    );
   }
 }

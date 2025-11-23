@@ -7,7 +7,7 @@ import BackgroundImage from "../../components/BackgroundImage";
 export default function Event() {
   const { formatMessage } = useIntl();
 
-  const [formData, setFormData] = useState({
+  const initialState = {
     firstName: "",
     lastName: "",
     email: "",
@@ -18,8 +18,9 @@ export default function Event() {
     kidsboys6: 0,
     kidsboys12: 0,
     message: "",
-  });
+  };
 
+  const [formData, setFormData] = useState(initialState);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
@@ -28,28 +29,31 @@ export default function Event() {
   const validate = () => {
     const newErrors = {};
 
-    // نام → فقط حروف (شامل حروف با لهجه) و فاصله
     if (!/^[A-Za-zÀ-ž\s]{2,}$/.test(formData.firstName.trim())) {
       newErrors.firstName = formatMessage({ id: "error.firstName" });
     }
 
-    // نام خانوادگی
     if (!/^[A-Za-zÀ-ž\s]{2,}$/.test(formData.lastName.trim())) {
       newErrors.lastName = formatMessage({ id: "error.lastName" });
     }
 
-    // ایمیل
     if (!/^\S+@\S+\.\S+$/.test(formData.email.trim())) {
       newErrors.email = formatMessage({ id: "error.email" });
     }
 
-    // شماره تلفن هلند کمی استانداردتر
     if (!/^(0[6]\d{8}|\+316\d{8})$/.test(formData.phone.trim())) {
       newErrors.phone = formatMessage({ id: "error.phone" });
     }
 
-    // اعداد
-    ["totalOfadults", "kidsgirls", "kidsboys"].forEach((field) => {
+    const numberFields = [
+      "totalOfadults",
+      "kidsgirls6",
+      "kidsgirls12",
+      "kidsboys6",
+      "kidsboys12",
+    ];
+
+    numberFields.forEach((field) => {
       if (formData[field] < 0) {
         newErrors[field] = formatMessage({ id: "error.minZero" });
       }
@@ -86,17 +90,7 @@ export default function Event() {
       if (!res.ok) throw new Error();
 
       setSubmitted(true);
-
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        totalOfadults: 0,
-        kidsgirls: 0,
-        kidsboys: 0,
-        message: "",
-      });
+      setFormData(initialState);
     } catch (err) {
       alert(formatMessage({ id: "error.submit" }));
     } finally {
@@ -113,23 +107,14 @@ export default function Event() {
           className="event-banner"
         />
         <div className="page-content">
-          <h2>
-            {formatMessage({
-              id: "eventText",
-              defaultMessage: "",
-            })}
-          </h2>
-          <h4>
-            {formatMessage({
-              id: "eventOnder",
-              defaultMessage: "(Johannes 1:5)",
-            })}
-          </h4>
+          <h2>{formatMessage({ id: "eventText" })}</h2>
+          <h4>{formatMessage({ id: "eventOnder" })}</h4>
         </div>
       </section>
 
       <section className="form">
         <div className="page-content">
+
           {submitted ? (
             <div className="text-center py-10">
               <h2 className="text-2xl font-bold text-green-600">
@@ -141,38 +126,29 @@ export default function Event() {
             </div>
           ) : (
             <form className="form-block" onSubmit={handleSubmit} noValidate>
+
               {/* FIRST NAME */}
               <label>
-                <span className="title">
-                  {formatMessage({ id: "firstName" })}
-                </span>
+                <span className="title">{formatMessage({ id: "firstName" })}</span>
                 <input
                   type="text"
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
-                  required
                 />
-                {errors.firstName && (
-                  <p className="text-red-600">{errors.firstName}</p>
-                )}
+                {errors.firstName && <p className="text-red-600">{errors.firstName}</p>}
               </label>
 
               {/* LAST NAME */}
               <label>
-                <span className="title">
-                  {formatMessage({ id: "lastName" })}
-                </span>
+                <span className="title">{formatMessage({ id: "lastName" })}</span>
                 <input
                   type="text"
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleChange}
-                  required
                 />
-                {errors.lastName && (
-                  <p className="text-red-600">{errors.lastName}</p>
-                )}
+                {errors.lastName && <p className="text-red-600">{errors.lastName}</p>}
               </label>
 
               {/* EMAIL */}
@@ -183,7 +159,6 @@ export default function Event() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  required
                 />
                 {errors.email && <p className="text-red-600">{errors.email}</p>}
               </label>
@@ -196,23 +171,19 @@ export default function Event() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  required
                 />
                 {errors.phone && <p className="text-red-600">{errors.phone}</p>}
               </label>
 
               {/* ADULTS */}
               <label>
-                <span className="title">
-                  {formatMessage({ id: "totalOfadults" })}
-                </span>
+                <span className="title">{formatMessage({ id: "totalOfadults" })}</span>
                 <input
                   type="number"
                   name="totalOfadults"
                   min={0}
                   value={formData.totalOfadults}
                   onChange={handleChange}
-                  required
                 />
                 {errors.totalOfadults && (
                   <p className="text-red-600">{errors.totalOfadults}</p>
@@ -220,89 +191,66 @@ export default function Event() {
               </label>
 
               {/* GIRLS */}
-              <div>
+              <div className="children-wrap">
                 <label>
-                  <span className="title">
-                    {formatMessage({ id: "kidsgirls6" })}
-                  </span>
+                  <span className="title">{formatMessage({ id: "kidsgirls6" })}</span>
                   <input
                     type="number"
                     name="kidsgirls6"
                     min={0}
                     value={formData.kidsgirls6}
                     onChange={handleChange}
-                    required
                   />
-                  {errors.kidsgirls && (
-                    <p className="text-red-600">{errors.kidsgirls}</p>
-                  )}
                 </label>
+
                 <label>
-                  <span className="title">
-                    {formatMessage({ id: "kidsgirls12" })}
-                  </span>
+                  <span className="title">{formatMessage({ id: "kidsgirls12" })}</span>
                   <input
                     type="number"
                     name="kidsgirls12"
                     min={0}
                     value={formData.kidsgirls12}
                     onChange={handleChange}
-                    required
                   />
-                  {errors.kidsgirls && (
-                    <p className="text-red-600">{errors.kidsgirls}</p>
-                  )}
                 </label>
               </div>
 
               {/* BOYS */}
-              <div>
+              <div className="children-wrap">
                 <label>
-                  <span className="title">
-                    {formatMessage({ id: "kidsboys6" })}
-                  </span>
+                  <span className="title">{formatMessage({ id: "kidsboys6" })}</span>
                   <input
                     type="number"
                     name="kidsboys6"
                     min={0}
-                    value={formData.kidsboys12}
+                    value={formData.kidsboys6}
                     onChange={handleChange}
-                    required
                   />
-                  {errors.kidsboys && (
-                    <p className="text-red-600">{errors.kidsboys}</p>
-                  )}
                 </label>
+
                 <label>
-                  <span className="title">
-                    {formatMessage({ id: "kidsboys12" })}
-                  </span>
+                  <span className="title">{formatMessage({ id: "kidsboys12" })}</span>
                   <input
                     type="number"
                     name="kidsboys12"
                     min={0}
                     value={formData.kidsboys12}
                     onChange={handleChange}
-                    required
                   />
-                  {errors.kidsboys && (
-                    <p className="text-red-600">{errors.kidsboys}</p>
-                  )}
                 </label>
               </div>
 
               {/* MESSAGE */}
               <label>
-                <span className="title">
-                  {formatMessage({ id: "message" })}
-                </span>
+                <span className="title">{formatMessage({ id: "message" })}</span>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                />
+                ></textarea>
               </label>
 
+              {/* SUBMIT BUTTON */}
               <button
                 type="submit"
                 className="w-full bg-red-600 text-white py-2 rounded"
@@ -312,6 +260,7 @@ export default function Event() {
                   ? formatMessage({ id: "sending" })
                   : formatMessage({ id: "send" })}
               </button>
+
             </form>
           )}
         </div>
