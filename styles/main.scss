@@ -193,6 +193,75 @@ html:has(.app.rtl) {
   }
 }
 
+/* ===================== HAMBURGER BUTTON ===================== */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 20;
+
+  span {
+    width: 28px;
+    height: 3px;
+    background: #333;
+    transition: 0.3s ease;
+    border-radius: 2px;
+  }
+
+  &.open span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  &.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  &.open span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+}
+
+/* ===================== MOBILE MENU ===================== */
+.mobile-menu {
+  position: fixed;
+  top: 80px;
+  width: 240px;
+  background: #fff;
+  border-radius: 0 0 1em 1em;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  padding: 1.5rem;
+  display: none;
+  flex-direction: column;
+  gap: 1.2rem;
+  z-index: 50;
+
+  a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: bold;
+
+    &.active {
+      color: var(--primary-color);
+    }
+  }
+
+  &.show {
+    display: flex;
+  }
+}
+
+.app.rtl .mobile-menu {
+  right: auto;
+  left: 1rem;
+}
+
 .language-select {
   appearance: none;
   font-size: clamp(0.8rem, 0.7vw + 0.6rem, 1.1rem);
@@ -617,32 +686,12 @@ footer {
     }
   }
 }
+
 .text-block p {
   margin: 2em;
 }
 
-@media (max-width: 1300px) {
-  .team > .team-member {
-    flex: 0 0 30%;
-  }
-}
-
-@media (max-width: 900px) {
-  .team > .team-member {
-    flex: 0 0 45%;
-  }
-}
-
-@media (max-width: 600px) {
-  .team {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .team > .team-member {
-    flex: 0 0 100%;
-  }
-}
+/* ===================== ریسپانسیو ===================== */
 
 @media (max-width: 1100px) {
   :root {
@@ -662,6 +711,9 @@ footer {
     font-size: 1rem;
   }
 
+  .team > .team-member {
+    flex: 0 0 30%;
+  }
   .app-header {
     > .page-content {
       flex-direction: column;
@@ -814,6 +866,47 @@ footer {
       flex: 1 0 100%;
       margin-top: 0 !important;
       margin-bottom: 0 !important;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .team > .team-member {
+    flex: 0 0 45%;
+  }
+}
+
+@media (max-width: 600px) {
+  .team {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .team > .team-member {
+    flex: 0 0 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .nav-menu {
+    display: none !important;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .mobile-menu {
+    top: 6em; 
+    width: 100%;
+  }
+
+  .app-header {
+    > .page-content {
+      flex-direction: row;
+      .lang-selector {
+        position: sticky;
+      }
     }
   }
 }
