@@ -65,13 +65,23 @@ export default function Event() {
 
   // -------------------- CHANGE HANDLER --------------------
   const handleChange = (e) => {
-    const { name, value, type } = e.target;
+  const { name, value } = e.target;
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "number" ? Number(value) : value,
-    }));
-  };
+  setFormData((prev) => {
+    // اگر مقدار قبلی صفر بود و کاربر شروع به تایپ کرد، صفر را پاک کن
+    if (prev[name] === 0 && value !== "0") {
+      return { ...prev, [name]: Number(value) };
+    }
+
+    // مقدار خالی باشد → خالی نگه‌دار (نه 0)
+    if (value === "") {
+      return { ...prev, [name]: "" };
+    }
+
+    return { ...prev, [name]: Number(value) };
+  });
+};
+
 
   // -------------------- SUBMIT --------------------
   const handleSubmit = async (e) => {

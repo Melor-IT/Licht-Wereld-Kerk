@@ -52,6 +52,7 @@ const Header = ({ locale, setLocale }) => {
           >
             <option value="fa">🇮🇷</option>
             <option value="nl">🇳🇱</option>
+             <option value="en">EN</option>
           </select>
         </div>
 
