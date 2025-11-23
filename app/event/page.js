@@ -114,41 +114,44 @@ export default function Event() {
 
       <section className="form">
         <div className="page-content">
-
           {submitted ? (
             <div className="text-center py-10">
-              <h2 className="text-2xl font-bold text-green-600">
-                🎉 {formatMessage({ id: "success.title" })}
-              </h2>
               <p className="mt-2 text-gray-700">
-                {formatMessage({ id: "success.message" })}
+                {formatMessage({ id: "success" })}
               </p>
             </div>
           ) : (
             <form className="form-block" onSubmit={handleSubmit} noValidate>
-
               {/* FIRST NAME */}
               <label>
-                <span className="title">{formatMessage({ id: "firstName" })}</span>
+                <span className="title">
+                  {formatMessage({ id: "firstName" })}
+                </span>
                 <input
                   type="text"
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
                 />
-                {errors.firstName && <p className="text-red-600">{errors.firstName}</p>}
+                {errors.firstName && (
+                  <p className="text-red-600">{errors.firstName}</p>
+                )}
               </label>
 
               {/* LAST NAME */}
               <label>
-                <span className="title">{formatMessage({ id: "lastName" })}</span>
+                <span className="title">
+                  {formatMessage({ id: "lastName" })}
+                </span>
                 <input
                   type="text"
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleChange}
                 />
-                {errors.lastName && <p className="text-red-600">{errors.lastName}</p>}
+                {errors.lastName && (
+                  <p className="text-red-600">{errors.lastName}</p>
+                )}
               </label>
 
               {/* EMAIL */}
@@ -177,7 +180,9 @@ export default function Event() {
 
               {/* ADULTS */}
               <label>
-                <span className="title">{formatMessage({ id: "totalOfadults" })}</span>
+                <span className="title">
+                  {formatMessage({ id: "totalOfadults" })}
+                </span>
                 <input
                   type="number"
                   name="totalOfadults"
@@ -193,7 +198,9 @@ export default function Event() {
               {/* GIRLS */}
               <div className="children-wrap">
                 <label>
-                  <span className="title">{formatMessage({ id: "kidsgirls6" })}</span>
+                  <span className="title">
+                    {formatMessage({ id: "kidsgirls6" })}
+                  </span>
                   <input
                     type="number"
                     name="kidsgirls6"
@@ -204,7 +211,9 @@ export default function Event() {
                 </label>
 
                 <label>
-                  <span className="title">{formatMessage({ id: "kidsgirls12" })}</span>
+                  <span className="title">
+                    {formatMessage({ id: "kidsgirls12" })}
+                  </span>
                   <input
                     type="number"
                     name="kidsgirls12"
@@ -218,7 +227,9 @@ export default function Event() {
               {/* BOYS */}
               <div className="children-wrap">
                 <label>
-                  <span className="title">{formatMessage({ id: "kidsboys6" })}</span>
+                  <span className="title">
+                    {formatMessage({ id: "kidsboys6" })}
+                  </span>
                   <input
                     type="number"
                     name="kidsboys6"
@@ -229,7 +240,9 @@ export default function Event() {
                 </label>
 
                 <label>
-                  <span className="title">{formatMessage({ id: "kidsboys12" })}</span>
+                  <span className="title">
+                    {formatMessage({ id: "kidsboys12" })}
+                  </span>
                   <input
                     type="number"
                     name="kidsboys12"
@@ -242,7 +255,9 @@ export default function Event() {
 
               {/* MESSAGE */}
               <label>
-                <span className="title">{formatMessage({ id: "message" })}</span>
+                <span className="title">
+                  {formatMessage({ id: "message" })}
+                </span>
                 <textarea
                   name="message"
                   value={formData.message}
@@ -260,7 +275,6 @@ export default function Event() {
                   ? formatMessage({ id: "sending" })
                   : formatMessage({ id: "send" })}
               </button>
-
             </form>
           )}
         </div>
