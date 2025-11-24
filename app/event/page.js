@@ -64,24 +64,14 @@ export default function Event() {
   };
 
   // -------------------- CHANGE HANDLER --------------------
-  const handleChange = (e) => {
-  const { name, value } = e.target;
+   const handleChange = (e) => {
+    const { name, value, type } = e.target;
 
-  setFormData((prev) => {
-    // اگر مقدار قبلی صفر بود و کاربر شروع به تایپ کرد، صفر را پاک کن
-    if (prev[name] === 0 && value !== "0") {
-      return { ...prev, [name]: Number(value) };
-    }
-
-    // مقدار خالی باشد → خالی نگه‌دار (نه 0)
-    if (value === "") {
-      return { ...prev, [name]: "" };
-    }
-
-    return { ...prev, [name]: Number(value) };
-  });
-};
-
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "number" ? Number(value) : value,
+    }));
+  };
 
   // -------------------- SUBMIT --------------------
   const handleSubmit = async (e) => {
@@ -126,12 +116,13 @@ export default function Event() {
         <div className="page-content">
           {submitted ? (
             <div className="text-center py-10">
-              <p className="mt-2 text-gray-700">
-                {formatMessage({ id: "success" })}
-              </p>
+              <h3 className="mt-2 text-gray-700">
+                🎉{formatMessage({ id: "success" })}
+              </h3>
             </div>
           ) : (
             <form className="form-block" onSubmit={handleSubmit} noValidate>
+
               {/* FIRST NAME */}
               <label>
                 <span className="title">
