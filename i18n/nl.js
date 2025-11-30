@@ -127,6 +127,7 @@ const messages = {
     "Want ons is een kind geboren, een zoon is ons gegeven; en de heerschappij zal op zijn schouderen zijn; en men zal hem noemen: Wonderbare Raadsman, Sterke God, Eeuwige Vader, Vredevorst.",
   eventOnder: "Isaiah 9:6",
   success: "Uw formulier is succesvol verzonden! Dank u wel!",  
+  closed: "De inschrijving voor dit evenement is gesloten.",
 };
 
 export default messages;

@@ -14,8 +14,7 @@ const messages = {
     "Offering spiritual, educational, and social activities for children, youth and adults.",
   goal4:
     "Helping people with practical challenges in daily life, including supporting refugees.",
-  goal5:
-    "Spreading the gospel through events, media, and personal encounters.",
+  goal5: "Spreading the gospel through events, media, and personal encounters.",
   activitiesTitle: "Activities",
   activity1:
     "Services: Weekly church services in Almere and online, with clear biblical teaching and room for personal encounter.",
@@ -126,14 +125,14 @@ const messages = {
     "For to us a child is born, to us a son is given, and the government will be on his shoulders; and he will be called Wonderful Counselor, Mighty God, Everlasting Father, Prince of Peace.",
   eventOnder: "Isaiah 9:6",
   success: "Your form has been successfully submitted! Thank you!",
-
+  closed: "Registration for this event is closed.",
   // Errors
   "error.firstName": "Please enter a valid first name.",
   "error.lastName": "Please enter a valid last name.",
   "error.email": "Please enter a valid email address.",
   "error.phone": "Please enter a valid phone number.",
   "error.minZero": "Value cannot be negative.",
-  "error.submit": "An error occurred while sending the form. Please try again."
+  "error.submit": "An error occurred while sending the form. Please try again.",
 };
 
 export default messages;
