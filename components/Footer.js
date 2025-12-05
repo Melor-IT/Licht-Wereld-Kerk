@@ -84,7 +84,7 @@ const Footer = ({ locale }) => {
                 defaultMessage: "Correspondence Address",
               })}
             </h4>
-            <p>Madridweg 28, 1334 DR Almere, Nederland</p>
+            <p>Hildo Kropstraat 8, 1328 BC Almere</p>
 
             <h4>{formatMessage({ id: "kvk", defaultMessage: "KVK" })}</h4>
             <p>92274404</p>
