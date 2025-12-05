@@ -76,7 +76,7 @@ const Footer = ({ locale }) => {
                 defaultMessage: "Visiting Address",
               })}
             </h4>
-            <p>Parkwijklaan 5, 1326 AX Almere, Nederland</p>
+            <p>Hildo Kropstraat 8, 1328 BC Almere Netherland</p>
 
             <h4>
               {formatMessage({
