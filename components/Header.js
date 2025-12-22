@@ -1,26 +1,40 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useIntl } from "react-intl";
 import { usePathname } from "next/navigation";
 
 const menuItems = [
   { to: "/", id: "home", defaultMessage: "Home" },
-  { to: "/event", id: "event", defaultMessage: "Event" },
   { to: "/about-us", id: "aboutUs", defaultMessage: "About Us" },
   { to: "/our-vision", id: "ourVision", defaultMessage: "Our Vision" },
-  {
-    to: "/ANBI-information",
-    id: "ANBIinformation",
-    defaultMessage: "ANBI Information",
-  },
+  { to: "/ANBI-information", id: "ANBIinformation", defaultMessage: "ANBI Information" },
 ];
 
 const Header = ({ locale, setLocale }) => {
   const { formatMessage } = useIntl();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 500) {
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   return (
     <header className={`app-header ${locale === "fa" ? "rtl" : "ltr"}`}>
@@ -30,7 +44,7 @@ const Header = ({ locale, setLocale }) => {
           <img src="/images/Logo.png" alt="Logo" />
         </div>
 
-        {/* Hamburger Menu Button */}
+        {/* Hamburger */}
         <button
           className={`hamburger ${open ? "open" : ""}`}
           onClick={() => setOpen((prev) => !prev)}
@@ -40,7 +54,7 @@ const Header = ({ locale, setLocale }) => {
           <span></span>
           <span></span>
         </button>
-        
+
         {/* Language Selector */}
         <div className="lang-selector">
           <select
@@ -48,26 +62,21 @@ const Header = ({ locale, setLocale }) => {
             className="language-select"
             value={locale}
             onChange={(e) => setLocale(e.target.value)}
-            aria-label="Select language"
-          >
+            aria-label="Select language">
             <option value="fa">🇮🇷</option>
             <option value="nl">🇳🇱</option>
-             <option value="en">EN</option>
           </select>
         </div>
 
         {/* Desktop Menu */}
-        <nav className="nav-menu" aria-label="Main navigation">
+        <nav className="nav-menu">
           {menuItems.map((item) => (
             <Link
               key={item.id}
               href={item.to}
               className={pathname === item.to ? "active" : ""}
             >
-              {formatMessage({
-                id: item.id,
-                defaultMessage: item.defaultMessage,
-              })}
+              {formatMessage(item)}
             </Link>
           ))}
         </nav>
@@ -78,13 +87,10 @@ const Header = ({ locale, setLocale }) => {
             <Link
               key={item.id}
               href={item.to}
-              onClick={() => setOpen(false)}
               className={pathname === item.to ? "active" : ""}
+              onClick={() => setOpen(false)}
             >
-              {formatMessage({
-                id: item.id,
-                defaultMessage: item.defaultMessage,
-              })}
+              {formatMessage(item)}
             </Link>
           ))}
         </div>
