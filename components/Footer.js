@@ -66,6 +66,26 @@ const Footer = ({ locale }) => {
                 <FaInstagram />
               </a>
             </div>
+            <div>
+              <h4>
+                {formatMessage({
+                  id: "IBAN",
+                  defaultMessage: "IBAN",
+                })}
+              </h4>
+              <p>
+                {formatMessage({
+                  id: "Het licht de wereld kerk",
+                  defaultMessage: "Het licht de wereld kerk",
+                })}
+              </p>
+              <p>
+                {formatMessage({
+                  id: "NL53TRIO0321169964",
+                  defaultMessage: "NL53TRIO0321169964",
+                })}
+              </p>
+            </div>
           </div>
 
           {/* Address Section */}
