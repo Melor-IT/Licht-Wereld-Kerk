@@ -75,8 +75,8 @@ const Footer = ({ locale }) => {
               </h4>
               <p>
                 {formatMessage({
-                  id: "Het licht de wereld kerk",
-                  defaultMessage: "Het licht de wereld kerk",
+                  id: "Het licht van de wereld kerk",
+                  defaultMessage: "Het licht van de wereld kerk",
                 })}
               </p>
               <p>

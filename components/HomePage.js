@@ -3,6 +3,7 @@
 import { useIntl } from 'react-intl';
 import BackgroundImage from '../components/BackgroundImage';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function HomePage() {
   const { formatMessage } = useIntl();
@@ -28,7 +29,7 @@ export default function HomePage() {
               <h3>{formatMessage({ id: 'firstService', defaultMessage: 'Organizing Prayer and Worship Sessions' })}</h3>
               <p>{formatMessage({ id: 'firstServiceText', defaultMessage: 'First service text' })}</p>
               <div className="image-circle sw">
-                <img src="/images/firstService.jpg" alt="Organizing Prayer and Worship Sessions" />
+                <Image src="/images/firstService.jpg" alt="Organizing Prayer and Worship Sessions" width={600} height={600} />
               </div>
             </div>
 
@@ -36,7 +37,7 @@ export default function HomePage() {
               <h3>{formatMessage({ id: 'secondService', defaultMessage: 'Equipping Worshipers' })}</h3>
               <p>{formatMessage({ id: 'secondServiceText', defaultMessage: 'Second service text' })}</p>
               <div className="image-circle">
-                <img src="/images/secondService.jpg" alt="Equipping Worshipers" />
+                <Image src="/images/secondService.jpg" alt="Equipping Worshipers" width={600} height={600} />
               </div>
             </div>
 
@@ -44,7 +45,7 @@ export default function HomePage() {
               <h3>{formatMessage({ id: 'thirdService', defaultMessage: 'Nurturing Prophets' })}</h3>
               <p>{formatMessage({ id: 'thirdServiceText', defaultMessage: 'Third service text' })}</p>
               <div className="image-circle ne">
-                <img src="/images/thirdService.jpg" alt="Nurturing Prophets" />
+                <Image src="/images/thirdService.jpg" alt="Nurturing Prophets" width={600} height={600} />
               </div>
             </div>
           </div>

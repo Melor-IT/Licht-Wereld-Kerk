@@ -30,7 +30,25 @@
     "start": "next start"
   },
   "eslintConfig": {
-    "extends": "next/core-web-vitals"
+    "env": {
+      "browser": true,
+      "node": true,
+      "es2022": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2022,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "extends": [
+      "plugin:@next/next/recommended"
+    ],
+    "rules": {
+      "@next/next/no-html-link-for-pages": "error",
+      "@next/next/no-sync-scripts": "error"
+    }
   },
   "browserslist": {
     "production": [

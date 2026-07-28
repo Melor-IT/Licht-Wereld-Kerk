@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useIntl } from "react-intl";
 import { usePathname } from "next/navigation";
@@ -41,7 +42,7 @@ const Header = ({ locale, setLocale }) => {
       <div className="page-content">
         {/* Logo */}
         <div className="logo">
-          <img src="/images/Logo.png" alt="Logo" />
+          <Image src="/images/Logo.png" alt="Logo" width={200} height={200} priority />
         </div>
 
         {/* Hamburger */}
@@ -63,6 +64,7 @@ const Header = ({ locale, setLocale }) => {
             value={locale}
             onChange={(e) => setLocale(e.target.value)}
             aria-label="Select language">
+            <option value="en">🇬🇧</option>
             <option value="fa">🇮🇷</option>
             <option value="nl">🇳🇱</option>
           </select>
