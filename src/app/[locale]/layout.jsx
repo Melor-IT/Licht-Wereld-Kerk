@@ -8,7 +8,7 @@ const organizationSchema = {
   '@type': 'Church',
   name: 'Kerk Licht van de Wereld',
   url: siteUrl,
-  logo: `${siteUrl}/images/Logo.png`,
+  logo: `${siteUrl}/images/licht-wereld-logo.png`,
   email: 'lichtwereldkerk2022@gmail.com',
   address: {
     '@type': 'PostalAddress',
@@ -26,8 +26,7 @@ const organizationSchema = {
 export const metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: 'Licht van de Wereld',
-  robots: { index: true, follow: true },
-  icons: { icon: '/images/Logo.png', apple: '/images/Logo.png' }
+  robots: { index: true, follow: true }
 };
 
 export function generateStaticParams() {
