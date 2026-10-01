@@ -52,11 +52,12 @@ const Header = ({ locale }) => {
         <Link className="logo" href={`/${locale}`} aria-label="Licht van de Wereld — home">
           <Image
             className="logo-image"
-            src="/images/Logo.png"
+            src="/images/licht-wereld-logo.png"
             alt="Logo van Kerk Licht van de Wereld"
             width={200}
             height={200}
             priority
+            unoptimized
           />
         </Link>
 
