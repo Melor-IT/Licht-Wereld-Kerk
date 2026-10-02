@@ -1,0 +1,29 @@
+.imageheader {
+  width: 100vw;
+  max-width: none;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.imageheader img {
+  width: 100vw;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+.page > section > .background {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  z-index: 1;
+}
+.page > section .background.aboutus {
+  filter: brightness(60%);
+}
+.page > section .background.mission {
+  background-size: unset;
+}

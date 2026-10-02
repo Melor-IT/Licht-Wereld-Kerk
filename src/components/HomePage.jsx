@@ -5,6 +5,7 @@ import BackgroundImage from './BackgroundImage';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+import '../components-CSS/HomePage.css';
 
 export default function HomePage() {
   const { formatMessage } = useIntl();

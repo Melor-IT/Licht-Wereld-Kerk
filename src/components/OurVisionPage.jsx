@@ -2,6 +2,7 @@
 
 import { useIntl } from "react-intl";
 import BackgroundImage from "./BackgroundImage";
+import "../components-CSS/OurVisionPage.css";
 
 export default function OurVisionPage() {
   const { formatMessage } = useIntl();

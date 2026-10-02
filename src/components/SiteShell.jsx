@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import Header from './Header';
 import Footer from './Footer';
+import '../components-CSS/SiteShell.css';
 
 export default function SiteShell({ locale, messages, children }) {
   const direction = locale === 'fa' ? 'rtl' : 'ltr';

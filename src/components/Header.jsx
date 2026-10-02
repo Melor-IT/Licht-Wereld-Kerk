@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useIntl } from "react-intl";
 import { usePathname, useRouter } from "next/navigation";
+import "../components-CSS/Header.css";
 
 const menuItems = [
   { slug: "", id: "home", defaultMessage: "Home" },

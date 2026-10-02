@@ -3,6 +3,7 @@
 import { useIntl } from 'react-intl';
 import BackgroundImage from './BackgroundImage';
 import EventRegistrationForm from './EventRegistrationForm';
+import '../components-CSS/EventPage.css';
 
 export default function EventPage() {
   const { formatMessage } = useIntl();

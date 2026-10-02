@@ -2,6 +2,7 @@
 
 import { useIntl } from "react-intl";
 import { FaPhone, FaEnvelope, FaYoutube, FaInstagram } from "react-icons/fa";
+import "../components-CSS/Footer.css";
 
 const Footer = ({ locale }) => {
   const { formatMessage } = useIntl();

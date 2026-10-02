@@ -1,0 +1,97 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Niconne&family=Nunito+Sans:wght@400;600;700&family=Vazirmatn:wght@400;500;700&display=swap");
+
+:root {
+  --primary-color: #f4a261;
+  --secondary-color: #9dc5a9;
+  --third-color: #6d9dc5;
+  --black-color: #000;
+  --white-color: #fff;
+  --font-body: "Nunito Sans", Arial, sans-serif;
+  --font-heading: "Niconne", cursive;
+  --font-persian: "Vazirmatn", Tahoma, sans-serif;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --heading-6: 1rem;
+  --heading-5: clamp(1.2rem, 1.5vw, 1.4rem);
+  --heading-4: clamp(1.5rem, 2.2vw, 1.9rem);
+  --heading-3: clamp(2rem, 3.4vw, 2.8rem);
+  --heading-2: clamp(2.6rem, 5vw, 4rem);
+  --heading-1: clamp(3.5rem, 7vw, 5.5rem);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  scroll-behavior: smooth;
+  background-color: #fafafa;
+  color: #333;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.7;
+  background-color: #fafafa;
+  color: #333;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--heading-1); }
+h2 { font-size: var(--heading-2); }
+h3 { font-size: var(--heading-3); }
+h4 { font-size: var(--heading-4); }
+h5 { font-size: var(--heading-5); }
+h6 { font-size: var(--heading-6); }
+
+h4,
+h5,
+h6 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+p {
+  margin: 0;
+  line-height: 1.75;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}

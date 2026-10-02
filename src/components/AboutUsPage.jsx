@@ -3,6 +3,7 @@
 import { useIntl } from "react-intl";
 import BackgroundImage from "./BackgroundImage";
 import Image from "next/image";
+import "../components-CSS/AboutUsPage.css";
 
 export default function AboutUsPage() {
   const { formatMessage } = useIntl();

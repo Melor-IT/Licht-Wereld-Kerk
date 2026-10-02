@@ -1,0 +1,128 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app.rtl {
+  font-family: var(--font-persian);
+}
+
+.app.rtl h1,
+.app.rtl h2,
+.app.rtl h3,
+.app.rtl h4,
+.app.rtl h5,
+.app.rtl h6 {
+  font-family: var(--font-persian);
+  line-height: 1.45;
+}
+
+.page-content {
+  width: 100%;
+  max-width: 1140px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.page-content > header {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  margin-bottom: 5rem;
+}
+
+.page-content > header > * {
+  flex: 1 1 auto;
+}
+
+.page {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.page .button {
+  padding: 0.9rem 3rem;
+  border: 1px solid #fff;
+  border-radius: 2rem;
+  background: rgba(0, 0, 0, 0.67);
+  color: #fff;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.page .button:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.page > section {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page > section:first-child {
+  color: #fff;
+  aspect-ratio: 16 / 9;
+}
+
+.page > section:first-child > .page-content {
+  padding-top: 10rem;
+}
+
+.page > section .page-intro {
+  margin-top: 2rem;
+  line-height: 1.4;
+}
+
+.page > section > .page-content {
+  padding: 6rem 3rem;
+}
+
+.page > section.secondary {
+  background-color: #ccc;
+}
+
+.page > section.primary {
+  background-color: var(--primary-color);
+}
+
+@media (max-width: 1100px) {
+  .page > section:first-child {
+    margin-top: 80px;
+    aspect-ratio: 3 / 2;
+  }
+
+  .page > section:first-child > .page-content {
+    padding-top: 4rem;
+  }
+
+  .page > section > .page-content {
+    padding: 4rem 1rem;
+  }
+
+  section.secondary .page-content > header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  section.secondary .page-content > header > * {
+    flex: 1 0 100%;
+  }
+}

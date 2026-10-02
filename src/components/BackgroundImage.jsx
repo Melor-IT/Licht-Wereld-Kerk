@@ -1,5 +1,7 @@
 'use client';
 
+import '../components-CSS/BackgroundImage.css';
+
 const BackgroundImage = ({ url, className = '', style = {}, children }) => {
   return (
     <div

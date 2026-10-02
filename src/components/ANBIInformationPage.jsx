@@ -2,6 +2,7 @@
 
 import { useIntl } from "react-intl";
 import BackgroundImage from "./BackgroundImage";
+import "../components-CSS/ANBIInformationPage.css";
 
 export default function ANBIInformationPage() {
   const { formatMessage } = useIntl();
