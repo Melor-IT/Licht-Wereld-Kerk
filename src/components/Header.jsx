@@ -11,6 +11,7 @@ const menuItems = [
   { slug: "", id: "home", defaultMessage: "Home" },
   { slug: "about-us", id: "aboutUs", defaultMessage: "About Us" },
   { slug: "our-vision", id: "ourVision", defaultMessage: "Our Vision" },
+  { slug: "sermons", id: "sermons", defaultMessage: "Sermons" },
   { slug: "ANBI-information", id: "ANBIinformation", defaultMessage: "ANBI Information" },
   ...(process.env.NEXT_PUBLIC_EVENT_REGISTRATION_ENABLED === "true"
     ? [{ slug: "event", id: "event", defaultMessage: "Event" }]

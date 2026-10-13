@@ -5,7 +5,7 @@ import nl from '../../messages/nl.json';
 export const messages = { en, fa, nl };
 export const locales = Object.keys(messages);
 export const defaultLocale = 'nl';
-const supportedRoutes = ['', 'about-us', 'our-vision', 'ANBI-information', 'event'];
+const supportedRoutes = ['', 'about-us', 'our-vision', 'sermons', 'ANBI-information', 'event'];
 export const routes = process.env.NEXT_PUBLIC_EVENT_REGISTRATION_ENABLED === 'true'
   ? supportedRoutes
   : supportedRoutes.filter((route) => route !== 'event');
@@ -24,6 +24,7 @@ const pageLabels = {
   '': 'home',
   'about-us': 'aboutUs',
   'our-vision': 'ourVision',
+  sermons: 'sermons',
   'ANBI-information': 'ANBIinformation',
   event: 'event'
 };
@@ -32,6 +33,7 @@ const descriptions = {
   '': 'ourMissionText',
   'about-us': 'aboutUsSectionText',
   'our-vision': 'ourVisionText',
+  sermons: 'sermonsIntro',
   'ANBI-information': 'introText',
   event: 'eventText'
 };
@@ -40,6 +42,7 @@ const images = {
   '': '/images/home-banner.jpeg',
   'about-us': '/images/about-us-banner.jpg',
   'our-vision': '/images/ourvision-banner.jpg',
+  sermons: '/images/home-banner.jpeg',
   'ANBI-information': '/images/ANBI-banner.jpg',
   event: '/images/event-banner.jpg'
 };
