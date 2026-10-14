@@ -1,9 +1,11 @@
 .services-section .missionus {
-  margin-bottom: 4rem;
+  margin-block: 1.5rem 2.5rem;
+  text-align: center;
 }
 
 .services-section .mission-statement {
   max-width: 44ch;
+  margin-inline: auto;
   color: var(--primary-color);
   font-size: var(--heading-3);
   font-weight: var(--weight-semibold);
@@ -31,7 +33,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  align-self: center;
+  flex-shrink: 0;
   width: 100%;
+  max-width: 20rem;
   aspect-ratio: 1;
   padding: 0.5rem;
   border: 1px solid var(--border-strong);
@@ -54,20 +59,12 @@
   }
 
   .services-section .services > div:nth-child(2) {
-    flex-basis: 36%;
+    flex: 1.125 1 0;
     margin-top: 24rem;
   }
 }
 
 @media (max-width: 1100px) {
-  .services-section .missionus {
-    text-align: center;
-  }
-
-  .services-section .mission-statement {
-    margin-inline: auto;
-  }
-
   .services-section .services {
     flex-direction: column;
     gap: 4rem;
@@ -75,6 +72,6 @@
 
   .services-section .services .image-circle {
     align-self: center;
-    max-width: 420px;
+    max-width: 20rem;
   }
 }
