@@ -353,10 +353,13 @@ export const eventHero = {
   backgroundImage: '/images/event-banner.jpg',
   backgroundClassName: 'event-banner',
   title: {
+    id: 'event',
+    defaultMessage: 'Event'
+  },
+  intro: {
     id: 'eventText',
     defaultMessage: 'Event registration'
   },
-  titleClassName: 'event-quote',
   reference: {
     id: 'eventOnder',
     defaultMessage: 'You are welcome'
@@ -373,16 +376,13 @@ export const sermonsHero = {
   eyebrow: {
     id: 'sermonsEyebrow'
   },
-  eyebrowClassName: 'sermons-eyebrow',
   intro: {
     id: 'sermonsIntro'
   },
-  introClassName: 'sermons-intro',
   action: {
     message: {
       id: 'sermonsBrowse'
     },
-    href: '#sermon-library',
-    className: 'sermons-hero-link'
+    href: '#sermon-library'
   }
 };
