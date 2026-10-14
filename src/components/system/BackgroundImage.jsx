@@ -1,6 +1,5 @@
 'use client';
 
-import '../components-CSS/BackgroundImage.css';
 
 const BackgroundImage = ({ url, className = '', style = {}, children }) => {
   return (
@@ -8,9 +7,6 @@ const BackgroundImage = ({ url, className = '', style = {}, children }) => {
       className={`background ${className}`}
       style={{
         backgroundImage: `url(${url})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
         ...style
       }}
     >

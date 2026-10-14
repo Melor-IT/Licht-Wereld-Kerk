@@ -2,39 +2,31 @@
 
 import { useIntl } from "react-intl";
 import { FaPhone, FaEnvelope, FaYoutube, FaInstagram } from "react-icons/fa";
-import "../components-CSS/Footer.css";
 
 const Footer = ({ locale }) => {
   const { formatMessage } = useIntl();
 
-  const footerStyle = {
-    backgroundImage: `url(/images/footerimage.png)`,
-  };
-
   return (
-    <footer
-      className={`footer ${locale === "fa" ? "rtl" : "ltr"}`}
-      style={footerStyle}
-    >
+    <footer className={`footer ${locale === "fa" ? "rtl" : "ltr"}`}>
       <div className="page-content">
         {/* Footer Message */}
         <div className="content-row message">
-          <h3>
+          <p className="footer-quote">
             {formatMessage({
               id: "footerText",
               defaultMessage:
                 "God is enthroned on the praises of His people...",
             })}
-          </h3>
+          </p>
         </div>
 
         {/* Footer Info */}
         <div className="content-row">
           {/* Contact Section */}
           <div className="dark-glass">
-            <h4>
+            <h2 className="footer-heading">
               {formatMessage({ id: "contactTitle", defaultMessage: "Contact" })}
-            </h4>
+            </h2>
             <div className="contact">
               <a href="tel:068371262" aria-label="Phone">
                 <FaPhone />
@@ -43,12 +35,12 @@ const Footer = ({ locale }) => {
                 <FaEnvelope />
               </a>
             </div>
-            <h4>
+            <h2 className="footer-heading">
               {formatMessage({
                 id: "socialMedia",
                 defaultMessage: "Social Media",
               })}
-            </h4>
+            </h2>
             <div className="contact">
               <a
                 href="https://www.youtube.com/@LichtWereldKerk"
@@ -68,38 +60,38 @@ const Footer = ({ locale }) => {
               </a>
             </div>
             <div>
-              <h4>IBAN</h4>
-              <p>Het Licht van de Wereld Kerk</p>
-              <p>NL53TRIO0321169964</p>
+              <h2 className="footer-heading">IBAN</h2>
+              <p lang="nl">Het Licht van de Wereld Kerk</p>
+              <p className="footer-identifier" dir="ltr">NL53TRIO0321169964</p>
             </div>
           </div>
 
           {/* Address Section */}
           <div className="dark-glass">
-            <h4>
+            <h2 className="footer-heading">
               {formatMessage({
                 id: "visitingAddress",
                 defaultMessage: "Visiting Address",
               })}
-            </h4>
-            <p>Hildo Kropstraat 8, 1328 BC Almere, Nederland</p>
+            </h2>
+            <p lang="nl" dir="ltr">Hildo Kropstraat 8, 1328 BC Almere, Nederland</p>
 
-            <h4>
+            <h2 className="footer-heading">
               {formatMessage({
                 id: "CorrespondenceAddress",
                 defaultMessage: "Correspondence Address",
               })}
-            </h4>
-            <p>Hildo Kropstraat 8, 1328 BC Almere</p>
+            </h2>
+            <p lang="nl" dir="ltr">Hildo Kropstraat 8, 1328 BC Almere</p>
 
-            <h4>{formatMessage({ id: "kvk", defaultMessage: "KVK" })}</h4>
-            <p>92274404</p>
+            <h2 className="footer-heading">{formatMessage({ id: "kvk", defaultMessage: "KVK" })}</h2>
+            <p className="footer-identifier" dir="ltr">92274404</p>
 
-            <h4>{formatMessage({ id: "RSIN", defaultMessage: "RSIN" })}</h4>
-            <p>865970245</p>
+            <h2 className="footer-heading">{formatMessage({ id: "RSIN", defaultMessage: "RSIN" })}</h2>
+            <p className="footer-identifier" dir="ltr">865970245</p>
           </div>
         </div>
-        <div className="footer-credit">
+        <div className="footer-credit" lang="nl">
           © {new Date().getFullYear()} Kerk Licht van de Wereld · <strong>Made by Melor</strong>
         </div>
       </div>

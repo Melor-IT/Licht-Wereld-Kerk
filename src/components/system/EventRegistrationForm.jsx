@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import '../components-CSS/EventRegistrationForm.css';
 
 const initialState = {
   firstName: '',

@@ -1,0 +1,205 @@
+@charset "UTF-8";
+
+@import "./fonts.css";
+
+:root {
+  --primary-color: #24584b;
+  --primary-hover: #183e35;
+  --secondary-color: #936c32;
+  --third-color: #496779;
+  --accent-color: #d5b47a;
+  --text-color: #243c35;
+  --text-muted: #5f6e68;
+  --surface-color: #ffffff;
+  --surface-soft: #f2f5f1;
+  --background-color: #faf9f6;
+  --border-color: #dde5df;
+  --border-strong: #b8c8bf;
+  --success-color: #24584b;
+  --success-surface: #e8f3ec;
+  --error-color: #9c3535;
+  --error-surface: #fceeee;
+  --notice-surface: #f8f0e1;
+  --radius-sm: 0.65rem;
+  --radius-md: 1.1rem;
+  --radius-lg: 1.5rem;
+  --shadow-sm: 0 4px 16px rgb(24 62 53 / 6%);
+  --shadow-md: 0 12px 36px rgb(24 62 53 / 10%);
+  --shadow-lg: 0 20px 56px rgb(24 62 53 / 14%);
+  --transition: 180ms ease;
+  --header-height: 96px;
+  --header-min-height: 96px;
+  --black-color: #182c26;
+  --white-color: #fff;
+  --font-latin: "Nunito Sans", "Vazirmatn", Arial, sans-serif;
+  --font-persian: "Vazirmatn", "Nunito Sans", Tahoma, sans-serif;
+  --font-body: var(--font-latin);
+  --font-heading: var(--font-body);
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-heavy: 800;
+  --line-body: 1.75;
+  --line-heading: 1.25;
+  --line-ui: 1.5;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-lead: clamp(1.125rem, 1.025rem + 0.5vw, 1.5rem);
+  --heading-6: 1rem;
+  --heading-5: clamp(1.0625rem, 1.025rem + 0.15vw, 1.125rem);
+  --heading-4: clamp(1.125rem, 1.075rem + 0.3vw, 1.375rem);
+  --heading-3: clamp(1.375rem, 1.2rem + 0.7vw, 1.875rem);
+  --heading-2: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+  --heading-1: clamp(2.25rem, 1.7rem + 2.75vw, 4rem);
+}
+
+:root:lang(fa) {
+  --font-body: var(--font-persian);
+  --line-body: 1.9;
+  --line-heading: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  scroll-behavior: smooth;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  scroll-padding-top: calc(var(--header-height) + 1rem);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--line-body);
+  font-optical-sizing: auto;
+  font-synthesis: style;
+  overflow-wrap: break-word;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+:where([lang="fa"]) {
+  font-family: var(--font-persian);
+}
+
+:where([lang="en"], [lang="nl"]) {
+  font-family: var(--font-latin);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: inherit;
+  font-weight: var(--weight-bold);
+  font-style: normal;
+  line-height: var(--line-heading);
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+h1 {
+  font-size: var(--heading-1);
+  font-weight: var(--weight-heavy);
+}
+
+h2 {
+  font-size: var(--heading-2);
+}
+
+h3 {
+  font-size: var(--heading-3);
+}
+
+h4 {
+  font-size: var(--heading-4);
+}
+
+h5 {
+  font-size: var(--heading-5);
+}
+
+h6 {
+  font-size: var(--heading-6);
+}
+
+p {
+  margin: 0;
+  line-height: var(--line-body);
+}
+
+strong {
+  font-weight: var(--weight-bold);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+a {
+  color: var(--primary-color);
+  text-underline-offset: 0.25em;
+  transition: color var(--transition), background-color var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+a:hover {
+  color: var(--primary-hover);
+}
+
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 3px solid var(--secondary-color);
+  outline-offset: 4px;
+}
+
+::selection {
+  background: var(--primary-color);
+  color: var(--white-color);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 1179.98px) {
+  :root {
+    --header-height: 80px;
+    --header-min-height: 80px;
+  }
+}

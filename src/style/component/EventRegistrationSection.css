@@ -1,0 +1,9 @@
+.event .closed-event {
+  border-block: 1px solid var(--border-color);
+  background: var(--surface-soft);
+  text-align: center;
+}
+
+.event .form {
+  background: var(--background-color);
+}

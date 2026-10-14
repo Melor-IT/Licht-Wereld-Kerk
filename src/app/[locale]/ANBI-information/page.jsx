@@ -1,4 +1,6 @@
-import ANBIInformationPage from '../../../components/ANBIInformationPage';
+import Hero from '../../../components/system/Hero';
+import ContentSection from '../../../components/system/ContentSection';
+import { anbiHero, anbiSections } from '../../../data/page-sections';
 import { pageMetadata } from '../../../lib/site';
 
 export async function generateMetadata({ params }) {
@@ -6,5 +8,12 @@ export async function generateMetadata({ params }) {
 }
 
 export default function Page() {
-  return <ANBIInformationPage />;
+  return (
+    <div className="page ANBI-Information">
+      <Hero {...anbiHero} />
+      {anbiSections.map((section) => (
+        <ContentSection key={section.title?.id || section.description.id} {...section} />
+      ))}
+    </div>
+  );
 }

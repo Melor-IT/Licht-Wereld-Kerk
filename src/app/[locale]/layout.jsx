@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
-import '../../components-CSS/globals.css';
+import '../../style/globals.css';
+import '../../style/main.css';
 import SiteShell from '../../components/SiteShell';
 import { locales, messages, siteUrl } from '../../lib/site';
 
@@ -40,6 +41,10 @@ export default async function LocaleLayout({ children, params }) {
 
   return (
     <html lang={locale} dir={direction}>
+      <head>
+        <link rel="preload" href="/fonts/nunito-sans-latin-variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        {locale === 'fa' && <link rel="preload" href="/fonts/vazirmatn-variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />}
+      </head>
       <body>
         <script
           type="application/ld+json"

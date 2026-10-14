@@ -1,0 +1,80 @@
+.services-section .missionus {
+  margin-bottom: 4rem;
+}
+
+.services-section .mission-statement {
+  max-width: 44ch;
+  color: var(--primary-color);
+  font-size: var(--heading-3);
+  font-weight: var(--weight-semibold);
+}
+
+.services-section .services {
+  display: flex;
+  gap: 1.5rem;
+  padding-block: 2rem;
+}
+
+.services-section .services > div {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+.services-section .services p {
+  color: var(--text-muted);
+}
+
+.services-section .image-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1;
+  padding: 0.5rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  background: var(--surface-color);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.services-section .image-circle img {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+@media (min-width: 1101px) {
+  .services-section .services > div:first-child {
+    margin-top: 9rem;
+  }
+
+  .services-section .services > div:nth-child(2) {
+    flex-basis: 36%;
+    margin-top: 24rem;
+  }
+}
+
+@media (max-width: 1100px) {
+  .services-section .missionus {
+    text-align: center;
+  }
+
+  .services-section .mission-statement {
+    margin-inline: auto;
+  }
+
+  .services-section .services {
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  .services-section .services .image-circle {
+    align-self: center;
+    max-width: 420px;
+  }
+}

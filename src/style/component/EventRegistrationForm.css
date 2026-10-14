@@ -1,0 +1,111 @@
+.form-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 640px;
+  margin: 1rem auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  background-color: var(--surface-color);
+}
+
+.form-block .form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.form-block .form-grid-counts {
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+}
+
+.form-block .form-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.form-status {
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  font-weight: var(--weight-bold);
+}
+
+.form-status-success {
+  color: var(--success-color);
+  background: var(--success-surface);
+}
+
+.form-status-error {
+  color: var(--error-color);
+  background: var(--error-surface);
+}
+
+.form-block label {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--text-color);
+  min-width: 0;
+}
+
+.form-block label > .title {
+  font-weight: var(--weight-bold);
+}
+
+.form-block input,
+.form-block textarea {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  min-height: 48px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--background-color);
+  color: var(--text-color);
+  font-size: var(--text-base);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-block :is(input, textarea):focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  background: var(--surface-color);
+}
+
+.form-block textarea {
+  resize: vertical;
+}
+
+.form-block button {
+  min-height: 48px;
+  padding: 0.85rem 1.5rem;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  transition: background-color var(--transition), box-shadow var(--transition);
+}
+
+.form-block button:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-block button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+@media (max-width: 600px) {
+  .form-block .form-grid {
+    grid-template-columns: 1fr;
+  }
+}

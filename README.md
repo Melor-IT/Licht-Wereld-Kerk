@@ -1,6 +1,42 @@
 # Licht van de Wereld
 
-Website van de Iraanse christelijke gemeente Licht van de Wereld in Almere. De site gebruikt Next.js App Router, React, Sass en `react-intl`.
+Website van de Iraanse christelijke gemeente Licht van de Wereld in Almere. De site gebruikt Next.js App Router, React, CSS en `react-intl`.
+
+## Projectstructuur
+
+De indeling volgt het patroon van `mantleofpraise`: vaste onderdelen in `fixed`, gedeelde bouwstenen in `system` en componentstijlen onder `style/component`. Elke locale-route stelt zijn pagina rechtstreeks samen uit sectiecomponenten; er zijn geen volledige paginaweergaven in `components/pages`.
+
+```text
+src/
+  app/                  Next.js-routes, layouts, metadata en API
+  components/
+    fixed/              Header en Footer
+    system/             Hero, ContentSection, ServicesSection, AboutSection,
+                        TeamIntro, SermonsLibrary, EventRegistrationSection,
+                        BackgroundImage en EventRegistrationForm
+    SiteShell.jsx       Gedeelde site-indeling en taalprovider
+  style/
+    component/          CSS per gedeelde component en sectie
+    globals.css         Thema, typografie en basisstijlen
+    fonts.css           Lokale fontdefinities
+    main.css            Centrale imports van alle componentstijlen
+  data/                 Sectie-inhoud, vertaalreferenties en prekenarchief
+  lib/                  Siteconfiguratie, metadata en prekenlogica
+messages/               Vertalingen voor Nederlands, Farsi en Engels
+public/
+  images/               Afbeeldingen
+  fonts/                Fontbestanden, licenties en bronvermelding
+```
+
+De locale-layout laadt `style/globals.css` en `style/main.css` één keer. Voeg de CSS van nieuwe componenten toe aan `style/main.css`; importeer component-CSS niet afzonderlijk vanuit JSX-bestanden.
+
+De zes `page.jsx`-bestanden onder `app/[locale]` bepalen de sectievolgorde. `Hero` verzorgt de paginabanner, `ContentSection` de tekst- en lijstsecties, en de andere sectiecomponenten verzorgen diensten, introducties, registraties en de interactieve prekenbibliotheek. `data/page-sections.js` bevat hun inhoud en vertaalreferenties; de bestaande taalprovider vertaalt deze tijdens het renderen. De API, paginametadata en de prekenfeed blijven in de route- en lib-bestanden.
+
+## Typografie
+
+Vazirmatn voor Farsi en Nunito Sans voor Nederlands en Engels worden lokaal geladen uit `public/fonts`. De variabele WOFF2-bestanden en hun licenties staan in die map. Er zijn geen externe Google Fonts-verzoeken nodig. Zie `public/fonts/README.md` voor bronnen en licenties.
+
+`src/style/globals.css` bevat de gedeelde tekstgroottes, gewichten en regelhoogtes. Componentstijlen gebruiken deze variabelen; de Farsi-regelhoogtes worden via de paginataal ingesteld. De kopgroottes schalen mee met het scherm.
 
 ## Lokaal starten
 

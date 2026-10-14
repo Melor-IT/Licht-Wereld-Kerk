@@ -1,0 +1,133 @@
+.footer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 75vh;
+  color: var(--white-color);
+  background: var(--primary-hover) url("/images/footerimage.png") bottom / cover no-repeat;
+  text-align: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.footer::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  content: "";
+  background: rgb(16 42 35 / 88%);
+  pointer-events: none;
+}
+
+.footer > .page-content {
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  padding: 4rem 1.5rem;
+}
+
+.footer .content-row {
+  display: flex;
+  align-items: stretch;
+  gap: 2rem;
+  width: 100%;
+}
+
+.footer .content-row > div {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.footer .message {
+  justify-content: center;
+  width: 80%;
+}
+
+.footer-quote {
+  max-width: 48ch;
+  font-size: var(--text-lead);
+  font-weight: var(--weight-semibold);
+}
+
+.footer .dark-glass {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  border: 1px solid rgb(255 255 255 / 16%);
+  border-radius: var(--radius-lg);
+  color: #e0e8e2;
+  background: rgb(255 255 255 / 6%);
+  box-shadow: var(--shadow-sm);
+}
+
+.footer-heading {
+  color: var(--white-color);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  line-height: var(--line-ui);
+}
+
+.footer .dark-glass p {
+  overflow-wrap: anywhere;
+}
+
+.footer .contact {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  color: var(--accent-color);
+}
+
+.footer .contact a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 50%;
+  color: inherit;
+  font-size: 1.4rem;
+  text-decoration: none;
+}
+
+.footer .contact a:hover {
+  border-color: var(--accent-color);
+  color: var(--white-color);
+  background: rgb(255 255 255 / 10%);
+}
+
+.footer-credit {
+  width: 100%;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgb(255 255 255 / 14%);
+  color: #c8d5ce;
+  font-size: var(--text-sm);
+}
+
+.footer-identifier {
+  font-family: var(--font-latin);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 700px) {
+  .footer > .page-content {
+    gap: 2rem;
+    padding: 3rem 1.25rem 2rem;
+  }
+
+  .footer .content-row {
+    flex-direction: column;
+  }
+
+  .footer .message {
+    width: 100%;
+  }
+
+  .footer .dark-glass {
+    padding: 2rem 1.5rem;
+  }
+}

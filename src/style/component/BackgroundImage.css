@@ -1,0 +1,20 @@
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.background::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(110deg, rgb(16 42 35 / 76%), rgb(16 42 35 / 34%));
+}
+
+.app.rtl .background::after {
+  background: linear-gradient(250deg, rgb(16 42 35 / 76%), rgb(16 42 35 / 34%));
+}
