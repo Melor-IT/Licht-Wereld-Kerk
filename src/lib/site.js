@@ -6,9 +6,7 @@ export const messages = { en, fa, nl };
 export const locales = Object.keys(messages);
 export const defaultLocale = 'nl';
 const supportedRoutes = ['', 'about-us', 'our-vision', 'sermons', 'ANBI-information', 'event'];
-export const routes = process.env.NEXT_PUBLIC_EVENT_REGISTRATION_ENABLED === 'true'
-  ? supportedRoutes
-  : supportedRoutes.filter((route) => route !== 'event');
+export const routes = supportedRoutes;
 export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://lichtwereld.com').replace(/\/$/, '');
 
 export const pathFor = (locale, slug = '') => `/${locale}${slug ? `/${slug}` : ''}`;
@@ -35,7 +33,7 @@ const descriptions = {
   'our-vision': 'ourVisionText',
   sermons: 'sermonsIntro',
   'ANBI-information': 'introText',
-  event: 'eventText'
+  event: 'eventsIntro'
 };
 
 const images = {
@@ -44,7 +42,7 @@ const images = {
   'our-vision': '/images/ourvision-banner.jpg',
   sermons: '/images/home-banner.jpeg',
   'ANBI-information': '/images/ANBI-banner.jpg',
-  event: '/images/event-banner.jpg'
+  event: '/images/home-banner.jpeg'
 };
 
 const homeTitles = {

@@ -1,0 +1,47 @@
+[
+  {
+    "id": "sunday-service-2026-10-18-hamid",
+    "type": "sermon",
+    "date": "2026-10-18",
+    "time": "15:00",
+    "poster": "/images/Kerkbijeenkomst.png",
+    "title": {
+      "fa": "عبادت و موعظه همراه با مشارکت",
+      "nl": "Kerkdienst met broeder Hamid",
+      "en": "Worship and sermon with fellowship"
+    },
+    "speaker": {
+      "fa": "برادر حمید",
+      "nl": "Broeder Hamid",
+      "en": "Brother Hamid"
+    },
+    "description": {
+      "fa": "جلسهٔ حضوری کلیسای ایرانیان نور جهان برای عبادت، مشارکت و تعمق در کلام خدا.",
+      "nl": "Ontspanning, ontmoeting en verdieping in het Woord van God.",
+      "en": "Join us at church for worship, fellowship and reflection on the Word of God."
+    },
+    "location": "Hildo Kropstraat 8, 1328 BC Almere, Nederland"
+  },
+  {
+    "id": "church-service-2026-10-25-kazem",
+    "type": "sermon",
+    "date": "2026-10-25",
+    "time": "15:00",
+    "title": {
+      "fa": "عبادت و موعظه همراه با مشارکت",
+      "nl": "Kerkdienst met broeder Kazem",
+      "en": "Worship and sermon with fellowship"
+    },
+    "speaker": {
+      "fa": "برادر کاظم",
+      "nl": "Broeder Kazem",
+      "en": "Brother Kazem"
+    },
+    "description": {
+      "fa": "جلسهٔ حضوری کلیسای ایرانیان نور جهان برای عبادت، مشارکت و تعمق در کلام خدا.",
+      "nl": "Ontspanning, ontmoeting en verdieping in het Woord van God.",
+      "en": "Join us at church for worship, fellowship and reflection on the Word of God."
+    },
+    "location": "Hildo Kropstraat 8, 1328 BC Almere, Nederland"
+  }
+]

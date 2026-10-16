@@ -13,7 +13,7 @@ src/
     fixed/              Header en Footer
     system/             Hero, ContentSection, ServicesSection, AboutSection,
                         TeamIntro, SermonsLibrary, EventRegistrationSection,
-                        BackgroundImage en EventRegistrationForm
+                        EventSchedule, BackgroundImage en EventRegistrationForm
     SiteShell.jsx       Gedeelde site-indeling en taalprovider
   style/
     component/          CSS per gedeelde component en sectie
@@ -65,6 +65,47 @@ De server haalt de YouTube Atom-feed van de playlist op zonder API-sleutel en ve
 
 `excludedVideoIds` in `src/lib/sermons.js` verbergt geselecteerde opnames bij zowel verversing als gebruik van de reservekopie. De opname 'Garment Of Praise' (`UpaxJ4YOg-M`) is op verzoek uitgesloten. De speler opent alleen de geselecteerde video, zodat de YouTube-playlist geen uitgesloten opname als volgende video afspeelt.
 
+## Agenda: preken en online vrijdaglessen
+
+De openbare agenda staat op `/nl/event`, `/fa/event` en `/en/event` en is altijd bereikbaar via het menu en de sitemap. De pagina toont preken en online vrijdaglessen apart. De keuze voor afgelopen bijeenkomsten is tijdelijk uitgecommentarieerd in `EventSchedule.jsx`; bezoekers zien alleen komende bijeenkomsten. De archieflogica en ingevoerde gegevens blijven bewaard. Datums worden op volgorde getoond; vanaf de volgende kalenderdag verhuizen bijeenkomsten naar het archief. Dit gebruikt de tijdzone `Europe/Amsterdam`, onafhankelijk van de tijdzone van de server of bezoeker. De Farsi-weergave toont datums volgens de Perzische kalender.
+
+Het vaste weekprogramma staat in `src/data/weekly-events.json`: iedere zondag om 15:00 in de kerk (Hildo Kropstraat 8, Almere) en iedere vrijdag om 20:00 online, in Nederlandse lokale tijd. De agenda berekent voor beide programma's automatisch de volgende zes datums, inclusief vandaag als de bijeenkomst op deze dag valt. Alleen expliciet ingevoerde bijeenkomsten worden in het archief bewaard; er wordt geen aanwezigheid of doorgang van eerdere wekelijkse bijeenkomsten verondersteld. Voeg een openbare leslink eventueel toe als `url` aan het vrijdagprogramma.
+
+Beheer losse bijeenkomsten en afwijkingen in `src/data/events.json` en publiceer de website opnieuw na wijzigingen. Een gedateerde bijeenkomst vervangt het vaste programma van dezelfde categorie op die datum. Er is geen beheerformulier op de website. Het bestand bevat een JSON-array. Voeg bijvoorbeeld een record toe (alleen een invoervoorbeeld, geen aangekondigde bijeenkomst):
+
+```json
+[
+  {
+    "id": "friday-class-2027-01-08",
+    "type": "friday-class",
+    "date": "2027-01-08",
+    "time": "20:00",
+    "title": {
+      "fa": "درس کلام خدا",
+      "nl": "Bijbelles",
+      "en": "Bible study"
+    },
+    "speaker": "Naam van de spreker",
+    "description": {
+      "fa": "موضوع جلسه",
+      "nl": "Onderwerp van de bijeenkomst",
+      "en": "Meeting topic"
+    },
+    "url": "https://example.com/meeting"
+  }
+]
+```
+
+- `id`: een unieke naam per bijeenkomst.
+- `type`: `sermon` voor een preek, `friday-class` voor een online vrijdagles. Vrijdaglessen moeten op een vrijdag vallen.
+- `date`: de datum in de Gregoriaanse kalender als `YYYY-MM-DD`.
+- `time`: optioneel, in 24-uursnotatie `HH:mm`, in Nederlandse lokale tijd; zomer- of wintertijd volgt uit de datum. Zonder tijd verschijnt een melding dat de tijd nog wordt aangekondigd.
+- `title`, `description`, `speaker` en `location`: optioneel, als tekst of een object met `fa`, `nl` en `en`. Een ontbrekende titel gebruikt de naam van de categorie.
+- `url`: optioneel, een volledige HTTP(S)-link naar de online les of informatie over de bijeenkomst. Deel hier alleen links die openbaar mogen zijn. Links naar bijeenkomsten worden alleen bij komende programma's getoond.
+- `poster`: optioneel, het pad naar de originele poster in `public/images`, bijvoorbeeld `/images/events/2026-10-18-hamid.jpg`. Posters verschijnen uitsluitend onder Afgelopen (Past), zonder bijsnijden, en kunnen op volledige grootte worden geopend. Bij een lege archiefcategorie wordt een beschikbare poster uit dezelfde categorie getoond, met de aanduiding of deze bij een komende of afgelopen bijeenkomst hoort.
+
+Ongeldige datums, tijden, dubbele IDs en vrijdaglessen op een andere weekdag worden geweigerd. De bestaande registratie-API blijft onafhankelijk van de openbare agenda uitgeschakeld.
+
 ## Evenementregistratie opnieuw activeren
 
 De registratiepagina en API staan standaard veilig uit. Stel deze variabelen in en voer daarna opnieuw een build/deployment uit:
@@ -75,4 +116,4 @@ De registratiepagina en API staan standaard veilig uit. Stel deze variabelen in 
 - `EMAIL_PASS`
 - `THIRD_PERSON_EMAIL`
 
-Zonder beide feature flags retourneert de API een `404` en staat de evenementpagina niet in menu of sitemap.
+Zonder beide feature flags retourneert de API een `404`. Het registratieformulier verschijnt alleen met `NEXT_PUBLIC_EVENT_REGISTRATION_ENABLED=true`; de openbare agenda blijft altijd zichtbaar in menu en sitemap.

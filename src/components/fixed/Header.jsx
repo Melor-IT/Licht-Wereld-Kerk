@@ -16,9 +16,7 @@ const menuItems = [
   { slug: "our-vision", id: "ourVision", defaultMessage: "Our Vision", icon: FaRegCompass },
   { slug: "sermons", id: "sermons", defaultMessage: "Sermons", icon: FaPlay },
   { slug: "ANBI-information", id: "ANBIinformation", defaultMessage: "ANBI Information", icon: FaInfoCircle },
-  ...(process.env.NEXT_PUBLIC_EVENT_REGISTRATION_ENABLED === "true"
-    ? [{ slug: "event", id: "event", defaultMessage: "Event", icon: FaCalendarAlt }]
-    : []),
+  { slug: "event", id: "event", defaultMessage: "Events", icon: FaCalendarAlt },
 ];
 
 const languageOptions = [

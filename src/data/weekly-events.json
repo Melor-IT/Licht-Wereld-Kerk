@@ -1,0 +1,20 @@
+[
+  {
+    "id": "sunday-service",
+    "type": "sermon",
+    "weekday": 0,
+    "time": "15:00",
+    "location": "Hildo Kropstraat 8, 1328 BC Almere"
+  },
+  {
+    "id": "friday-online-class",
+    "type": "friday-class",
+    "weekday": 5,
+    "time": "20:00",
+    "location": {
+      "fa": "آنلاین",
+      "nl": "Online",
+      "en": "Online"
+    }
+  }
+]

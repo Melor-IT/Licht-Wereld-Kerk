@@ -350,19 +350,20 @@ export const anbiSections = [
 ];
 
 export const eventHero = {
-  backgroundImage: '/images/event-banner.jpg',
-  backgroundClassName: 'event-banner',
+  backgroundImage: '/images/home-banner.jpeg',
+  className: 'events-hero',
+  titleId: 'events-title',
+  eyebrow: { id: 'eventsEyebrow' },
   title: {
     id: 'event',
-    defaultMessage: 'Event'
+    defaultMessage: 'Events'
   },
   intro: {
-    id: 'eventText',
-    defaultMessage: 'Event registration'
+    id: 'eventsIntro'
   },
-  reference: {
-    id: 'eventOnder',
-    defaultMessage: 'You are welcome'
+  action: {
+    message: { id: 'eventsBrowse' },
+    href: '#event-schedule'
   }
 };
 
