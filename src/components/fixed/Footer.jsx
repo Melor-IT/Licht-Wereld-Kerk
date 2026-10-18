@@ -95,7 +95,7 @@ const Footer = ({ locale }) => {
           </div>
         </div>
         <div className="footer-credit" lang="nl">
-          © {new Date().getFullYear()} Kerk Licht van de Wereld · <strong>Made by Melor</strong>
+          © {new Date().getFullYear()} Kerk Licht van de Wereld · <a href="https://mel-or.com/" target="_blank" rel="noopener noreferrer"><strong>Made by Melor</strong></a>
         </div>
       </div>
     </footer>

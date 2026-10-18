@@ -108,6 +108,14 @@
   font-size: var(--text-sm);
 }
 
+.footer-credit a {
+  color: inherit;
+}
+
+.footer-credit a:hover {
+  color: var(--white-color);
+}
+
 .footer-identifier {
   font-family: var(--font-latin);
   font-variant-numeric: tabular-nums;
