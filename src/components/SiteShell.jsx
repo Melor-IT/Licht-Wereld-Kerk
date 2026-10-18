@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import Header from './fixed/Header';
 import Footer from './fixed/Footer';
+import DonationProvider from './system/DonationDialog';
 
 export default function SiteShell({ locale, messages, children }) {
   const direction = locale === 'fa' ? 'rtl' : 'ltr';
@@ -16,9 +17,11 @@ export default function SiteShell({ locale, messages, children }) {
   return (
     <IntlProvider key={locale} locale={locale} messages={messages}>
       <div className={`app ${direction}`} dir={direction}>
-        <Header locale={locale} />
-        <main id="main-content">{children}</main>
-        <Footer locale={locale} />
+        <DonationProvider>
+          <Header locale={locale} />
+          <main id="main-content">{children}</main>
+          <Footer locale={locale} />
+        </DonationProvider>
       </div>
     </IntlProvider>
   );

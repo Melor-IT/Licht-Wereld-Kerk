@@ -2,6 +2,8 @@
 
 import { useIntl } from "react-intl";
 import { FaPhone, FaEnvelope, FaYoutube, FaInstagram } from "react-icons/fa";
+import DonationButton from "../system/DonationButton";
+import { donation } from "../../data/donation";
 
 const Footer = ({ locale }) => {
   const { formatMessage } = useIntl();
@@ -61,9 +63,10 @@ const Footer = ({ locale }) => {
             </div>
             <div>
               <h2 className="footer-heading">IBAN</h2>
-              <p lang="nl">Het Licht van de Wereld Kerk</p>
-              <p className="footer-identifier" dir="ltr">NL53TRIO0321169964</p>
+              <p lang="nl">{donation.organization}</p>
+              <p className="footer-identifier" dir="ltr">{donation.iban}</p>
             </div>
+            <DonationButton />
           </div>
 
           {/* Address Section */}
@@ -85,10 +88,10 @@ const Footer = ({ locale }) => {
             <p lang="nl" dir="ltr">Hildo Kropstraat 8, 1328 BC Almere</p>
 
             <h2 className="footer-heading">{formatMessage({ id: "kvk", defaultMessage: "KVK" })}</h2>
-            <p className="footer-identifier" dir="ltr">92274404</p>
+            <p className="footer-identifier" dir="ltr">{donation.kvk}</p>
 
             <h2 className="footer-heading">{formatMessage({ id: "RSIN", defaultMessage: "RSIN" })}</h2>
-            <p className="footer-identifier" dir="ltr">865970245</p>
+            <p className="footer-identifier" dir="ltr">{donation.rsin}</p>
           </div>
         </div>
         <div className="footer-credit" lang="nl">

@@ -10,3 +10,6 @@
 @import './component/EventRegistrationForm.css';
 @import './component/EventRegistrationSection.css';
 @import './component/EventSchedule.css';
+@import './component/DonationButton.css';
+@import './component/DonationDetails.css';
+@import './component/DonationDialog.css';

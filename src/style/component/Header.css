@@ -479,6 +479,7 @@
 
 @media (max-width: 480px) {
   .header-bar {
+    flex-wrap: nowrap;
     gap: 0.75rem;
     padding-inline: 1rem;
   }
@@ -496,6 +497,14 @@
     font-size: var(--text-sm);
   }
 
+  .header-bar .brand-copy strong {
+    max-width: 6rem;
+  }
+
+  .header-bar .brand-copy > span {
+    display: none;
+  }
+
   .brand-copy > span {
     font-size: var(--text-xs);
   }
@@ -505,12 +514,19 @@
   }
 
   .language-button {
-    gap: 0.4rem;
-    padding-inline: 0.65rem;
+    width: 44px;
+    min-height: 44px;
+    padding: 0;
   }
 
-  .language-chevron {
+  .language-chevron,
+  .language-button > svg:first-child {
     display: none;
+  }
+
+  .menu-toggle {
+    width: 44px;
+    height: 44px;
   }
 
   .language-menu {
@@ -533,6 +549,14 @@
 }
 
 @media (max-width: 360px) {
+  .header-bar {
+    gap: 0.5rem;
+  }
+
+  .header-bar .brand-copy strong {
+    max-width: 5rem;
+  }
+
   .header-bar .logo-image {
     width: 36px;
     height: 36px;

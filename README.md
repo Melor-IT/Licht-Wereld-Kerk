@@ -32,6 +32,12 @@ De locale-layout laadt `style/globals.css` en `style/main.css` één keer. Voeg 
 
 De zes `page.jsx`-bestanden onder `app/[locale]` bepalen de sectievolgorde. `Hero` verzorgt de paginabanner, `ContentSection` de tekst- en lijstsecties, en de andere sectiecomponenten verzorgen diensten, introducties, registraties en de interactieve prekenbibliotheek. `data/page-sections.js` bevat hun inhoud en vertaalreferenties; de bestaande taalprovider vertaalt deze tijdens het renderen. De API, paginametadata en de prekenfeed blijven in de route- en lib-bestanden.
 
+## Giften
+
+De knop Geven in de header en footer opent de gedeelde donatiedialoog, met vertalingen voor Nederlands, Farsi en Engels. De rekeninghouder, het IBAN, KVK en RSIN staan in `src/data/donation.js`; ook de footer gebruikt deze gegevens. De dialoog ondersteunt het kopiëren van het IBAN en toont een melding als dit niet lukt.
+
+Er is nog geen betaallink of QR-code ingesteld. `DonationProvider` accepteert optioneel een `qrDataUrl`; de QR-sectie verschijnt alleen als die beschikbaar is. Een directe betaallink wordt alleen getoond wanneer ook `paymentUrl` in de donatiegegevens is ingevuld.
+
 ## Typografie
 
 Vazirmatn voor Farsi en Nunito Sans voor Nederlands en Engels worden lokaal geladen uit `public/fonts`. De variabele WOFF2-bestanden en hun licenties staan in die map. Er zijn geen externe Google Fonts-verzoeken nodig. Zie `public/fonts/README.md` voor bronnen en licenties.

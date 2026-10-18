@@ -1,0 +1,80 @@
+button.donation-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 3rem;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 999px;
+  background: var(--primary-color);
+  color: var(--white-color);
+  box-shadow: var(--shadow-sm);
+  font-family: inherit;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  line-height: var(--line-ui);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+button.donation-button svg {
+  flex: 0 0 1rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+button.donation-button:hover {
+  background: var(--primary-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-0.0625rem);
+}
+
+button.donation-button:focus-visible {
+  outline: 0.1875rem solid var(--secondary-color);
+  outline-offset: 0.1875rem;
+}
+
+.footer .donation-button {
+  align-self: center;
+  border-color: var(--accent-color);
+  background: var(--accent-color);
+  color: var(--primary-hover);
+}
+
+.footer .donation-button:hover {
+  background: var(--white-color);
+}
+
+@media (max-width: 37.5em) {
+  .header-actions .donation-button {
+    width: 3rem;
+    padding: 0;
+  }
+
+  .header-actions .donation-button span {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-actions .donation-button {
+    width: 2.75rem;
+    min-height: 2.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button.donation-button {
+    transition: none;
+  }
+
+  button.donation-button:hover {
+    transform: none;
+  }
+}

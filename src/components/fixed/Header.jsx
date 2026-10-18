@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useIntl } from "react-intl";
 import { usePathname } from "next/navigation";
+import DonationButton from "../system/DonationButton";
 import {
   FaArrowRight, FaCalendarAlt, FaChevronDown,
   FaGlobe, FaHome, FaInfoCircle, FaPlay, FaRegCompass, FaUsers,
@@ -141,6 +142,7 @@ function HeaderNavigation({ locale, pathname }) {
           ))}
         </nav>
         <div className="header-actions">
+          <DonationButton onClick={() => setLanguageOpen(false)} />
           <div className="lang-selector" ref={languageRef} onBlur={(event) => {
             if (!event.currentTarget.contains(event.relatedTarget)) setLanguageOpen(false);
           }}>
