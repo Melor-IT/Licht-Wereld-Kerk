@@ -1,0 +1,30 @@
+{
+  "startDate": "2026-10-18",
+  "preachers": [
+    {
+      "id": "hamid",
+      "name": {
+        "fa": "برادر حمید",
+        "nl": "Broeder Hamid",
+        "en": "Brother Hamid"
+      }
+    },
+    {
+      "id": "kazem",
+      "name": {
+        "fa": "برادر کاظم",
+        "nl": "Broeder Kazem",
+        "en": "Brother Kazem"
+      }
+    },
+    {
+      "id": "shahram",
+      "name": {
+        "fa": "برادر شهرام",
+        "nl": "Broeder Shahram",
+        "en": "Brother Shahram"
+      }
+    }
+  ],
+  "overrides": {}
+}

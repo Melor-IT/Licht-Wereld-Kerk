@@ -1,18 +1,38 @@
 'use client';
 
-// import { useState } from 'react';
+import { useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useIntl } from 'react-intl';
 import { FaBible, FaCalendarAlt, FaClock, FaExternalLinkAlt, FaMapMarkerAlt, FaUser, FaVideo } from 'react-icons/fa';
-import { eventTimeZone } from '../../lib/events';
+import { eventTimeZone, getEventDate, getEventSchedule, getNextEventDayDelay } from '../../lib/events';
+
+function subscribeToEventDate(onChange) {
+  let timer;
+  const update = () => {
+    clearTimeout(timer);
+    onChange();
+    timer = setTimeout(update, getNextEventDayDelay());
+  };
+  timer = setTimeout(update, getNextEventDayDelay());
+  window.addEventListener('focus', update);
+  document.addEventListener('visibilitychange', update);
+  return () => {
+    clearTimeout(timer);
+    window.removeEventListener('focus', update);
+    document.removeEventListener('visibilitychange', update);
+  };
+}
 
 const categories = [
   { type: 'sermon', title: 'eventsSermons', intro: 'eventsSermonsIntro', icon: FaBible },
   { type: 'friday-class', title: 'eventsClasses', intro: 'eventsClassesIntro', icon: FaVideo }
 ];
 
-export default function EventSchedule({ upcoming, past }) {
+export default function EventSchedule({ events: datedEvents, weeklyEvents, rotation, initialDate }) {
+  // Hydration uses the server's date; a cached page or a tab crossing midnight then updates locally.
+  const today = useSyncExternalStore(subscribeToEventDate, getEventDate, () => initialDate);
+  const { upcoming, past } = getEventSchedule(datedEvents, new Date(`${today}T12:00:00Z`), weeklyEvents, rotation);
   const { formatMessage, locale } = useIntl();
   // Past meetings are temporarily disabled. Restore this state and the controls below to re-enable them.
   // const [period, setPeriod] = useState('upcoming');

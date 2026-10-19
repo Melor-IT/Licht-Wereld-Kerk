@@ -10,11 +10,6 @@
       "nl": "Kerkdienst met broeder Hamid",
       "en": "Worship and sermon with fellowship"
     },
-    "speaker": {
-      "fa": "برادر حمید",
-      "nl": "Broeder Hamid",
-      "en": "Brother Hamid"
-    },
     "description": {
       "fa": "جلسهٔ حضوری کلیسای ایرانیان نور جهان برای عبادت، مشارکت و تعمق در کلام خدا.",
       "nl": "Ontspanning, ontmoeting en verdieping in het Woord van God.",
@@ -29,13 +24,13 @@
     "time": "15:00",
     "title": {
       "fa": "عبادت و موعظه همراه با مشارکت",
-      "nl": "Kerkdienst met broeder Kazem",
+      "nl": "Kerkdienst met zuster Sima",
       "en": "Worship and sermon with fellowship"
     },
     "speaker": {
-      "fa": "برادر کاظم",
-      "nl": "Broeder Kazem",
-      "en": "Brother Kazem"
+      "fa": "خواهر سیما",
+      "nl": "Zuster Sima",
+      "en": "Sister Sima"
     },
     "description": {
       "fa": "جلسهٔ حضوری کلیسای ایرانیان نور جهان برای عبادت، مشارکت و تعمق در کلام خدا.",
