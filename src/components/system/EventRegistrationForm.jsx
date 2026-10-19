@@ -65,7 +65,7 @@ export default function EventRegistrationForm() {
   }
 
   return (
-    <form className="form-block" onSubmit={handleSubmit} noValidate>
+    <form className="form-block" onSubmit={handleSubmit}>
       <div className="form-grid">
         {['firstName', 'lastName', 'email', 'phone'].map((field) => (
           <label key={field}>

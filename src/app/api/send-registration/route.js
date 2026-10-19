@@ -1,16 +1,14 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server.js';
 import nodemailer from 'nodemailer';
+import { createRegistrationRateLimiter, readRegistrationBody, RequestBodyError } from '../../../lib/registration-security.mjs';
 
 export const runtime = 'nodejs';
 
-const MAX_BODY_BYTES = 15_000;
 const MAX_TEXT_LENGTH = 120;
 const MAX_MESSAGE_LENGTH = 2_000;
 const MAX_ATTENDEES_PER_GROUP = 100;
-const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
-const RATE_LIMIT_MAX = 5;
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const attempts = new Map();
+const emailPattern = /^[^\s@<>(),;:\\"[\]]+@[^\s@<>(),;:\\"[\]]+\.[^\s@<>(),;:\\"[\]]+$/;
+const isRateLimited = createRegistrationRateLimiter();
 
 function json(data, status, extraHeaders = {}) {
   return NextResponse.json(data, {
@@ -20,13 +18,15 @@ function json(data, status, extraHeaders = {}) {
 }
 
 function cleanText(value, maxLength = MAX_TEXT_LENGTH, required = true) {
-  if (typeof value !== 'string') return required ? null : '';
+  if (value === undefined && !required) return '';
+  if (typeof value !== 'string') return null;
   const cleaned = value.trim();
   if ((required && !cleaned) || cleaned.length > maxLength) return null;
   return cleaned;
 }
 
 function attendeeCount(value) {
+  if (typeof value !== 'number' && (typeof value !== 'string' || !/^\d+$/.test(value))) return null;
   const count = Number(value);
   return Number.isSafeInteger(count) && count >= 0 && count <= MAX_ATTENDEES_PER_GROUP ? count : null;
 }
@@ -41,45 +41,29 @@ function escapeHtml(value) {
 }
 
 function clientIp(request) {
-  return request.headers.get('x-forwarded-for')?.split(',')[0].trim() || request.headers.get('x-real-ip') || 'unknown';
-}
-
-function isRateLimited(ip) {
-  const now = Date.now();
-  const recent = (attempts.get(ip) || []).filter((time) => now - time < RATE_LIMIT_WINDOW_MS);
-  recent.push(now);
-  attempts.set(ip, recent);
-
-  if (attempts.size > 5_000) {
-    for (const [key, times] of attempts) {
-      if (!times.some((time) => now - time < RATE_LIMIT_WINDOW_MS)) attempts.delete(key);
-    }
-  }
-
-  return recent.length > RATE_LIMIT_MAX;
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim() || request.headers.get('x-real-ip') || 'unknown';
+  return ip.slice(0, 128);
 }
 
 export async function POST(request) {
-  if (process.env.EVENT_REGISTRATION_ENABLED !== 'true') return json({ error: 'Not found' }, 404);
+  if (process.env.EVENT_REGISTRATION_ENABLED !== 'true'
+    || process.env.NEXT_PUBLIC_EVENT_REGISTRATION_ENABLED !== 'true') return json({ error: 'Not found' }, 404);
 
   const contentType = request.headers.get('content-type') || '';
-  const contentLength = Number(request.headers.get('content-length') || 0);
-  if (!contentType.startsWith('application/json') || contentLength > MAX_BODY_BYTES) {
+  if (contentType.split(';')[0].trim().toLowerCase() !== 'application/json') {
     return json({ error: 'Invalid request' }, 415);
   }
 
   const origin = request.headers.get('origin');
   const configuredOrigin = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '');
-  const allowedOrigins = new Set([request.nextUrl.origin, configuredOrigin].filter(Boolean));
+  const allowedOrigins = new Set([configuredOrigin || request.nextUrl.origin]);
   if (!origin || !allowedOrigins.has(origin)) return json({ error: 'Forbidden' }, 403);
 
   const ip = clientIp(request);
   if (isRateLimited(ip)) return json({ error: 'Too many requests' }, 429, { 'Retry-After': '900' });
 
   try {
-    const raw = await request.text();
-    if (new TextEncoder().encode(raw).length > MAX_BODY_BYTES) return json({ error: 'Request too large' }, 413);
-    const body = JSON.parse(raw);
+    const body = await readRegistrationBody(request);
     if (!body || typeof body !== 'object' || Array.isArray(body)) return json({ error: 'Invalid request' }, 400);
     if (body.website) return json({ success: true }, 200);
 
@@ -128,6 +112,7 @@ export async function POST(request) {
 
     return json({ success: true }, 200);
   } catch (error) {
+    if (error instanceof RequestBodyError) return json({ error: error.message }, error.status);
     console.error('Registration error:', error instanceof Error ? error.message : 'Unknown error');
     return json({ error: 'Server error' }, 500);
   }

@@ -6,6 +6,8 @@
 .pnp.js
 .next
 .env
+.env.*
+!.env.example
 
 # testing
 /coverage
