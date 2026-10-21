@@ -93,14 +93,15 @@ export const aboutHero = {
 };
 
 export const teamIntro = {
-  title: {
-    id: 'KazemFariba',
-    defaultMessage: 'Kazem & Fariba'
-  },
-  description: {
-    id: 'KazemFaribaText',
-    defaultMessage: 'Kazem Fariba Text'
-  },
+  title: { id: 'KazemTeamTitle' },
+  role: { id: 'KazemTeamRole' },
+  description: [
+    { id: 'KazemFaithJourney' },
+    { id: 'KazemFormation' },
+    { id: 'KazemMinistry' },
+    { id: 'KazemMission' },
+    { id: 'KazemFamilyMinistry' }
+  ],
   image: '/images/kazem.jpg',
   imageAlt: 'Kazem and Fariba'
 };
