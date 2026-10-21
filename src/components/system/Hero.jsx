@@ -18,7 +18,7 @@ export default function Hero({
 
   return (
     <section className={`hero ${className}`.trim()} aria-labelledby={titleId}>
-      <BackgroundImage url={backgroundImage} className={backgroundClassName} />
+      <BackgroundImage url={backgroundImage} className={backgroundClassName} preload />
       <div className="page-content">
         {eyebrow && <p className="hero-eyebrow">{formatMessage(eyebrow)}</p>}
         <h1 className="hero-title" id={titleId}>

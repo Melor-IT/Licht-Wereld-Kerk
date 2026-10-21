@@ -105,6 +105,23 @@ export const teamIntro = {
   imageAlt: 'Kazem and Fariba'
 };
 
+export const hamidTeamIntro = {
+  variant: 'primary',
+  reverse: true,
+  title: { id: 'HamidTeamTitle' },
+  role: { id: 'HamidTeamRole' },
+  description: [
+    { id: 'HamidFaithJourney' },
+    { id: 'HamidCommitment' },
+    { id: 'HamidBaptism' },
+    { id: 'HamidMinistry' }
+  ],
+  image: '/images/HamidandSima.jpg',
+  imageAlt: { id: 'HamidSimaImageAlt' },
+  imageWidth: 4080,
+  imageHeight: 3072
+};
+
 export const visionHero = {
   backgroundImage: '/images/ourvision-banner.jpg',
   backgroundClassName: 'ourVisionHeader',

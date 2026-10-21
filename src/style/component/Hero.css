@@ -13,11 +13,6 @@
   text-shadow: 0 2px 20px rgb(0 0 0 / 20%);
 }
 
-.hero > .background {
-  background-position: center;
-  background-size: cover;
-}
-
 .hero-title {
   max-width: 22ch;
   font-size: var(--heading-1);

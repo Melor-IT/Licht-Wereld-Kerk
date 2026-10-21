@@ -1,6 +1,6 @@
 import Hero from '../../../components/system/Hero';
 import TeamIntro from '../../../components/system/TeamIntro';
-import { aboutHero, teamIntro } from '../../../data/page-sections';
+import { aboutHero, teamIntro, hamidTeamIntro } from '../../../data/page-sections';
 import { pageMetadata } from '../../../lib/site';
 
 export async function generateMetadata({ params }) {
@@ -12,6 +12,7 @@ export default function Page() {
     <div className="page about-us">
       <Hero {...aboutHero} />
       <TeamIntro {...teamIntro} />
+      <TeamIntro {...hamidTeamIntro} />
     </div>
   );
 }
