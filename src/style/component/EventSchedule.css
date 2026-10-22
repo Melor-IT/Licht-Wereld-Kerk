@@ -60,13 +60,13 @@
   font-size: var(--text-sm);
 }
 
-.events-period button[aria-pressed="true"] {
+.events-period button[aria-pressed='true'] {
   background: var(--primary-color);
   color: var(--white-color);
   box-shadow: var(--shadow-sm);
 }
 
-.events-period button:hover:not([aria-pressed="true"]) {
+.events-period button:hover:not([aria-pressed='true']) {
   background: var(--surface-color);
 }
 

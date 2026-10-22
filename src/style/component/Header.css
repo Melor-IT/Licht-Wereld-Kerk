@@ -127,7 +127,9 @@
   font-size: var(--text-sm);
   font-weight: var(--weight-bold);
   line-height: var(--line-ui);
-  transition: background-color var(--transition), border-color var(--transition);
+  transition:
+    background-color var(--transition),
+    border-color var(--transition);
 }
 
 .language-button > svg:first-child {
@@ -140,12 +142,12 @@
 }
 
 .language-button:hover,
-.language-button[aria-expanded="true"] {
+.language-button[aria-expanded='true'] {
   border-color: var(--border-strong);
   background: var(--surface-soft);
 }
 
-.language-button[aria-expanded="true"] .language-chevron {
+.language-button[aria-expanded='true'] .language-chevron {
   transform: rotate(180deg);
 }
 
@@ -219,7 +221,9 @@
   background: var(--surface-soft);
   color: var(--primary-color);
   cursor: pointer;
-  transition: background-color var(--transition), border-color var(--transition);
+  transition:
+    background-color var(--transition),
+    border-color var(--transition);
 }
 
 .menu-toggle {
@@ -538,7 +542,8 @@
     gap: 0.5rem;
   }
 
-  .drawer-content, .drawer-languages {
+  .drawer-content,
+  .drawer-languages {
     padding-inline: 1rem;
   }
 

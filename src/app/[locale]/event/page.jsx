@@ -21,7 +21,12 @@ export default function Page() {
   return (
     <div className="page events-page">
       <Hero {...eventHero} />
-      <EventSchedule events={events} weeklyEvents={weeklyEvents} rotation={preacherRotation} initialDate={initialDate} />
+      <EventSchedule
+        events={events}
+        weeklyEvents={weeklyEvents}
+        rotation={preacherRotation}
+        initialDate={initialDate}
+      />
       {enabled && <EventRegistrationSection enabled />}
     </div>
   );

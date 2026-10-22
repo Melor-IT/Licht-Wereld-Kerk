@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server.js';
 import nodemailer from 'nodemailer';
-import { createRegistrationRateLimiter, readRegistrationBody, RequestBodyError } from '../../../lib/registration-security.mjs';
+import {
+  createRegistrationRateLimiter,
+  readRegistrationBody,
+  RequestBodyError
+} from '../../../lib/registration-security.mjs';
 
 export const runtime = 'nodejs';
 
@@ -28,7 +32,9 @@ function cleanText(value, maxLength = MAX_TEXT_LENGTH, required = true) {
 function attendeeCount(value) {
   if (typeof value !== 'number' && (typeof value !== 'string' || !/^\d+$/.test(value))) return null;
   const count = Number(value);
-  return Number.isSafeInteger(count) && count >= 0 && count <= MAX_ATTENDEES_PER_GROUP ? count : null;
+  return Number.isSafeInteger(count) && count >= 0 && count <= MAX_ATTENDEES_PER_GROUP
+    ? count
+    : null;
 }
 
 function escapeHtml(value) {
@@ -41,13 +47,19 @@ function escapeHtml(value) {
 }
 
 function clientIp(request) {
-  const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim() || request.headers.get('x-real-ip') || 'unknown';
+  const ip =
+    request.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
+    request.headers.get('x-real-ip') ||
+    'unknown';
   return ip.slice(0, 128);
 }
 
 export async function POST(request) {
-  if (process.env.EVENT_REGISTRATION_ENABLED !== 'true'
-    || process.env.NEXT_PUBLIC_EVENT_REGISTRATION_ENABLED !== 'true') return json({ error: 'Not found' }, 404);
+  if (
+    process.env.EVENT_REGISTRATION_ENABLED !== 'true' ||
+    process.env.NEXT_PUBLIC_EVENT_REGISTRATION_ENABLED !== 'true'
+  )
+    return json({ error: 'Not found' }, 404);
 
   const contentType = request.headers.get('content-type') || '';
   if (contentType.split(';')[0].trim().toLowerCase() !== 'application/json') {
@@ -64,7 +76,8 @@ export async function POST(request) {
 
   try {
     const body = await readRegistrationBody(request);
-    if (!body || typeof body !== 'object' || Array.isArray(body)) return json({ error: 'Invalid request' }, 400);
+    if (!body || typeof body !== 'object' || Array.isArray(body))
+      return json({ error: 'Invalid request' }, 400);
     if (body.website) return json({ success: true }, 200);
 
     const firstName = cleanText(body.firstName);
@@ -72,14 +85,29 @@ export async function POST(request) {
     const email = cleanText(body.email);
     const phone = cleanText(body.phone, MAX_TEXT_LENGTH, false);
     const message = cleanText(body.message, MAX_MESSAGE_LENGTH, false);
-    const counts = ['totalOfadults', 'kidsgirls6', 'kidsgirls12', 'kidsboys6', 'kidsboys12'].map((key) => attendeeCount(body[key] ?? 0));
+    const counts = ['totalOfadults', 'kidsgirls6', 'kidsgirls12', 'kidsboys6', 'kidsboys12'].map(
+      (key) => attendeeCount(body[key] ?? 0)
+    );
 
-    if (!firstName || !lastName || !email || !emailPattern.test(email) || phone === null || message === null || counts.includes(null)) {
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !emailPattern.test(email) ||
+      phone === null ||
+      message === null ||
+      counts.includes(null)
+    ) {
       return json({ error: 'Invalid registration data' }, 400);
     }
 
     const { EMAIL_USER, EMAIL_PASS, THIRD_PERSON_EMAIL } = process.env;
-    if (!EMAIL_USER || !EMAIL_PASS || !THIRD_PERSON_EMAIL || !emailPattern.test(THIRD_PERSON_EMAIL)) {
+    if (
+      !EMAIL_USER ||
+      !EMAIL_PASS ||
+      !THIRD_PERSON_EMAIL ||
+      !emailPattern.test(THIRD_PERSON_EMAIL)
+    ) {
       console.error('Registration email service is not configured');
       return json({ error: 'Service unavailable' }, 503);
     }
@@ -87,7 +115,10 @@ export async function POST(request) {
     const [adults, girls6, girls12, boys6, boys12] = counts;
     const total = counts.reduce((sum, count) => sum + count, 0);
     const safe = Object.fromEntries(
-      Object.entries({ firstName, lastName, email, phone, message }).map(([key, value]) => [key, escapeHtml(value)])
+      Object.entries({ firstName, lastName, email, phone, message }).map(([key, value]) => [
+        key,
+        escapeHtml(value)
+      ])
     );
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',

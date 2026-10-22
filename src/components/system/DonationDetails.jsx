@@ -58,7 +58,13 @@ export default function DonationDetails({ account, qrDataUrl }) {
         {qrDataUrl && (
           <figure className="donation-details__qr">
             <h3>{text('donationQrTitle')}</h3>
-            <Image src={qrDataUrl} width={280} height={280} alt={text('donationQrAlt')} unoptimized />
+            <Image
+              src={qrDataUrl}
+              width={280}
+              height={280}
+              alt={text('donationQrAlt')}
+              unoptimized
+            />
             <figcaption>{text('donationQrDescription')}</figcaption>
             {account.paymentUrl && (
               <a

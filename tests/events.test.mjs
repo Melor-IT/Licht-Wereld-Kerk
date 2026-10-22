@@ -3,7 +3,8 @@ import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import { getEventDate, getEventSchedule, getNextEventDayDelay } from '../src/lib/events.js';
 
-const readData = (name) => JSON.parse(readFileSync(new URL(`../src/data/${name}.json`, import.meta.url), 'utf8'));
+const readData = (name) =>
+  JSON.parse(readFileSync(new URL(`../src/data/${name}.json`, import.meta.url), 'utf8'));
 const events = readData('events');
 const weeklyEvents = readData('weekly-events');
 const rotation = readData('preacher-rotation');
@@ -15,16 +16,29 @@ test('exactly four Sundays for every weekday, including the whole of Sunday', ()
   for (let day = 19; day <= 25; day += 1) {
     const entries = sundays(schedule(`2026-10-${day}T12:00:00Z`));
     assert.equal(entries.length, 4);
-    assert.deepEqual(entries.map(({ date }) => date), [
-      '2026-10-25', '2026-11-01', '2026-11-08', '2026-11-15'
-    ]);
+    assert.deepEqual(
+      entries.map(({ date }) => date),
+      ['2026-10-25', '2026-11-01', '2026-11-08', '2026-11-15']
+    );
   }
 });
 
 for (const [name, before, after, removed, added] of [
   ['summer Monday', '2026-10-18T21:59:59.999Z', '2026-10-18T22:00:00Z', '2026-10-18', '2026-11-15'],
-  ['winter Monday after DST ends', '2026-10-25T22:59:59.999Z', '2026-10-25T23:00:00Z', '2026-10-25', '2026-11-22'],
-  ['summer Monday after DST starts', '2026-03-29T21:59:59.999Z', '2026-03-29T22:00:00Z', '2026-03-29', '2026-04-26']
+  [
+    'winter Monday after DST ends',
+    '2026-10-25T22:59:59.999Z',
+    '2026-10-25T23:00:00Z',
+    '2026-10-25',
+    '2026-11-22'
+  ],
+  [
+    'summer Monday after DST starts',
+    '2026-03-29T21:59:59.999Z',
+    '2026-03-29T22:00:00Z',
+    '2026-03-29',
+    '2026-04-26'
+  ]
 ]) {
   test(`rolls only at Amsterdam midnight: ${name}`, () => {
     const oldEntries = sundays(schedule(before));
@@ -55,12 +69,14 @@ test('midnight timer accounts for 23-hour and 25-hour Amsterdam days', () => {
 });
 
 test('rotation starts Hamid, Kazem, Shahram and repeats from its fixed anchor', () => {
-  assert.deepEqual(sundays(schedule('2026-10-18T12:00:00Z')).map(({ preacher }) => preacher.id), [
-    'hamid', 'kazem', 'shahram', 'hamid'
-  ]);
-  assert.deepEqual(sundays(schedule('2026-10-26T12:00:00Z')).map(({ preacher }) => preacher.id), [
-    'shahram', 'hamid', 'kazem', 'shahram'
-  ]);
+  assert.deepEqual(
+    sundays(schedule('2026-10-18T12:00:00Z')).map(({ preacher }) => preacher.id),
+    ['hamid', 'kazem', 'shahram', 'hamid']
+  );
+  assert.deepEqual(
+    sundays(schedule('2026-10-26T12:00:00Z')).map(({ preacher }) => preacher.id),
+    ['shahram', 'hamid', 'kazem', 'shahram']
+  );
   const anchor = Date.parse(`${rotation.startDate}T12:00:00Z`);
   for (let week = -80; week <= 80; week += 1) {
     const entry = sundays(schedule(new Date(anchor + week * 7 * 86400000)))[0];
@@ -96,9 +112,10 @@ test('Sister Sima is a one-date guest and removing her override restores Kazem',
   assert.equal(entries[0].date, '2026-10-25');
   assert.deepEqual(entries[0].speaker, { fa: 'خواهر سیما', nl: 'Zuster Sima', en: 'Sister Sima' });
   assert.equal(entries[0].title.nl, 'Kerkdienst met zuster Sima');
-  assert.deepEqual(entries.slice(1).map(({ speaker }) => speaker.en), [
-    'Brother Shahram', 'Brother Hamid', 'Brother Kazem'
-  ]);
+  assert.deepEqual(
+    entries.slice(1).map(({ speaker }) => speaker.en),
+    ['Brother Shahram', 'Brother Hamid', 'Brother Kazem']
+  );
   const dated = structuredClone(events);
   delete dated.find(({ date }) => date === '2026-10-25').speaker;
   const restored = sundays(schedule('2026-10-19T12:00:00Z', rotation, dated));
@@ -117,16 +134,24 @@ test('preserves all dated content, archived poster and Friday programme', () => 
   assert.equal(schedule('2026-10-19T12:00:00Z').past[0].poster, '/images/Kerkbijeenkomst.png');
   const fridays = current.upcoming.filter(({ type }) => type === 'friday-class');
   assert.equal(fridays.length, 6);
-  assert.ok(fridays.every(({ date, time, speaker }) =>
-    new Date(`${date}T12:00:00Z`).getUTCDay() === 5 && time === '20:00' && !speaker));
+  assert.ok(
+    fridays.every(
+      ({ date, time, speaker }) =>
+        new Date(`${date}T12:00:00Z`).getUTCDay() === 5 && time === '20:00' && !speaker
+    )
+  );
 });
 
 test('dated Sundays outside the window cannot add a fifth card and reappear when due', () => {
   const extra = { ...events[0], id: 'future-service', date: '2026-12-06' };
   const dated = [...events, extra];
   assert.equal(sundays(schedule('2026-10-18T12:00:00Z', rotation, dated)).length, 4);
-  assert.ok(!sundays(schedule('2026-10-18T12:00:00Z', rotation, dated)).some(({ id }) => id === extra.id));
-  assert.ok(sundays(schedule('2026-11-09T12:00:00Z', rotation, dated)).some(({ id }) => id === extra.id));
+  assert.ok(
+    !sundays(schedule('2026-10-18T12:00:00Z', rotation, dated)).some(({ id }) => id === extra.id)
+  );
+  assert.ok(
+    sundays(schedule('2026-11-09T12:00:00Z', rotation, dated)).some(({ id }) => id === extra.id)
+  );
 });
 
 test('year and leap-day boundaries still contain exactly four Sundays', () => {
@@ -140,12 +165,24 @@ test('year and leap-day boundaries still contain exactly four Sundays', () => {
 
 test('rejects invalid anchor, roster, override, dates and duplicate Sundays', () => {
   for (const alter of [
-    (config) => { config.startDate = '2026-10-19'; },
-    (config) => { config.preachers.pop(); },
-    (config) => { config.preachers[1].id = config.preachers[0].id; },
-    (config) => { config.overrides['2026-10-25'] = 'unknown'; },
-    (config) => { config.overrides['2026-10-26'] = 'hamid'; },
-    (config) => { config.overrides['2026-02-30'] = 'hamid'; }
+    (config) => {
+      config.startDate = '2026-10-19';
+    },
+    (config) => {
+      config.preachers.pop();
+    },
+    (config) => {
+      config.preachers[1].id = config.preachers[0].id;
+    },
+    (config) => {
+      config.overrides['2026-10-25'] = 'unknown';
+    },
+    (config) => {
+      config.overrides['2026-10-26'] = 'hamid';
+    },
+    (config) => {
+      config.overrides['2026-02-30'] = 'hamid';
+    }
   ]) {
     const config = structuredClone(rotation);
     alter(config);

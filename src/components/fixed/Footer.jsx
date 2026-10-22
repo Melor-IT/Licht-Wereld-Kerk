@@ -1,23 +1,22 @@
-"use client";
+'use client';
 
-import { useIntl } from "react-intl";
-import { FaPhone, FaEnvelope, FaYoutube, FaInstagram } from "react-icons/fa";
-import DonationButton from "../system/DonationButton";
-import { donation } from "../../data/donation";
+import { useIntl } from 'react-intl';
+import { FaPhone, FaEnvelope, FaYoutube, FaInstagram } from 'react-icons/fa';
+import DonationButton from '../system/DonationButton';
+import { donation } from '../../data/donation';
 
 const Footer = ({ locale }) => {
   const { formatMessage } = useIntl();
 
   return (
-    <footer className={`footer ${locale === "fa" ? "rtl" : "ltr"}`}>
+    <footer className={`footer ${locale === 'fa' ? 'rtl' : 'ltr'}`}>
       <div className="page-content">
         {/* Footer Message */}
         <div className="content-row message">
           <p className="footer-quote">
             {formatMessage({
-              id: "footerText",
-              defaultMessage:
-                "God is enthroned on the praises of His people...",
+              id: 'footerText',
+              defaultMessage: 'God is enthroned on the praises of His people...'
             })}
           </p>
         </div>
@@ -27,7 +26,7 @@ const Footer = ({ locale }) => {
           {/* Contact Section */}
           <div className="dark-glass">
             <h2 className="footer-heading">
-              {formatMessage({ id: "contactTitle", defaultMessage: "Contact" })}
+              {formatMessage({ id: 'contactTitle', defaultMessage: 'Contact' })}
             </h2>
             <div className="contact">
               <a href="tel:068371262" aria-label="Phone">
@@ -39,8 +38,8 @@ const Footer = ({ locale }) => {
             </div>
             <h2 className="footer-heading">
               {formatMessage({
-                id: "socialMedia",
-                defaultMessage: "Social Media",
+                id: 'socialMedia',
+                defaultMessage: 'Social Media'
               })}
             </h2>
             <div className="contact">
@@ -64,7 +63,9 @@ const Footer = ({ locale }) => {
             <div>
               <h2 className="footer-heading">IBAN</h2>
               <p lang="nl">{donation.organization}</p>
-              <p className="footer-identifier" dir="ltr">{donation.iban}</p>
+              <p className="footer-identifier" dir="ltr">
+                {donation.iban}
+              </p>
             </div>
             <DonationButton />
           </div>
@@ -73,29 +74,44 @@ const Footer = ({ locale }) => {
           <div className="dark-glass">
             <h2 className="footer-heading">
               {formatMessage({
-                id: "visitingAddress",
-                defaultMessage: "Visiting Address",
+                id: 'visitingAddress',
+                defaultMessage: 'Visiting Address'
               })}
             </h2>
-            <p lang="nl" dir="ltr">Hildo Kropstraat 8, 1328 BC Almere, Nederland</p>
+            <p lang="nl" dir="ltr">
+              Hildo Kropstraat 8, 1328 BC Almere, Nederland
+            </p>
 
             <h2 className="footer-heading">
               {formatMessage({
-                id: "CorrespondenceAddress",
-                defaultMessage: "Correspondence Address",
+                id: 'CorrespondenceAddress',
+                defaultMessage: 'Correspondence Address'
               })}
             </h2>
-            <p lang="nl" dir="ltr">Hildo Kropstraat 8, 1328 BC Almere</p>
+            <p lang="nl" dir="ltr">
+              Hildo Kropstraat 8, 1328 BC Almere
+            </p>
 
-            <h2 className="footer-heading">{formatMessage({ id: "kvk", defaultMessage: "KVK" })}</h2>
-            <p className="footer-identifier" dir="ltr">{donation.kvk}</p>
+            <h2 className="footer-heading">
+              {formatMessage({ id: 'kvk', defaultMessage: 'KVK' })}
+            </h2>
+            <p className="footer-identifier" dir="ltr">
+              {donation.kvk}
+            </p>
 
-            <h2 className="footer-heading">{formatMessage({ id: "RSIN", defaultMessage: "RSIN" })}</h2>
-            <p className="footer-identifier" dir="ltr">{donation.rsin}</p>
+            <h2 className="footer-heading">
+              {formatMessage({ id: 'RSIN', defaultMessage: 'RSIN' })}
+            </h2>
+            <p className="footer-identifier" dir="ltr">
+              {donation.rsin}
+            </p>
           </div>
         </div>
         <div className="footer-credit" lang="nl">
-          © {new Date().getFullYear()} Kerk Licht van de Wereld · <a href="https://mel-or.com/" target="_blank" rel="noopener noreferrer"><strong>Made by Melor</strong></a>
+          © {new Date().getFullYear()} Kerk Licht van de Wereld ·{' '}
+          <a href="https://mel-or.com/" target="_blank" rel="noopener noreferrer">
+            <strong>Made by Melor</strong>
+          </a>
         </div>
       </div>
     </footer>

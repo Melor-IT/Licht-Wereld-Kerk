@@ -17,13 +17,7 @@ const initialState = {
   website: ''
 };
 
-const attendeeFields = [
-  'totalOfadults',
-  'kidsgirls6',
-  'kidsgirls12',
-  'kidsboys6',
-  'kidsboys12'
-];
+const attendeeFields = ['totalOfadults', 'kidsgirls6', 'kidsgirls12', 'kidsboys6', 'kidsboys12'];
 
 export default function EventRegistrationForm() {
   const { formatMessage } = useIntl();
@@ -55,13 +49,19 @@ export default function EventRegistrationForm() {
       setFormData(initialState);
       setStatus('success');
     } catch {
-      setError(formatMessage({ id: 'error.submit', defaultMessage: 'Sending failed. Please try again.' }));
+      setError(
+        formatMessage({ id: 'error.submit', defaultMessage: 'Sending failed. Please try again.' })
+      );
       setStatus('error');
     }
   }
 
   if (status === 'success') {
-    return <p className="form-status form-status-success">{formatMessage({ id: 'success', defaultMessage: 'Your registration was received.' })}</p>;
+    return (
+      <p className="form-status form-status-success">
+        {formatMessage({ id: 'success', defaultMessage: 'Your registration was received.' })}
+      </p>
+    );
   }
 
   return (
@@ -77,7 +77,15 @@ export default function EventRegistrationForm() {
               onChange={handleChange}
               required={field !== 'phone'}
               maxLength={120}
-              autoComplete={field === 'email' ? 'email' : field === 'phone' ? 'tel' : field === 'firstName' ? 'given-name' : 'family-name'}
+              autoComplete={
+                field === 'email'
+                  ? 'email'
+                  : field === 'phone'
+                    ? 'tel'
+                    : field === 'firstName'
+                      ? 'given-name'
+                      : 'family-name'
+              }
             />
           </label>
         ))}
@@ -87,22 +95,45 @@ export default function EventRegistrationForm() {
         {attendeeFields.map((field) => (
           <label key={field}>
             <span className="title">{formatMessage({ id: field, defaultMessage: field })}</span>
-            <input type="number" name={field} min="0" max="100" value={formData[field]} onChange={handleChange} />
+            <input
+              type="number"
+              name={field}
+              min="0"
+              max="100"
+              value={formData[field]}
+              onChange={handleChange}
+            />
           </label>
         ))}
       </div>
 
       <label>
         <span className="title">{formatMessage({ id: 'message', defaultMessage: 'Message' })}</span>
-        <textarea name="message" rows="5" maxLength="2000" value={formData.message} onChange={handleChange} />
+        <textarea
+          name="message"
+          rows="5"
+          maxLength="2000"
+          value={formData.message}
+          onChange={handleChange}
+        />
       </label>
 
       <label className="form-honeypot" aria-hidden="true">
         Website
-        <input name="website" value={formData.website} onChange={handleChange} tabIndex="-1" autoComplete="off" />
+        <input
+          name="website"
+          value={formData.website}
+          onChange={handleChange}
+          tabIndex="-1"
+          autoComplete="off"
+        />
       </label>
 
-      {error && <p className="form-status form-status-error" role="alert">{error}</p>}
+      {error && (
+        <p className="form-status form-status-error" role="alert">
+          {error}
+        </p>
+      )}
       <button type="submit" disabled={status === 'submitting'}>
         {status === 'submitting'
           ? formatMessage({ id: 'sending', defaultMessage: 'Sending…' })

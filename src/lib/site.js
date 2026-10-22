@@ -7,7 +7,10 @@ export const locales = Object.keys(messages);
 export const defaultLocale = 'nl';
 const supportedRoutes = ['', 'about-us', 'our-vision', 'sermons', 'ANBI-information', 'event'];
 export const routes = supportedRoutes;
-export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://lichtwereld.com').replace(/\/$/, '');
+export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://lichtwereld.com').replace(
+  /\/$/,
+  ''
+);
 
 export const pathFor = (locale, slug = '') => `/${locale}${slug ? `/${slug}` : ''}`;
 

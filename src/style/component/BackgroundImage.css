@@ -12,7 +12,7 @@
 .background::after {
   position: absolute;
   inset: 0;
-  content: "";
+  content: '';
   background: linear-gradient(110deg, rgb(16 42 35 / 76%), rgb(16 42 35 / 34%));
 }
 

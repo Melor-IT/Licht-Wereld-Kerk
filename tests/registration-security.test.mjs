@@ -1,10 +1,17 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { createRegistrationRateLimiter, readRegistrationBody } from '../src/lib/registration-security.mjs';
+import {
+  createRegistrationRateLimiter,
+  readRegistrationBody
+} from '../src/lib/registration-security.mjs';
 
-const requestWithBody = (body, headers = {}) => new Request('https://example.com/api/send-registration', {
-  method: 'POST', body, headers, ...(body instanceof ReadableStream ? { duplex: 'half' } : {})
-});
+const requestWithBody = (body, headers = {}) =>
+  new Request('https://example.com/api/send-registration', {
+    method: 'POST',
+    body,
+    headers,
+    ...(body instanceof ReadableStream ? { duplex: 'half' } : {})
+  });
 
 test('accepts a valid JSON body with Persian text', async () => {
   const body = { firstName: 'سلام', message: 'Welcome' };
@@ -19,17 +26,28 @@ test('rejects malformed JSON and invalid UTF-8 as client errors', async () => {
 
 test('rejects an oversized declared body before reading it', async () => {
   let read = false;
-  await assert.rejects(readRegistrationBody({
-    headers: new Headers({ 'content-length': '15001' }),
-    get body() { read = true; throw new Error('Must not read'); }
-  }), { status: 413 });
+  await assert.rejects(
+    readRegistrationBody({
+      headers: new Headers({ 'content-length': '15001' }),
+      get body() {
+        read = true;
+        throw new Error('Must not read');
+      }
+    }),
+    { status: 413 }
+  );
   assert.equal(read, false);
 });
 
 test('accepts exactly 15000 bytes and rejects one byte more, including multibyte text', async () => {
-  assert.equal((await readRegistrationBody(requestWithBody(JSON.stringify('x'.repeat(14998))))).length, 14998);
+  assert.equal(
+    (await readRegistrationBody(requestWithBody(JSON.stringify('x'.repeat(14998))))).length,
+    14998
+  );
   for (const value of ['x'.repeat(14999), 'س'.repeat(7500)]) {
-    await assert.rejects(readRegistrationBody(requestWithBody(JSON.stringify(value))), { status: 413 });
+    await assert.rejects(readRegistrationBody(requestWithBody(JSON.stringify(value))), {
+      status: 413
+    });
   }
 });
 
@@ -37,13 +55,18 @@ test('stops reading and cancels an oversized chunked body even with a false Cont
   for (const headers of [{}, { 'content-length': '1' }]) {
     let reads = 0;
     let cancelled = false;
-    const body = new ReadableStream({
-      pull(controller) {
-        reads += 1;
-        controller.enqueue(new Uint8Array(8000));
+    const body = new ReadableStream(
+      {
+        pull(controller) {
+          reads += 1;
+          controller.enqueue(new Uint8Array(8000));
+        },
+        cancel() {
+          cancelled = true;
+        }
       },
-      cancel() { cancelled = true; }
-    }, { highWaterMark: 0 });
+      { highWaterMark: 0 }
+    );
     await assert.rejects(readRegistrationBody(requestWithBody(body, headers)), { status: 413 });
     assert.equal(reads, 2);
     assert.equal(cancelled, true);
@@ -62,7 +85,12 @@ test('limits repeated requests and resets at the end of the window', () => {
 
 test('bounds the number of tracked clients without evicting active limits', () => {
   let time = 0;
-  const limited = createRegistrationRateLimiter({ maxClients: 2, maxAttempts: 1, windowMs: 100, now: () => time });
+  const limited = createRegistrationRateLimiter({
+    maxClients: 2,
+    maxAttempts: 1,
+    windowMs: 100,
+    now: () => time
+  });
   assert.equal(limited('first'), false);
   assert.equal(limited('second'), false);
   for (let i = 0; i < 1000; i += 1) assert.equal(limited(`extra-${i}`), true);

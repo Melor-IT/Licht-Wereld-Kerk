@@ -7,7 +7,7 @@ const contentSecurityPolicy = [
   "font-src 'self' data:",
   "img-src 'self' data: blob: https://i.ytimg.com",
   "connect-src 'self'",
-  "frame-src https://www.youtube-nocookie.com",
+  'frame-src https://www.youtube-nocookie.com',
   "frame-ancestors 'none'",
   "object-src 'none'",
   "base-uri 'self'",
@@ -34,9 +34,13 @@ const nextConfig = {
           { key: 'X-DNS-Prefetch-Control', value: 'on' },
           {
             key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()'
+            value:
+              'camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()'
           },
-          { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=63072000; includeSubDomains; preload'
+          },
           { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
           { key: 'Cross-Origin-Resource-Policy', value: 'same-origin' }
         ]

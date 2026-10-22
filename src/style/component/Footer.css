@@ -5,7 +5,7 @@
   justify-content: center;
   min-height: 75vh;
   color: var(--white-color);
-  background: var(--primary-hover) url("/images/footerimage.png") bottom / cover no-repeat;
+  background: var(--primary-hover) url('/images/footerimage.png') bottom / cover no-repeat;
   text-align: center;
   overflow: hidden;
   isolation: isolate;
@@ -15,7 +15,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  content: "";
+  content: '';
   background: rgb(16 42 35 / 88%);
   pointer-events: none;
 }

@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-@import "./fonts.css";
+@import './fonts.css';
 
 :root {
   --primary-color: #24584b;
@@ -31,8 +31,8 @@
   --header-min-height: 96px;
   --black-color: #182c26;
   --white-color: #fff;
-  --font-latin: "Nunito Sans", "Vazirmatn", Arial, sans-serif;
-  --font-persian: "Vazirmatn", "Nunito Sans", Tahoma, sans-serif;
+  --font-latin: 'Nunito Sans', 'Vazirmatn', Arial, sans-serif;
+  --font-persian: 'Vazirmatn', 'Nunito Sans', Tahoma, sans-serif;
   --font-body: var(--font-latin);
   --font-heading: var(--font-body);
   --weight-regular: 400;
@@ -103,11 +103,11 @@ textarea {
   font: inherit;
 }
 
-:where([lang="fa"]) {
+:where([lang='fa']) {
   font-family: var(--font-persian);
 }
 
-:where([lang="en"], [lang="nl"]) {
+:where([lang='en'], [lang='nl']) {
   font-family: var(--font-latin);
 }
 
@@ -161,13 +161,17 @@ strong {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 a {
   color: var(--primary-color);
   text-underline-offset: 0.25em;
-  transition: color var(--transition), background-color var(--transition), border-color var(--transition), box-shadow var(--transition);
+  transition:
+    color var(--transition),
+    background-color var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
 }
 
 a:hover {
@@ -189,7 +193,9 @@ a:hover {
     scroll-behavior: auto;
   }
 
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
