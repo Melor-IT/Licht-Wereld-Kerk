@@ -16,7 +16,7 @@ const Footer = ({ locale }) => {
           <p className="footer-quote">
             {formatMessage({
               id: 'footerText',
-              defaultMessage: 'God is enthroned on the praises of His people...'
+              defaultMessage: 'God is enthroned on the praises of his people.'
             })}
           </p>
         </div>
@@ -29,10 +29,10 @@ const Footer = ({ locale }) => {
               {formatMessage({ id: 'contactTitle', defaultMessage: 'Contact' })}
             </h2>
             <div className="contact">
-              <a href="tel:068371262" aria-label="Phone">
+              <a href="tel:068371262" aria-label={formatMessage({ id: 'phone' })}>
                 <FaPhone />
               </a>
-              <a href="mailto:lichtwereldkerk2022@gmail.com" aria-label="Email">
+              <a href="mailto:lichtwereldkerk2022@gmail.com" aria-label={formatMessage({ id: 'email' })}>
                 <FaEnvelope />
               </a>
             </div>

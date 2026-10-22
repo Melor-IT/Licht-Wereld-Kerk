@@ -6,14 +6,14 @@
     "time": "15:00",
     "poster": "/images/Kerkbijeenkomst.png",
     "title": {
-      "fa": "عبادت و موعظه همراه با مشارکت",
+      "fa": "جلسهٔ پرستش و موعظه با برادر حمید",
       "nl": "Kerkdienst met broeder Hamid",
-      "en": "Worship and sermon with fellowship"
+      "en": "Church service with Brother Hamid"
     },
     "description": {
-      "fa": "جلسهٔ حضوری کلیسای ایرانیان نور جهان برای عبادت، مشارکت و تعمق در کلام خدا.",
-      "nl": "Ontspanning, ontmoeting en verdieping in het Woord van God.",
-      "en": "Join us at church for worship, fellowship and reflection on the Word of God."
+      "fa": "جلسهٔ حضوری کلیسای نور جهان برای پرستش، مشارکت و تأمل در کلام خدا.",
+      "nl": "Een bijeenkomst in de kerk voor aanbidding, onderlinge ontmoeting en verdieping in Gods Woord.",
+      "en": "An in-person gathering at Light of the World Church for worship, fellowship and reflection on God’s Word."
     },
     "location": "Hildo Kropstraat 8, 1328 BC Almere, Nederland"
   },
@@ -23,9 +23,9 @@
     "date": "2026-10-25",
     "time": "15:00",
     "title": {
-      "fa": "عبادت و موعظه همراه با مشارکت",
+      "fa": "جلسهٔ پرستش و موعظه با خواهر سیما",
       "nl": "Kerkdienst met zuster Sima",
-      "en": "Worship and sermon with fellowship"
+      "en": "Church service with Sister Sima"
     },
     "speaker": {
       "fa": "خواهر سیما",
@@ -33,9 +33,9 @@
       "en": "Sister Sima"
     },
     "description": {
-      "fa": "جلسهٔ حضوری کلیسای ایرانیان نور جهان برای عبادت، مشارکت و تعمق در کلام خدا.",
-      "nl": "Ontspanning, ontmoeting en verdieping in het Woord van God.",
-      "en": "Join us at church for worship, fellowship and reflection on the Word of God."
+      "fa": "جلسهٔ حضوری کلیسای نور جهان برای پرستش، مشارکت و تأمل در کلام خدا.",
+      "nl": "Een bijeenkomst in de kerk voor aanbidding, onderlinge ontmoeting en verdieping in Gods Woord.",
+      "en": "An in-person gathering at Light of the World Church for worship, fellowship and reflection on God’s Word."
     },
     "location": "Hildo Kropstraat 8, 1328 BC Almere, Nederland"
   }

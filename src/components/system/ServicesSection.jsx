@@ -18,7 +18,7 @@ export default function ServicesSection({ description, items }) {
               <h3>{formatMessage(item.title)}</h3>
               <p>{formatMessage(item.description)}</p>
               <div className={['image-circle', item.imageClassName].filter(Boolean).join(' ')}>
-                <Image src={item.image} alt={item.imageAlt} width={600} height={600} />
+                <Image src={item.image} alt={formatMessage(item.imageAlt)} width={600} height={600} />
               </div>
             </div>
           ))}

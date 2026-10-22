@@ -138,7 +138,7 @@ export async function POST(request) {
       to: THIRD_PERSON_EMAIL,
       replyTo: email,
       subject: 'Nieuwe evenementregistratie',
-      html: `<h2>Nieuwe registratie</h2><p><b>Naam:</b> ${safe.firstName} ${safe.lastName}</p><p><b>E-mail:</b> ${safe.email}</p><p><b>Telefoon:</b> ${safe.phone}</p><p><b>Volwassenen:</b> ${adults}</p><p><b>Meisjes t/m 6:</b> ${girls6}</p><p><b>Meisjes t/m 12:</b> ${girls12}</p><p><b>Jongens t/m 6:</b> ${boys6}</p><p><b>Jongens t/m 12:</b> ${boys12}</p><p><b>Totaal:</b> ${total}</p><p><b>Bericht:</b><br>${safe.message}</p>`
+      html: `<h2>Nieuwe registratie</h2><p><b>Naam:</b> ${safe.firstName} ${safe.lastName}</p><p><b>E-mail:</b> ${safe.email}</p><p><b>Telefoon:</b> ${safe.phone}</p><p><b>Volwassenen:</b> ${adults}</p><p><b>Meisjes jonger dan 6 jaar:</b> ${girls6}</p><p><b>Meisjes van 6 tot en met 11 jaar:</b> ${girls12}</p><p><b>Jongens jonger dan 6 jaar:</b> ${boys6}</p><p><b>Jongens van 6 tot en met 11 jaar:</b> ${boys12}</p><p><b>Totaal:</b> ${total}</p><p><b>Bericht:</b><br>${safe.message}</p>`
     });
 
     return json({ success: true }, 200);

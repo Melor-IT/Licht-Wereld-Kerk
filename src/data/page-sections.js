@@ -4,57 +4,57 @@ export const homeHero = {
   backgroundImage: '/images/home-banner.jpeg',
   eyebrow: {
     id: 'welcomeTo',
-    defaultMessage: 'Welcome to'
+    defaultMessage: "Welcome to"
   },
   title: {
     id: 'lightWorld',
-    defaultMessage: 'light world'
+    defaultMessage: "Light of the World Church"
   }
 };
 
 export const homeMission = {
   id: 'ourMissionText',
-  defaultMessage: 'our Mission Text'
+  defaultMessage: "Inspired by the gospel of Jesus Christ, we come together and grow in a community of love, hope and service to one another. We warmly invite you to join us as we seek to be a blessing to the wider community."
 };
 
 export const homeServices = [
   {
     title: {
       id: 'firstService',
-      defaultMessage: 'Organizing Prayer and Worship Sessions'
+      defaultMessage: "Our faith grows as we come together."
     },
     description: {
       id: 'firstServiceText',
-      defaultMessage: 'First service text'
+      defaultMessage: "We put our faith, hope and love into practice by helping those in need, fighting poverty and supporting refugees."
     },
     image: '/images/firstService.jpg',
-    imageAlt: 'Organizing Prayer and Worship Sessions',
+    imageAlt: { id: 'firstServiceImageAlt' },
     imageClassName: 'sw'
   },
   {
     title: {
       id: 'secondService',
-      defaultMessage: 'Equipping Worshipers'
+      defaultMessage: "Rooted in the past, looking to the future."
     },
     description: {
       id: 'secondServiceText',
-      defaultMessage: 'Second service text'
+      defaultMessage: "We preserve the church’s valued traditions while welcoming fresh, creative ways to share in fellowship and worship, responding to the needs of today and tomorrow."
     },
     image: '/images/secondService.jpg',
-    imageAlt: 'Equipping Worshipers',
+    imageAlt: { id: 'secondServiceImageAlt' },
     imageClassName: ''
   },
   {
     title: {
       id: 'thirdService',
-      defaultMessage: 'Nurturing Prophets'
+      defaultMessage: "God’s love inspires us to serve."
     },
     description: {
       id: 'thirdServiceText',
-      defaultMessage: 'Third service text'
+      defaultMessage: "We support one another with love, compassion and hope. Motivated by God’s love and welcoming everyone, we do all we can to be a blessing to our city and community."
     },
     image: '/images/thirdService.jpg',
-    imageAlt: 'Nurturing Prophets',
+    imageAlt: { id: 'thirdServiceImageAlt' },
     imageClassName: 'ne'
   }
 ];
@@ -62,15 +62,15 @@ export const homeServices = [
 export const homeAbout = {
   title: {
     id: 'aboutUs',
-    defaultMessage: 'About Us'
+    defaultMessage: "About us"
   },
   description: {
     id: 'aboutUsSectionText',
-    defaultMessage: 'AboutUs section text'
+    defaultMessage: "The leadership team at Light of the World Church consists of caring, dedicated pastors and ministry workers. Through prayer and spiritual guidance, they support members as they grow in faith and serve others. Our goal is to create a warm, encouraging environment where everyone can deepen their relationship with God and bear fruit in life and ministry."
   },
   button: {
     id: 'more',
-    defaultMessage: 'More'
+    defaultMessage: "Learn more"
   }
 };
 
@@ -79,16 +79,16 @@ export const aboutHero = {
   backgroundClassName: 'aboutus',
   title: {
     id: 'aboutUs',
-    defaultMessage: 'About Us'
+    defaultMessage: "About us"
   },
   intro: {
     id: 'aboutUsTitle',
     defaultMessage:
-      'Laat zo uw licht voor de mensen schijnen, zodat zij uw goede daden zien en uw Vader die in de hemel'
+      "Let your light shine before others, so they may see your good deeds and glorify your Father in heaven."
   },
   reference: {
     id: 'aboutUsondertext',
-    defaultMessage: 'Matteüs 5:16'
+    defaultMessage: "Matthew 5:16"
   }
 };
 
@@ -103,7 +103,7 @@ export const teamIntro = {
     { id: 'KazemFamilyMinistry' }
   ],
   image: '/images/kazem.jpg',
-  imageAlt: 'Kazem and Fariba'
+  imageAlt: { id: 'KazemFaribaImageAlt' }
 };
 
 export const hamidTeamIntro = {
@@ -128,15 +128,15 @@ export const visionHero = {
   backgroundClassName: 'ourVisionHeader',
   title: {
     id: 'ourVisionTitle',
-    defaultMessage: 'Our Vision'
+    defaultMessage: "Light of the World Church"
   },
   intro: {
     id: 'ourVisionText',
-    defaultMessage: ''
+    defaultMessage: "The light shines in the darkness, and the darkness has not overcome it."
   },
   reference: {
     id: 'ourVisionOnder',
-    defaultMessage: '(Johannes 1:5)'
+    defaultMessage: "John 1:5"
   }
 };
 
@@ -144,44 +144,44 @@ export const visionSections = [
   {
     title: {
       id: 'unityPrayerWorshipTitle',
-      defaultMessage: 'Unity in Prayer and True Worship'
+      defaultMessage: "Our vision"
     },
     description: {
       id: 'unityPrayerWorshipIntro',
-      defaultMessage: 'Christian faith is not merely an individual faith...'
+      defaultMessage: "Our vision is to lead Farsi speakers in the Netherlands towards salvation, healing, freedom and a victorious life in Christ, and to play our part in the fulfilment of the prophecy in Jeremiah 49. We believe God has a special plan for the Iranian people and is shining his light upon them today, both in the Netherlands and around the world."
     },
     variant: 'primary'
   },
   {
     title: {
       id: 'godThroneTitle',
-      defaultMessage: 'God enthroned through the praise of His people'
+      defaultMessage: "Our mission"
     },
     description: {
       id: 'godThroneText',
-      defaultMessage: 'Psalm 22:3: "Yet you are holy..."'
+      defaultMessage: "We are an evangelical church seeking to build on what God has done in the Netherlands through vibrant churches filled with the Holy Spirit. Our services include music, singing and active participation by the pastor and congregation, with space for joy, prayer and open worship. We stand when the Gospel is read, out of reverence for God’s Word. We especially serve Farsi-speaking believers in the Netherlands so they can freely hear God’s Word, grow in faith and discover their calling."
     },
     variant: 'secondary'
   },
   {
     title: {
       id: 'godsThroneAmongPeopleTitle',
-      defaultMessage: 'God’s throne among His people'
+      defaultMessage: "Our values"
     },
     description: {
       id: 'godsThroneAmongPeopleText',
-      defaultMessage: 'Jeremiah 49:38: "I will set up my throne..."'
+      defaultMessage: "Our values shape who we are and guide us as we pursue our vision and mission:\n\n• Personal conversion and faith: nurturing a living relationship with Jesus Christ.\n• Social responsibility: caring for one another and serving society.\n• Commitment to family: valuing the role of the family and strengthening its unity.\n\n“He will turn the hearts of the fathers to the children and the hearts of the children to their fathers.” — Malachi 4:6"
     },
     variant: 'primary'
   },
   {
     title: {
       id: 'godsTempleTitle',
-      defaultMessage: 'We are God’s temple'
+      defaultMessage: "Our beliefs"
     },
     description: {
       id: 'godsTempleText',
-      defaultMessage: '1 Corinthians 3:16: "Do you not know..."'
+      defaultMessage: "Our statement of faith summarises our core beliefs as a community of followers of Christ, rather than covering every aspect of faith and life. We believe in the power of the gospel, the guidance of the Holy Spirit and the church’s calling to be the light of the world."
     },
     variant: 'secondary'
   }
@@ -192,7 +192,7 @@ export const anbiHero = {
   backgroundClassName: 'ANBIinformation',
   title: {
     id: 'beleidsplanTitle',
-    defaultMessage: 'Beleidsplan'
+    defaultMessage: "Church policy plan"
   }
 };
 
@@ -201,7 +201,7 @@ export const anbiSections = [
     description: {
       id: 'introText',
       defaultMessage:
-        'Christelijke Gemeente "Het Licht van de Wereld" is een jonge, dynamische en eigentijdse kerk met een grote verscheidenheid aan culturen en denominaties. De gemeente bestaat uit verschillende nationaliteiten. Wij willen zoekers helpen een toegewijd volgeling van Jezus Christus te worden en gelovigen ondersteunen om te groeien in gemeenschap en een levende relatie met Jezus Christus.'
+        "Light of the World is a young, vibrant Christian church whose members come from a range of nationalities, cultures and Christian traditions. We help those exploring faith become committed followers of Jesus Christ and support believers as they grow in fellowship with one another and in a living relationship with him."
     },
     descriptionClassName: 'anbi-intro',
     variant: 'primary'
@@ -209,33 +209,33 @@ export const anbiSections = [
   {
     title: {
       id: 'goalsTitle',
-      defaultMessage: 'Doelen'
+      defaultMessage: "Goals"
     },
     items: [
       {
         id: 'goal1',
         defaultMessage:
-          'Het bevorderen van kennis van en betrokkenheid bij het christelijk geloof voor Farsi-sprekers in Nederland en buitenland.'
+          "Helping Farsi speakers in the Netherlands and abroad learn about the Christian faith and take part in church life."
       },
       {
         id: 'goal2',
         defaultMessage:
-          'Het ondersteunen van gelovigen om te groeien in hun relatie met Jezus Christus.'
+          "Supporting believers as they grow in their personal relationship with Jesus Christ."
       },
       {
         id: 'goal3',
         defaultMessage:
-          'Het aanbieden van spirituele, educatieve en sociale activiteiten voor kinderen, jongeren en volwassenen.'
+          "Offering spiritual, educational and social activities for children, young people and adults."
       },
       {
         id: 'goal4',
         defaultMessage:
-          'Het helpen van mensen met praktische uitdagingen in het dagelijks leven, inclusief ondersteuning van vluchtelingen.'
+          "Helping people with practical challenges in daily life, including support for refugees and asylum seekers."
       },
       {
         id: 'goal5',
         defaultMessage:
-          'Het verspreiden van het evangelie door evenementen, media en persoonlijke ontmoetingen.'
+          "Sharing the gospel through events, media and personal conversations."
       }
     ],
     variant: 'secondary'
@@ -243,33 +243,33 @@ export const anbiSections = [
   {
     title: {
       id: 'activitiesTitle',
-      defaultMessage: 'Activiteiten'
+      defaultMessage: "Activities"
     },
     items: [
       {
         id: 'activity1',
         defaultMessage:
-          'Diensten: Wekelijkse kerkdiensten in Almere en online, met begrijpbare uitleg van de Bijbel en ruimte voor persoonlijke ontmoeting.'
+          "Services: Weekly worship services in Almere and online, with clear biblical teaching and opportunities for fellowship."
       },
       {
         id: 'activity2',
         defaultMessage:
-          'Kinderprogramma’s: Kinderen leren volgelingen van Jezus te worden en groeien in hun geloof in een liefdevolle omgeving.'
+          "Children’s programmes: Helping children follow Jesus and grow in faith in a loving environment."
       },
       {
         id: 'activity3',
         defaultMessage:
-          'Kerngroepen: Kleine groepsbijeenkomsten door de week om te ontdekken wie Jezus is en Hem te volgen in het dagelijks leven.'
+          "Small groups: Meeting during the week to get to know Jesus better and follow him in daily life."
       },
       {
         id: 'activity4',
         defaultMessage:
-          'Cursussen: Praktische Bijbelcursussen om het Woord van God beter te leren begrijpen.'
+          "Courses: Practical Bible study courses to deepen our understanding of God’s Word."
       },
       {
         id: 'activity5',
         defaultMessage:
-          'Ondersteuning vluchtelingen: Betrokkenheid bij Farsi-sprekende vluchtelingen in Nederland, met aandacht voor maatschappelijke participatie zoals naturalisatie en inburgering.'
+          "Support for refugees and asylum seekers: Helping Farsi speakers in the Netherlands take part in society, with guidance on culture, integration and naturalisation."
       }
     ],
     variant: 'primary',
@@ -278,52 +278,52 @@ export const anbiSections = [
   {
     title: {
       id: 'structureTitle',
-      defaultMessage: 'Organisatiestructuur'
+      defaultMessage: "Organisational structure"
     },
     items: [
       [
         {
           id: 'Voorganger',
-          defaultMessage: 'Voorganger'
+          defaultMessage: "Pastor"
         },
         {
           id: 'Kazem',
-          defaultMessage: 'Kazem Dehghani'
+          defaultMessage: "Kazem Dehghani"
         }
       ],
       [
         {
           id: 'Secretariaat',
-          defaultMessage: 'Secretariaat'
+          defaultMessage: "Secretary"
         },
         {
           id: 'Hamid',
-          defaultMessage: 'Hamid Ghanbari'
+          defaultMessage: "Hamid Ghanbari"
         }
       ],
       [
         {
           id: 'Penningmeester',
-          defaultMessage: 'Penningmeester'
+          defaultMessage: "Treasurer"
         },
         {
           id: 'Fariba',
-          defaultMessage: 'Fariba Dehghani'
+          defaultMessage: "Fariba Dehghani"
         }
       ],
       [
         {
           id: 'Vertegenwoordiger',
-          defaultMessage: 'Vertegenwoordiger'
+          defaultMessage: "Representative"
         },
         {
           id: 'Sima',
-          defaultMessage: 'Sima Sasanfar'
+          defaultMessage: "Sima Sasanfar"
         }
       ],
       {
         id: 'organisatiestructuu',
-        defaultMessage: 'organisatiestructuu'
+        defaultMessage: "Volunteers: Supporting church activities and providing a safe, welcoming environment for members."
       }
     ],
     variant: 'secondary',
@@ -332,21 +332,21 @@ export const anbiSections = [
   {
     title: {
       id: 'financeTitle',
-      defaultMessage: 'Financieel beleid'
+      defaultMessage: "Financial policy"
     },
     items: [
       {
         id: 'finance1',
-        defaultMessage: 'Inkomsten bestaan uit donaties, giften en andere legale bronnen.'
+        defaultMessage: "The church is funded through gifts, voluntary contributions and other lawful sources."
       },
       {
         id: 'finance2',
-        defaultMessage: 'Uitgaven worden uitsluitend gebruikt voor de doelen van de kerk.'
+        defaultMessage: "Funds are used solely to further the church’s purposes."
       },
       {
         id: 'finance3',
         defaultMessage:
-          'Jaarlijks financieel overzicht en transparante boekhouding volgens ANBI-richtlijnen.'
+          "The church provides an annual financial report and maintains transparent accounts in accordance with ANBI guidelines."
       }
     ],
     variant: 'primary',
@@ -355,12 +355,12 @@ export const anbiSections = [
   {
     title: {
       id: 'futureTitle',
-      defaultMessage: 'Evaluatie en toekomst'
+      defaultMessage: "Evaluation and future plans"
     },
     description: {
       id: 'futureText',
       defaultMessage:
-        'Het beleidsplan wordt jaarlijks geëvalueerd en aangepast waar nodig. De gemeente streeft naar duurzame groei in spirituele en maatschappelijke impact en wil Farsi-sprekers laten ervaren hoe het is om God te kennen en te volgen.'
+        "The policy plan is reviewed annually and updated as needed. The church seeks to develop its spiritual and social ministry sustainably, helping Farsi speakers experience how knowing and following God can transform their lives."
     },
     variant: 'secondary',
     textBlock: false
@@ -374,7 +374,7 @@ export const eventHero = {
   eyebrow: { id: 'eventsEyebrow' },
   title: {
     id: 'event',
-    defaultMessage: 'Events'
+    defaultMessage: "Events"
   },
   intro: {
     id: 'eventsIntro'
