@@ -5,7 +5,10 @@ import nl from '../../messages/nl.json';
 export const messages = { en, fa, nl };
 export const locales = Object.keys(messages);
 export const defaultLocale = 'nl';
-const supportedRoutes = ['', 'about-us', 'our-vision', 'sermons', 'ANBI-information', 'event'];
+const supportedRoutes = [
+  '', 'about-us', 'about-us/ministries', 'about-us/leadership',
+  'sermons', 'ANBI-information', 'event', 'contact'
+];
 export const routes = supportedRoutes;
 export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://lichtwereld.com').replace(
   /\/$/,
@@ -23,29 +26,35 @@ export const alternatesFor = (slug = '') => ({
 
 const pageLabels = {
   '': 'home',
-  'about-us': 'aboutUs',
-  'our-vision': 'ourVision',
+  'about-us': 'aboutChurchHeading',
+  'about-us/ministries': 'churchMinistriesTitle',
+  'about-us/leadership': 'churchLeadershipTitle',
   sermons: 'sermons',
   'ANBI-information': 'ANBIinformation',
-  event: 'event'
+  event: 'event',
+  contact: 'contactPageTitle'
 };
 
 const descriptions = {
   '': 'ourMissionText',
-  'about-us': 'aboutUsSectionText',
-  'our-vision': 'ourVisionText',
+  'about-us': 'aboutIdentity1',
+  'about-us/ministries': 'aboutCommunity1',
+  'about-us/leadership': 'aboutUsSectionText',
   sermons: 'sermonsIntro',
   'ANBI-information': 'introText',
-  event: 'eventsIntro'
+  event: 'eventsIntro',
+  contact: 'contactIntro'
 };
 
 const images = {
   '': '/images/home-banner.jpeg',
   'about-us': '/images/about-us-banner.jpg',
-  'our-vision': '/images/ourvision-banner.jpg',
+  'about-us/ministries': '/images/about-us-banner.jpg',
+  'about-us/leadership': '/images/about-us-banner.jpg',
   sermons: '/images/home-banner.jpeg',
   'ANBI-information': '/images/ANBI-banner.jpg',
-  event: '/images/home-banner.jpeg'
+  event: '/images/home-banner.jpeg',
+  contact: '/images/about-us-banner.jpg'
 };
 
 const homeTitles = {

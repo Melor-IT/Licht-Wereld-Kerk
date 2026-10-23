@@ -20,7 +20,14 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   async redirects() {
-    return [{ source: '/', destination: '/nl', permanent: true }];
+    return [
+      { source: '/', destination: '/nl', permanent: true },
+      ...['fa', 'en', 'nl'].map((locale) => ({
+        source: `/${locale}/our-vision`,
+        destination: `/${locale}/about-us`,
+        permanent: true
+      }))
+    ];
   },
   async headers() {
     return [

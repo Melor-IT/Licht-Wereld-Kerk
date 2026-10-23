@@ -4,10 +4,12 @@
 @import './component/BackgroundImage.css';
 @import './component/Hero.css';
 @import './component/ContentSection.css';
+@import './component/ChurchNavigation.css';
 @import './component/ServicesSection.css';
 @import './component/TeamIntro.css';
 @import './component/SermonsLibrary.css';
 @import './component/EventRegistrationForm.css';
+@import './component/ContactSection.css';
 @import './component/EventRegistrationSection.css';
 @import './component/EventSchedule.css';
 @import './component/DonationButton.css';

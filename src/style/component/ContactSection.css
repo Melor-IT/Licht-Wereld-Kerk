@@ -1,0 +1,29 @@
+.contact-section .text-block {
+  width: 100%;
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.contact-email {
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.contact-form {
+  margin-block-start: 2rem;
+}
+
+.contact-form fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.contact-form > [role='status']:empty {
+  display: none;
+}

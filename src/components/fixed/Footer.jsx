@@ -1,9 +1,11 @@
 'use client';
 
 import { useIntl } from 'react-intl';
+import Link from 'next/link';
 import { FaPhone, FaEnvelope, FaYoutube, FaInstagram } from 'react-icons/fa';
 import DonationButton from '../system/DonationButton';
 import { donation } from '../../data/donation';
+import { contactEmail } from '../../data/contact';
 
 const Footer = ({ locale }) => {
   const { formatMessage } = useIntl();
@@ -24,15 +26,20 @@ const Footer = ({ locale }) => {
         {/* Footer Info */}
         <div className="content-row">
           {/* Contact Section */}
-          <div className="dark-glass">
+          <div className="dark-glass" id="contact" tabIndex={-1}>
             <h2 className="footer-heading">
-              {formatMessage({ id: 'contactTitle', defaultMessage: 'Contact' })}
+              <Link href={`/${locale}/contact`}>
+                {formatMessage({ id: 'contactTitle', defaultMessage: 'Contact' })}
+              </Link>
             </h2>
             <div className="contact">
               <a href="tel:068371262" aria-label={formatMessage({ id: 'phone' })}>
                 <FaPhone />
               </a>
-              <a href="mailto:lichtwereldkerk2022@gmail.com" aria-label={formatMessage({ id: 'email' })}>
+              <a
+                href={`mailto:${contactEmail}`}
+                aria-label={formatMessage({ id: 'email' })}
+              >
                 <FaEnvelope />
               </a>
             </div>

@@ -70,6 +70,16 @@
   line-height: var(--line-ui);
 }
 
+.footer-heading a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-heading a:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
 .footer .dark-glass p {
   overflow-wrap: anywhere;
 }

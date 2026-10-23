@@ -10,18 +10,17 @@ import {
   FaArrowRight,
   FaCalendarAlt,
   FaChevronDown,
+  FaEnvelope,
   FaGlobe,
   FaHome,
   FaInfoCircle,
   FaPlay,
-  FaRegCompass,
   FaUsers
 } from 'react-icons/fa';
 
 const menuItems = [
   { slug: '', id: 'home', defaultMessage: 'Home', icon: FaHome },
   { slug: 'about-us', id: 'aboutUs', defaultMessage: 'About Us', icon: FaUsers },
-  { slug: 'our-vision', id: 'ourVision', defaultMessage: 'Our Vision', icon: FaRegCompass },
   { slug: 'sermons', id: 'sermons', defaultMessage: 'Sermons', icon: FaPlay },
   {
     slug: 'ANBI-information',
@@ -29,7 +28,8 @@ const menuItems = [
     defaultMessage: 'ANBI Information',
     icon: FaInfoCircle
   },
-  { slug: 'event', id: 'event', defaultMessage: 'Events', icon: FaCalendarAlt }
+  { slug: 'event', id: 'event', defaultMessage: 'Events', icon: FaCalendarAlt },
+  { slug: 'contact', id: 'contactPageTitle', defaultMessage: 'Contact us', icon: FaEnvelope }
 ];
 
 const languageOptions = [
@@ -47,6 +47,7 @@ function HeaderNavigation({ locale, pathname }) {
   const dialogRef = useRef(null);
   const headerRef = useRef(null);
   const currentSlug = pathname.split('/').slice(2).join('/');
+  const isActive = (slug) => currentSlug === slug || (slug === 'about-us' && currentSlug.startsWith('about-us/'));
   const hrefFor = (slug, language = locale) => `/${language}${slug ? `/${slug}` : ''}`;
   const t = (id) => formatMessage({ id });
   const currentLanguage = languageOptions.find((language) => language.value === locale);
@@ -177,7 +178,7 @@ function HeaderNavigation({ locale, pathname }) {
             <Link
               key={item.id}
               href={hrefFor(item.slug)}
-              className={currentSlug === item.slug ? 'active' : ''}
+              className={isActive(item.slug) ? 'active' : ''}
               aria-current={currentSlug === item.slug ? 'page' : undefined}
             >
               {formatMessage(item)}
@@ -270,7 +271,7 @@ function HeaderNavigation({ locale, pathname }) {
               <Link
                 key={item.id}
                 href={hrefFor(item.slug)}
-                className={currentSlug === item.slug ? 'active' : ''}
+                className={isActive(item.slug) ? 'active' : ''}
                 aria-current={currentSlug === item.slug ? 'page' : undefined}
                 onClick={closeNavigation}
               >
