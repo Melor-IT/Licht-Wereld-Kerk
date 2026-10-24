@@ -128,6 +128,21 @@ export const hamidTeamIntro = {
   imageHeight: 3072
 };
 
+export const shahramTeamIntro = {
+  title: { id: 'ShahramTeamTitle' },
+  role: { id: 'ShahramTeamRole' },
+  description: [
+    { id: 'ShahramTestimonyDream' },
+    { id: 'ShahramTestimonyReading' },
+    { id: 'ShahramTestimonyFaith' },
+    { id: 'ShahramTestimonyInvitation' }
+  ],
+  image: '/images/shahram.png',
+  imageAlt: { id: 'ShahramImageAlt' },
+  imageWidth: 1086,
+  imageHeight: 1448
+};
+
 export const anbiHero = {
   backgroundImage: '/images/ANBI-banner.jpg',
   backgroundClassName: 'ANBIinformation',

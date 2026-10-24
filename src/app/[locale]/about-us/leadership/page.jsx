@@ -2,7 +2,7 @@ import Hero from '../../../../components/system/Hero';
 import ContentSection from '../../../../components/system/ContentSection';
 import TeamIntro from '../../../../components/system/TeamIntro';
 import ChurchNavigation from '../../../../components/system/ChurchNavigation';
-import { teamIntro, hamidTeamIntro } from '../../../../data/page-sections';
+import { teamIntro, hamidTeamIntro, shahramTeamIntro } from '../../../../data/page-sections';
 import { churchLeadershipHero } from '../../../../data/about-sections';
 import { pageMetadata } from '../../../../lib/site';
 
@@ -20,6 +20,7 @@ export default async function Page({ params }) {
       <ContentSection description={{ id: 'aboutUsSectionText' }} />
       <TeamIntro {...teamIntro} />
       <TeamIntro {...hamidTeamIntro} />
+      <TeamIntro {...shahramTeamIntro} />
     </div>
   );
 }
