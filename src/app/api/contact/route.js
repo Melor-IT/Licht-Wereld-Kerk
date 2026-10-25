@@ -6,6 +6,7 @@ import {
 } from '../../../lib/registration-security.mjs';
 
 export const runtime = 'nodejs';
+export const maxDuration = 30;
 
 const isRateLimited = createContactRateLimiter();
 const emailPattern = /^[^\s@<>(),;:\\"[\]]+@[^\s@<>(),;:\\"[\]]+\.[^\s@<>(),;:\\"[\]]+$/;
@@ -72,17 +73,39 @@ export async function POST(request) {
       return json({ error: 'unavailable' }, 503);
     }
 
-    const response = await fetch(url, {
+    const signal = AbortSignal.timeout(20_000);
+    let response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ secret, name, email, subject, message }),
       cache: 'no-store',
-      redirect: 'follow',
-      signal: AbortSignal.timeout(20_000)
+      redirect: 'manual',
+      signal
     });
-    if (!response.ok) return json({ error: 'send-failed' }, 502);
-    const result = await response.json();
+    if ([302, 303].includes(response.status)) {
+      const location = response.headers.get('location');
+      void response.body?.cancel().catch(() => {});
+      let redirect;
+      try { redirect = new URL(location || '', url); } catch { return json({ error: 'send-failed' }, 502); }
+      if (!location || redirect.protocol !== 'https:' || redirect.hostname !== 'script.googleusercontent.com' ||
+          redirect.pathname !== '/macros/echo' || redirect.port || redirect.username || redirect.password || redirect.hash) {
+        return json({ error: 'send-failed' }, 502);
+      }
+      // Read Google's reply as GET; never replay the form POST or its secret.
+      response = await fetch(redirect.href, { method: 'GET', cache: 'no-store', redirect: 'manual', signal });
+    }
+    if (!response.ok) {
+      void response.body?.cancel().catch(() => {});
+      console.error('Contact Apps Script delivery failed', { reason: 'http-status', status: response.status });
+      return json({ error: 'send-failed' }, 502);
+    }
+    let result;
+    try { result = await readContactBody(response); } catch { return json({ error: 'send-failed' }, 502); }
     if (result?.success !== true) {
+      const reason = result?.error === 'forbidden' ? 'shared-secret-mismatch' :
+        result?.error === 'unavailable' ? 'google-configuration-unavailable' :
+        result?.error === 'quota-exceeded' ? 'google-mail-quota-exceeded' : 'invalid-google-response';
+      console.error('Contact Apps Script delivery failed', { reason });
       const status = ['quota-exceeded', 'unavailable'].includes(result?.error) ? 503 : 502;
       return json({ error: status === 503 ? 'unavailable' : 'send-failed' }, status);
     }

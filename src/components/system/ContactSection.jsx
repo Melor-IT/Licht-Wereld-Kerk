@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { contactEmail } from '../../data/contact';
 
@@ -11,6 +11,7 @@ export default function ContactSection() {
   const [form, setForm] = useState(emptyForm);
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState('');
+  const submitting = useRef(false);
   const t = (id) => formatMessage({ id });
 
   function change(event) {
@@ -21,14 +22,16 @@ export default function ContactSection() {
 
   async function submit(event) {
     event.preventDefault();
-    if (status === 'submitting') return;
+    if (submitting.current) return;
+    submitting.current = true;
     setStatus('submitting');
     setError('');
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form)
+        body: JSON.stringify(form),
+        signal: AbortSignal.timeout(35_000)
       });
       if (!response.ok) {
         setError(response.status === 429 ? 'contactRateLimited' : response.status === 400 ? 'contactInvalid' : 'contactSendFailed');
@@ -42,6 +45,8 @@ export default function ContactSection() {
     } catch {
       setError('contactSendFailed');
       setStatus('error');
+    } finally {
+      submitting.current = false;
     }
   }
 
@@ -53,7 +58,7 @@ export default function ContactSection() {
           <p>{t('contactDirectEmail')}</p>
           <p><a className="contact-email" href={`mailto:${contactEmail}`} dir="ltr">{contactEmail}</a></p>
         </div>
-        <form className="form-block contact-form" onSubmit={submit} aria-busy={status === 'submitting'}>
+        <form className="form-block contact-form" action="/api/contact" method="post" onSubmit={submit} aria-busy={status === 'submitting'}>
           <p>{t('contactRequiredFields')}</p>
           <fieldset disabled={status === 'submitting'} aria-label={t('contactFormTitle')}>
             <div className="form-grid">

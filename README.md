@@ -142,3 +142,8 @@ Zonder beide feature flags retourneert de API een `404`. Het registratieformulie
 De API accepteert maximaal 15.000 bytes JSON en vijf pogingen per IP-adres per vijftien minuten, per serverproces. De proxy moet `X-Forwarded-For` en `X-Real-IP` zelf overschrijven; vertrouw hiervoor geen bezoekersheaders. Gebruik bij meerdere instanties een gedeelde limiet bij de proxy of in een centrale opslag. Stel `NEXT_PUBLIC_SITE_URL` in op de openbare oorsprong zonder pad, bijvoorbeeld `https://lichtwereld.com`; wanneer ingesteld is dit de enige toegestane oorsprong voor registratieverzoeken.
 
 Zie `SECURITY_REVIEW.md` voor de technische en beveiligingscontrole van 19 oktober 2026, inclusief de nog openstaande waarschuwing in een ontwikkelafhankelijkheid.
+
+
+## Contactformulier op Vercel
+
+Het contactformulier gebruikt uitsluitend Google Apps Script. Volg [de Vercel-handleiding](google-apps-script/VERCEL.md) voor de productievariabelen, de Google Script Property en de nieuwe deployment. Met npm run check:contact controleer je de verbinding zonder e-mail te versturen.

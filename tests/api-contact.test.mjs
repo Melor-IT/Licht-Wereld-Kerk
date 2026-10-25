@@ -63,7 +63,7 @@ test('contact forwards only validated fields and the server secret to the actual
   assert.equal(calls[0].url, scriptUrl);
   const { options } = calls[0];
   assert.equal(options.method, 'POST');
-  assert.equal(options.redirect, 'follow');
+  assert.equal(options.redirect, 'manual');
   assert.equal(options.cache, 'no-store');
   assert.ok(options.signal instanceof AbortSignal);
   const forwarded = JSON.parse(options.body);
@@ -179,4 +179,55 @@ test('network errors and timeouts do not expose details or retry potentially del
     assert.deepEqual(await response.json(), { error: 'send-failed' });
   }
   assert.equal(calls.length, 2);
+});
+
+
+test('Google redirects retrieve only the response with GET and never forward secrets', async () => {
+  const googleReply = 'https://script.googleusercontent.com/macros/echo?probe=contact-test';
+  mock.restoreAll();
+  mock.method(console, 'error', () => {});
+  mock.method(globalThis, 'fetch', async (url, options) => {
+    calls.push({ url, options });
+    if (url === scriptUrl) {
+      assert.equal(app.post(JSON.parse(options.body)).success, true);
+      return new Response(null, { status: 302, headers: { location: googleReply } });
+    }
+    return Response.json({ success: true });
+  });
+  assert.equal((await POST(request())).status, 200);
+  assert.equal(app.sent.length, 1);
+  assert.equal(calls.length, 2);
+  assert.equal(calls[1].url, googleReply);
+  assert.equal(calls[1].options.method, 'GET');
+  assert.equal(calls[1].options.body, undefined);
+  assert.equal(calls[1].options.headers, undefined);
+  assert.equal(calls[1].options.redirect, 'manual');
+});
+
+test('unexpected redirects and redirect chains fail without leaking credentials', async () => {
+  for (const location of [
+    'https://attacker.example/collect',
+    'http://script.googleusercontent.com/macros/echo',
+    'https://accounts.google.com/login',
+    'https://script.googleusercontent.com/other',
+    'https://user:password@script.googleusercontent.com/macros/echo'
+  ]) {
+    calls.length = 0;
+    upstream = () => new Response(null, { status: 302, headers: { location } });
+    assert.equal((await POST(request())).status, 502);
+    assert.equal(calls.length, 1);
+    assert.equal(calls[0].options.redirect, 'manual');
+  }
+  calls.length = 0;
+  upstream = () => new Response(null, { status: 302, headers: { location: 'https://script.googleusercontent.com/macros/echo' } });
+  assert.equal((await POST(request())).status, 502);
+  assert.equal(calls.length, 2);
+  assert.equal(calls[1].options.body, undefined);
+  assert.equal(app.sent.length, 0);
+});
+
+test('oversized Google replies never report a successful submission', async () => {
+  upstream = () => new Response(JSON.stringify({ success: true, padding: 'x'.repeat(15001) }));
+  assert.equal((await POST(request())).status, 502);
+  assert.equal(app.sent.length, 0);
 });
