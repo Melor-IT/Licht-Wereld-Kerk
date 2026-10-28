@@ -14,7 +14,10 @@ export default function ChurchNavigation({ locale, currentRoute }) {
         <ul role="list">
           {churchPages.map(({ slug, title }) => (
             <li key={slug}>
-              <Link href={pathFor(locale, slug)} aria-current={slug === currentRoute ? 'page' : undefined}>
+              <Link
+                href={pathFor(locale, slug)}
+                aria-current={slug === currentRoute ? 'page' : undefined}
+              >
                 {formatMessage(title)}
               </Link>
             </li>

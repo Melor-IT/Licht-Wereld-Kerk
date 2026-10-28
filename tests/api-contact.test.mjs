@@ -13,11 +13,14 @@ let app;
 let upstream;
 let client = 0;
 const validBody = {
-  name: 'Test Visitor', email: 'visitor@example.com', subject: 'A question', message: 'Hello church'
+  name: 'Test Visitor',
+  email: 'visitor@example.com',
+  subject: 'A question',
+  message: 'Hello church'
 };
 
 beforeEach(() => {
-  savedEnv = Object.fromEntries(envKeys.map(key => [key, process.env[key]]));
+  savedEnv = Object.fromEntries(envKeys.map((key) => [key, process.env[key]]));
   Object.assign(process.env, {
     NEXT_PUBLIC_SITE_URL: 'https://example.com',
     CONTACT_APPS_SCRIPT_URL: scriptUrl,
@@ -45,17 +48,24 @@ function request(body = validBody, headers = {}, url = 'https://example.com/api/
   return new NextRequest(url, {
     method: 'POST',
     headers: {
-      'content-type': 'application/json', origin: 'https://example.com',
-      'x-forwarded-for': `contact-test-${++client}`, ...headers
+      'content-type': 'application/json',
+      origin: 'https://example.com',
+      'x-forwarded-for': `contact-test-${++client}`,
+      ...headers
     },
     body: typeof body === 'string' ? body : JSON.stringify(body)
   });
 }
 
 test('contact forwards only validated fields and the server secret to the actual Apps Script code', async () => {
-  const response = await POST(request({
-    ...validBody, to: 'attacker@example.com', secret: 'attacker-secret', message: '<script>alert(1)</script>'
-  }));
+  const response = await POST(
+    request({
+      ...validBody,
+      to: 'attacker@example.com',
+      secret: 'attacker-secret',
+      message: '<script>alert(1)</script>'
+    })
+  );
   assert.equal(response.status, 200);
   assert.deepEqual(await response.json(), { success: true });
   assert.equal(response.headers.get('cache-control'), 'no-store');
@@ -67,7 +77,13 @@ test('contact forwards only validated fields and the server secret to the actual
   assert.equal(options.cache, 'no-store');
   assert.ok(options.signal instanceof AbortSignal);
   const forwarded = JSON.parse(options.body);
-  assert.deepEqual(Object.keys(forwarded).sort(), ['email', 'message', 'name', 'secret', 'subject']);
+  assert.deepEqual(Object.keys(forwarded).sort(), [
+    'email',
+    'message',
+    'name',
+    'secret',
+    'subject'
+  ]);
   assert.equal(forwarded.secret, testSecret);
   assert.equal(app.sent.length, 1);
   assert.equal(app.sent[0].to, contactEmail);
@@ -78,14 +94,19 @@ test('contact forwards only validated fields and the server secret to the actual
 
 test('contact rejects invalid fields, multiple recipients and email header injection', async () => {
   for (const body of [
-    null, [], {}, { ...validBody, name: ' ' }, { ...validBody, message: {} },
+    null,
+    [],
+    {},
+    { ...validBody, name: ' ' },
+    { ...validBody, message: {} },
     { ...validBody, email: 'one@example.com,two@example.com' },
     { ...validBody, email: 'one@example.com\r\nBcc: two@example.com' },
     { ...validBody, name: 'Visitor\nBcc: attacker@example.com' },
     { ...validBody, subject: 'Question\r\nBcc: attacker@example.com' },
     { ...validBody, subject: 'x'.repeat(161) },
     { ...validBody, message: 'x'.repeat(4001) }
-  ]) assert.equal((await POST(request(body))).status, 400);
+  ])
+    assert.equal((await POST(request(body))).status, 400);
   assert.equal(calls.length, 0);
 });
 
@@ -98,7 +119,10 @@ test('contact rejects unsupported media, malformed JSON and oversized requests',
 
 test('contact only accepts the configured site origin, including when the request host is forged', async () => {
   for (const origin of ['', 'https://attacker.example']) {
-    assert.equal((await POST(request(validBody, { origin }, 'https://attacker.example/api/contact'))).status, 403);
+    assert.equal(
+      (await POST(request(validBody, { origin }, 'https://attacker.example/api/contact'))).status,
+      403
+    );
   }
   assert.equal(calls.length, 0);
   delete process.env.NEXT_PUBLIC_SITE_URL;
@@ -137,7 +161,9 @@ test('Apps Script URL must be a canonical Google HTTPS deployment rather than an
     'https://script.google.com.attacker.example/macros/s/deployment/exec',
     'https://user:password@script.google.com/macros/s/deployment/exec',
     'https://script.google.com/macros/s/deployment/dev',
-    scriptUrl + '?secret=leak', scriptUrl + '#fragment', 'not a URL'
+    scriptUrl + '?secret=leak',
+    scriptUrl + '#fragment',
+    'not a URL'
   ]) {
     process.env.CONTACT_APPS_SCRIPT_URL = url;
     assert.equal((await POST(request())).status, 503, url);
@@ -172,15 +198,19 @@ test('Google quota and configuration failures are reported as unavailable', asyn
 });
 
 test('network errors and timeouts do not expose details or retry potentially delivered messages', async () => {
-  for (const error of [new Error('Sensitive upstream details'), new DOMException('Timed out', 'TimeoutError')]) {
-    upstream = () => { throw error; };
+  for (const error of [
+    new Error('Sensitive upstream details'),
+    new DOMException('Timed out', 'TimeoutError')
+  ]) {
+    upstream = () => {
+      throw error;
+    };
     const response = await POST(request());
     assert.equal(response.status, 502);
     assert.deepEqual(await response.json(), { error: 'send-failed' });
   }
   assert.equal(calls.length, 2);
 });
-
 
 test('Google redirects retrieve only the response with GET and never forward secrets', async () => {
   const googleReply = 'https://script.googleusercontent.com/macros/echo?probe=contact-test';
@@ -219,7 +249,11 @@ test('unexpected redirects and redirect chains fail without leaking credentials'
     assert.equal(calls[0].options.redirect, 'manual');
   }
   calls.length = 0;
-  upstream = () => new Response(null, { status: 302, headers: { location: 'https://script.googleusercontent.com/macros/echo' } });
+  upstream = () =>
+    new Response(null, {
+      status: 302,
+      headers: { location: 'https://script.googleusercontent.com/macros/echo' }
+    });
   assert.equal((await POST(request())).status, 502);
   assert.equal(calls.length, 2);
   assert.equal(calls[1].options.body, undefined);

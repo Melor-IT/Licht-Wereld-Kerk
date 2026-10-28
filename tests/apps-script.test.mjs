@@ -4,8 +4,11 @@ import { createAppsScriptHarness, testSecret } from './helpers/apps-script.mjs';
 import { contactEmail } from '../src/data/contact.js';
 
 const valid = {
-  secret: testSecret, name: 'Church visitor', email: 'visitor@example.com',
-  subject: 'A question', message: 'Hello\nThank you'
+  secret: testSecret,
+  name: 'Church visitor',
+  email: 'visitor@example.com',
+  subject: 'A question',
+  message: 'Hello\nThank you'
 };
 
 test('the deployable script sends plain text only to the church and sets visitor reply-to', () => {
@@ -24,18 +27,26 @@ test('Google Apps Script refuses missing or incorrect server secrets before send
     assert.deepEqual(app.post({ ...valid, secret }), { success: false, error: 'forbidden' });
   }
   assert.equal(app.sent.length, 0);
-  assert.deepEqual(createAppsScriptHarness({ secret: '' }).post(valid), { success: false, error: 'unavailable' });
+  assert.deepEqual(createAppsScriptHarness({ secret: '' }).post(valid), {
+    success: false,
+    error: 'unavailable'
+  });
 });
 
 test('the script independently rejects malformed payloads, invalid email and header injection', () => {
   const app = createAppsScriptHarness();
   for (const body of [
-    '{', null, [], { ...valid, name: '' }, { ...valid, message: 12 },
+    '{',
+    null,
+    [],
+    { ...valid, name: '' },
+    { ...valid, message: 12 },
     { ...valid, message: 'x'.repeat(4001) },
     { ...valid, email: 'one@example.com,two@example.com' },
     { ...valid, name: 'Visitor\nBcc: attacker@example.com' },
     { ...valid, subject: 'Question\r\nBcc: attacker@example.com' }
-  ]) assert.deepEqual(app.post(body), { success: false, error: 'invalid' });
+  ])
+    assert.deepEqual(app.post(body), { success: false, error: 'invalid' });
   assert.deepEqual(app.post(valid, { contentLength: 15001 }), { success: false, error: 'invalid' });
   assert.deepEqual(app.post(valid, { postData: null }), { success: false, error: 'invalid' });
   assert.equal(app.sent.length, 0);

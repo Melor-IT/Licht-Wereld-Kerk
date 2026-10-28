@@ -10,10 +10,11 @@ export const maxDuration = 30;
 
 const isRateLimited = createContactRateLimiter();
 const emailPattern = /^[^\s@<>(),;:\\"[\]]+@[^\s@<>(),;:\\"[\]]+\.[^\s@<>(),;:\\"[\]]+$/;
-const hasHeaderControls = (value) => Array.from(value).some((character) => {
-  const code = character.codePointAt(0);
-  return code < 32 || code === 127;
-});
+const hasHeaderControls = (value) =>
+  Array.from(value).some((character) => {
+    const code = character.codePointAt(0);
+    return code < 32 || code === 127;
+  });
 
 function json(data, status, headers = {}) {
   return NextResponse.json(data, {
@@ -31,39 +32,59 @@ function text(value, limit) {
 function appsScriptUrl(value) {
   try {
     const url = new URL(value);
-    return url.protocol === 'https:' && url.hostname === 'script.google.com' &&
-      !url.port && !url.username && !url.password && !url.search && !url.hash &&
-      /^\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(url.pathname) ? url.href : null;
+    return url.protocol === 'https:' &&
+      url.hostname === 'script.google.com' &&
+      !url.port &&
+      !url.username &&
+      !url.password &&
+      !url.search &&
+      !url.hash &&
+      /^\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(url.pathname)
+      ? url.href
+      : null;
   } catch {
     return null;
   }
 }
 
 export async function POST(request) {
-  if (request.headers.get('content-type')?.split(';')[0].trim().toLowerCase() !== 'application/json') {
+  if (
+    request.headers.get('content-type')?.split(';')[0].trim().toLowerCase() !== 'application/json'
+  ) {
     return json({ error: 'invalid' }, 415);
   }
 
-  const allowedOrigin = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || request.nextUrl.origin;
+  const allowedOrigin =
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || request.nextUrl.origin;
   if (request.headers.get('origin') !== allowedOrigin) return json({ error: 'forbidden' }, 403);
 
   const ip = (
     request.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
-    request.headers.get('x-real-ip') || 'unknown'
+    request.headers.get('x-real-ip') ||
+    'unknown'
   ).slice(0, 128);
   if (isRateLimited(ip)) return json({ error: 'rate-limited' }, 429, { 'Retry-After': '900' });
 
   try {
     const body = await readContactBody(request);
-    if (!body || typeof body !== 'object' || Array.isArray(body)) return json({ error: 'invalid' }, 400);
+    if (!body || typeof body !== 'object' || Array.isArray(body))
+      return json({ error: 'invalid' }, 400);
     if (body.website) return json({ success: true }, 200);
 
     const name = text(body.name, 120);
     const email = text(body.email, 254);
     const subject = text(body.subject, 160);
     const message = text(body.message, 4000);
-    if (!name || !email || !subject || !message || !emailPattern.test(email) ||
-        hasHeaderControls(name) || hasHeaderControls(subject) || message.includes('\u0000')) {
+    if (
+      !name ||
+      !email ||
+      !subject ||
+      !message ||
+      !emailPattern.test(email) ||
+      hasHeaderControls(name) ||
+      hasHeaderControls(subject) ||
+      message.includes('\u0000')
+    ) {
       return json({ error: 'invalid' }, 400);
     }
 
@@ -86,25 +107,54 @@ export async function POST(request) {
       const location = response.headers.get('location');
       void response.body?.cancel().catch(() => {});
       let redirect;
-      try { redirect = new URL(location || '', url); } catch { return json({ error: 'send-failed' }, 502); }
-      if (!location || redirect.protocol !== 'https:' || redirect.hostname !== 'script.googleusercontent.com' ||
-          redirect.pathname !== '/macros/echo' || redirect.port || redirect.username || redirect.password || redirect.hash) {
+      try {
+        redirect = new URL(location || '', url);
+      } catch {
+        return json({ error: 'send-failed' }, 502);
+      }
+      if (
+        !location ||
+        redirect.protocol !== 'https:' ||
+        redirect.hostname !== 'script.googleusercontent.com' ||
+        redirect.pathname !== '/macros/echo' ||
+        redirect.port ||
+        redirect.username ||
+        redirect.password ||
+        redirect.hash
+      ) {
         return json({ error: 'send-failed' }, 502);
       }
       // Read Google's reply as GET; never replay the form POST or its secret.
-      response = await fetch(redirect.href, { method: 'GET', cache: 'no-store', redirect: 'manual', signal });
+      response = await fetch(redirect.href, {
+        method: 'GET',
+        cache: 'no-store',
+        redirect: 'manual',
+        signal
+      });
     }
     if (!response.ok) {
       void response.body?.cancel().catch(() => {});
-      console.error('Contact Apps Script delivery failed', { reason: 'http-status', status: response.status });
+      console.error('Contact Apps Script delivery failed', {
+        reason: 'http-status',
+        status: response.status
+      });
       return json({ error: 'send-failed' }, 502);
     }
     let result;
-    try { result = await readContactBody(response); } catch { return json({ error: 'send-failed' }, 502); }
+    try {
+      result = await readContactBody(response);
+    } catch {
+      return json({ error: 'send-failed' }, 502);
+    }
     if (result?.success !== true) {
-      const reason = result?.error === 'forbidden' ? 'shared-secret-mismatch' :
-        result?.error === 'unavailable' ? 'google-configuration-unavailable' :
-        result?.error === 'quota-exceeded' ? 'google-mail-quota-exceeded' : 'invalid-google-response';
+      const reason =
+        result?.error === 'forbidden'
+          ? 'shared-secret-mismatch'
+          : result?.error === 'unavailable'
+            ? 'google-configuration-unavailable'
+            : result?.error === 'quota-exceeded'
+              ? 'google-mail-quota-exceeded'
+              : 'invalid-google-response';
       console.error('Contact Apps Script delivery failed', { reason });
       const status = ['quota-exceeded', 'unavailable'].includes(result?.error) ? 503 : 502;
       return json({ error: status === 503 ? 'unavailable' : 'send-failed' }, status);

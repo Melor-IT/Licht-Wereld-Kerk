@@ -9,8 +9,12 @@ export async function generateMetadata({ params }) {
 export default function Page() {
   return (
     <div className="page contact-page">
-      <Hero backgroundImage="/images/about-us-banner.jpg" titleId="contact-page-title"
-        title={{ id: 'contactPageTitle' }} intro={{ id: 'contactIntro' }} />
+      <Hero
+        backgroundImage="/images/about-us-banner.jpg"
+        titleId="contact-page-title"
+        title={{ id: 'contactPageTitle' }}
+        intro={{ id: 'contactIntro' }}
+      />
       <ContactSection />
     </div>
   );

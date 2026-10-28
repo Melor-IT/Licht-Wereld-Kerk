@@ -7,11 +7,11 @@ The contact form uses Google Apps Script only.
 
 Set these in the Vercel project for lichtwereld.com, under Settings → Environment Variables:
 
-| Name | Value |
-| --- | --- |
-| NEXT_PUBLIC_SITE_URL | https://lichtwereld.com |
-| CONTACT_APPS_SCRIPT_URL | The /exec URL from .env.example or your latest Google deployment |
-| CONTACT_APPS_SCRIPT_SECRET | The existing private value in .env.local |
+| Name                       | Value                                                            |
+| -------------------------- | ---------------------------------------------------------------- |
+| NEXT_PUBLIC_SITE_URL       | https://lichtwereld.com                                          |
+| CONTACT_APPS_SCRIPT_URL    | The /exec URL from .env.example or your latest Google deployment |
+| CONTACT_APPS_SCRIPT_SECRET | The existing private value in .env.local                         |
 
 The secret must match Google Apps Script → Project Settings → Script properties → CONTACT_APPS_SCRIPT_SECRET.
 Keep it out of NEXT_PUBLIC_ variables, source code and chat.
@@ -40,6 +40,7 @@ Uncertain deliveries are not automatically retried.
 The separately disabled event-registration endpoint has independent mail settings.
 
 Official references:
+
 - https://vercel.com/docs/environment-variables
 - https://vercel.com/docs/functions/configuring-functions/duration
 - https://developers.google.com/apps-script/guides/web

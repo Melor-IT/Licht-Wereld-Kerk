@@ -47,7 +47,8 @@ function HeaderNavigation({ locale, pathname }) {
   const dialogRef = useRef(null);
   const headerRef = useRef(null);
   const currentSlug = pathname.split('/').slice(2).join('/');
-  const isActive = (slug) => currentSlug === slug || (slug === 'about-us' && currentSlug.startsWith('about-us/'));
+  const isActive = (slug) =>
+    currentSlug === slug || (slug === 'about-us' && currentSlug.startsWith('about-us/'));
   const hrefFor = (slug, language = locale) => `/${language}${slug ? `/${slug}` : ''}`;
   const t = (id) => formatMessage({ id });
   const currentLanguage = languageOptions.find((language) => language.value === locale);

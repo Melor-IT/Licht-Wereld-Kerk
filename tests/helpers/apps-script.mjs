@@ -4,13 +4,24 @@ import { runInNewContext } from 'node:vm';
 export const testSecret = 'test-contact-secret-'.repeat(3);
 
 // Execute the deployable script with local Google service stand-ins.
-export function createAppsScriptHarness({ secret = testSecret, quota = 100, failDelivery = false } = {}) {
+export function createAppsScriptHarness({
+  secret = testSecret,
+  quota = 100,
+  failDelivery = false
+} = {}) {
   const sent = [];
   const context = {
     ContentService: {
       MimeType: { JSON: 'application/json' },
       createTextOutput(content) {
-        return { setMimeType() { return this; }, getContent() { return content; } };
+        return {
+          setMimeType() {
+            return this;
+          },
+          getContent() {
+            return content;
+          }
+        };
       }
     },
     PropertiesService: { getScriptProperties: () => ({ getProperty: () => secret }) },
@@ -22,7 +33,10 @@ export function createAppsScriptHarness({ secret = testSecret, quota = 100, fail
       }
     }
   };
-  runInNewContext(readFileSync(new URL('../../google-apps-script/Code.gs', import.meta.url), 'utf8'), context);
+  runInNewContext(
+    readFileSync(new URL('../../google-apps-script/Code.gs', import.meta.url), 'utf8'),
+    context
+  );
   return {
     sent,
     get: () => JSON.parse(context.doGet().getContent()),

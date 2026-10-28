@@ -8,9 +8,14 @@ function doGet() {
 
 function doPost(e) {
   try {
-    if (!e || !e.postData || typeof e.postData.contents !== 'string' ||
-        e.contentLength > 15000 || e.postData.contents.length > 15000 ||
-        String(e.postData.type).split(';')[0].trim().toLowerCase() !== 'application/json') {
+    if (
+      !e ||
+      !e.postData ||
+      typeof e.postData.contents !== 'string' ||
+      e.contentLength > 15000 ||
+      e.postData.contents.length > 15000 ||
+      String(e.postData.type).split(';')[0].trim().toLowerCase() !== 'application/json'
+    ) {
       return contactJson_({ success: false, error: 'invalid' });
     }
 
@@ -35,8 +40,16 @@ function doPost(e) {
     var subject = contactText_(data.subject, 160);
     var message = contactText_(data.message, 4000);
     var emailPattern = /^[^\s@<>(),;:\\"[\]]+@[^\s@<>(),;:\\"[\]]+\.[^\s@<>(),;:\\"[\]]+$/;
-    if (!name || !email || !subject || !message || !emailPattern.test(email) ||
-        contactHeaderControls_(name) || contactHeaderControls_(subject) || message.indexOf('\u0000') !== -1) {
+    if (
+      !name ||
+      !email ||
+      !subject ||
+      !message ||
+      !emailPattern.test(email) ||
+      contactHeaderControls_(name) ||
+      contactHeaderControls_(subject) ||
+      message.indexOf('\u0000') !== -1
+    ) {
       return contactJson_({ success: false, error: 'invalid' });
     }
     if (MailApp.getRemainingDailyQuota() < 1) {
@@ -58,7 +71,9 @@ function doPost(e) {
 }
 
 function contactJson_(data) {
-  return ContentService.createTextOutput(JSON.stringify(data)).setMimeType(ContentService.MimeType.JSON);
+  return ContentService.createTextOutput(JSON.stringify(data)).setMimeType(
+    ContentService.MimeType.JSON
+  );
 }
 
 function contactText_(value, limit) {

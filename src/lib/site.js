@@ -6,8 +6,14 @@ export const messages = { en, fa, nl };
 export const locales = Object.keys(messages);
 export const defaultLocale = 'nl';
 const supportedRoutes = [
-  '', 'about-us', 'about-us/ministries', 'about-us/leadership',
-  'sermons', 'ANBI-information', 'event', 'contact'
+  '',
+  'about-us',
+  'about-us/ministries',
+  'about-us/leadership',
+  'sermons',
+  'ANBI-information',
+  'event',
+  'contact'
 ];
 export const routes = supportedRoutes;
 export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://lichtwereld.com').replace(

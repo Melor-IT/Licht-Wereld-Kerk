@@ -39,21 +39,20 @@ export default function ContentSection({
         <List>
           {items.map((item) => (
             <li key={Array.isArray(item) ? item[0].id : item.title?.id || item.id}>
-              {Array.isArray(item)
-                ? item.map((message, index) => (
-                    <Fragment key={message.id}>
-                      {index > 0 && ': '}
-                      {formatMessage(message)}
-                    </Fragment>
-                  ))
-                : item.title ? (
-                    <>
-                      <strong>{formatMessage(item.title)}:</strong>{' '}
-                      {formatMessage(item.description)}
-                    </>
-                  ) : (
-                    formatMessage(item)
-                  )}
+              {Array.isArray(item) ? (
+                item.map((message, index) => (
+                  <Fragment key={message.id}>
+                    {index > 0 && ': '}
+                    {formatMessage(message)}
+                  </Fragment>
+                ))
+              ) : item.title ? (
+                <>
+                  <strong>{formatMessage(item.title)}:</strong> {formatMessage(item.description)}
+                </>
+              ) : (
+                formatMessage(item)
+              )}
             </li>
           ))}
         </List>

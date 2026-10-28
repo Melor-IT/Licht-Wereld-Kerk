@@ -36,10 +36,7 @@ const Footer = ({ locale }) => {
               <a href="tel:068371262" aria-label={formatMessage({ id: 'phone' })}>
                 <FaPhone />
               </a>
-              <a
-                href={`mailto:${contactEmail}`}
-                aria-label={formatMessage({ id: 'email' })}
-              >
+              <a href={`mailto:${contactEmail}`} aria-label={formatMessage({ id: 'email' })}>
                 <FaEnvelope />
               </a>
             </div>

@@ -104,19 +104,24 @@ export const churchPages = [
   { slug: 'about-us/leadership', title: message('churchLeadershipTitle') }
 ];
 
-const selectSections = (kinds) => kinds.map((kind, index) => ({
-  ...aboutChurchSections.find((section) => section.kind === kind),
-  variant: index % 2 === 0 ? 'primary' : 'secondary'
-}));
+const selectSections = (kinds) =>
+  kinds.map((kind, index) => ({
+    ...aboutChurchSections.find((section) => section.kind === kind),
+    variant: index % 2 === 0 ? 'primary' : 'secondary'
+  }));
 
 export const aboutOverviewSections = [
   ...selectSections(['identity', 'history', 'vision', 'mission', 'values']).map((section) => {
     if (section.kind === 'vision') return { ...section, after: [message('aboutVisionCalling')] };
     if (section.kind === 'mission') return { ...section, after: [message('aboutWorshipPractice')] };
-    if (section.kind === 'values') return {
-      ...section,
-      quote: { text: message('aboutValuesVerse'), reference: message('aboutValuesVerseReference') }
-    };
+    if (section.kind === 'values')
+      return {
+        ...section,
+        quote: {
+          text: message('aboutValuesVerse'),
+          reference: message('aboutValuesVerseReference')
+        }
+      };
     return section;
   }),
   {

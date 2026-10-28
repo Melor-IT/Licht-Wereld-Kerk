@@ -143,7 +143,6 @@ De API accepteert maximaal 15.000 bytes JSON en vijf pogingen per IP-adres per v
 
 Zie `SECURITY_REVIEW.md` voor de technische en beveiligingscontrole van 19 oktober 2026, inclusief de nog openstaande waarschuwing in een ontwikkelafhankelijkheid.
 
-
 ## Contactformulier op Vercel
 
 Het contactformulier gebruikt uitsluitend Google Apps Script. Volg [de Vercel-handleiding](google-apps-script/VERCEL.md) voor de productievariabelen, de Google Script Property en de nieuwe deployment. Met npm run check:contact controleer je de verbinding zonder e-mail te versturen.

@@ -34,7 +34,13 @@ export default function ContactSection() {
         signal: AbortSignal.timeout(35_000)
       });
       if (!response.ok) {
-        setError(response.status === 429 ? 'contactRateLimited' : response.status === 400 ? 'contactInvalid' : 'contactSendFailed');
+        setError(
+          response.status === 429
+            ? 'contactRateLimited'
+            : response.status === 400
+              ? 'contactInvalid'
+              : 'contactSendFailed'
+        );
         setStatus('error');
         return;
       }
@@ -56,38 +62,93 @@ export default function ContactSection() {
         <div className="text-block">
           <h2 id="contact-form-title">{t('contactFormTitle')}</h2>
           <p>{t('contactDirectEmail')}</p>
-          <p><a className="contact-email" href={`mailto:${contactEmail}`} dir="ltr">{contactEmail}</a></p>
+          <p>
+            <a className="contact-email" href={`mailto:${contactEmail}`} dir="ltr">
+              {contactEmail}
+            </a>
+          </p>
         </div>
-        <form className="form-block contact-form" action="/api/contact" method="post" onSubmit={submit} aria-busy={status === 'submitting'}>
+        <form
+          className="form-block contact-form"
+          action="/api/contact"
+          method="post"
+          onSubmit={submit}
+          aria-busy={status === 'submitting'}
+        >
           <p>{t('contactRequiredFields')}</p>
           <fieldset disabled={status === 'submitting'} aria-label={t('contactFormTitle')}>
             <div className="form-grid">
               <label htmlFor="contact-name">
                 <span className="title">{t('contactName')}</span>
-                <input id="contact-name" name="name" autoComplete="name" maxLength={120} required value={form.name} onChange={change} />
+                <input
+                  id="contact-name"
+                  name="name"
+                  autoComplete="name"
+                  maxLength={120}
+                  required
+                  value={form.name}
+                  onChange={change}
+                />
               </label>
               <label htmlFor="contact-email">
                 <span className="title">{t('email')}</span>
-                <input id="contact-email" name="email" type="email" dir="ltr" autoComplete="email" maxLength={254} required value={form.email} onChange={change} />
+                <input
+                  id="contact-email"
+                  name="email"
+                  type="email"
+                  dir="ltr"
+                  autoComplete="email"
+                  maxLength={254}
+                  required
+                  value={form.email}
+                  onChange={change}
+                />
               </label>
             </div>
             <label htmlFor="contact-subject">
               <span className="title">{t('contactSubject')}</span>
-              <input id="contact-subject" name="subject" maxLength={160} required value={form.subject} onChange={change} />
+              <input
+                id="contact-subject"
+                name="subject"
+                maxLength={160}
+                required
+                value={form.subject}
+                onChange={change}
+              />
             </label>
             <label htmlFor="contact-message">
               <span className="title">{t('message')}</span>
-              <textarea id="contact-message" name="message" rows={7} maxLength={4000} required value={form.message} onChange={change} />
+              <textarea
+                id="contact-message"
+                name="message"
+                rows={7}
+                maxLength={4000}
+                required
+                value={form.message}
+                onChange={change}
+              />
             </label>
             <label className="form-honeypot" aria-hidden="true">
               Website
-              <input name="website" tabIndex={-1} autoComplete="off" value={form.website} onChange={change} />
+              <input
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                value={form.website}
+                onChange={change}
+              />
             </label>
           </fieldset>
           <div role="status" aria-live="polite">
-            {status === 'success' && <p className="form-status form-status-success">{t('contactSuccess')}</p>}
+            {status === 'success' && (
+              <p className="form-status form-status-success">{t('contactSuccess')}</p>
+            )}
           </div>
-          {error && <p className="form-status form-status-error" role="alert">{t(error)}</p>}
+          {error && (
+            <p className="form-status form-status-error" role="alert">
+              {t(error)}
+            </p>
+          )}
           <button type="submit" disabled={status === 'submitting'}>
             {t(status === 'submitting' ? 'sending' : 'contactSubmit')}
           </button>
